@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.exception;
+package com.yizlan.gelato.core.dictionary;
 
 import java.io.Serializable;
 
 /**
- * Provide fields which named code and msg with the same type for exception.
- * This is a specialization of {@link BiException} for the case.
+ * Provide fields which named code and text with the same type for dictionary.
+ * This is a specialization of {@link BiDictionary} for the case.
  *
- * @param <T> the type of fields which named code and msg
+ * @param <T> the type of fields which named code and text
  * @author Zen Gershon
- * @see BiException
+ * @see BiDictionary
  * @since 1.0
  */
-public interface BinaryException<T extends Serializable> extends BiException<T, T> {
+public interface BinaryDictionary<T extends Serializable> extends BiDictionary<T, T> {
+
 }

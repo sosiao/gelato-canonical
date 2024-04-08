@@ -1,5 +1,5 @@
 /*
- * Copyright 2024-2024 the original author or authors.
+ * Copyright 2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.bundle;
+package com.yizlan.gelato.core.universal;
 
 import java.io.Serializable;
 
 /**
- * Provide code for business.
+ * Provide code.
  *
- * @param <T> the type of business code
+ * @param <T> the type of the code
  * @author Zen Gershon
  * @since 1.0
  */
-public interface BusinessCode<T extends Serializable> {
+public interface ICode<T extends Serializable> {
 
     /**
      * Get code

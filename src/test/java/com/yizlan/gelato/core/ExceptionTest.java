@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 the original author or authors.
+ * Copyright (C) 2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.exception;
+package com.yizlan.gelato.core;
 
-import java.io.Serializable;
+import com.yizlan.gelato.core.exception.BusinessException;
+import org.junit.jupiter.api.Test;
 
-/**
- * Provide fields which named code and msg with the same type for exception.
- * This is a specialization of {@link BiException} for the case.
- *
- * @param <T> the type of fields which named code and msg
- * @author Zen Gershon
- * @see BiException
- * @since 1.0
- */
-public interface BinaryException<T extends Serializable> extends BiException<T, T> {
+public class ExceptionTest {
+
+    @Test
+    public void testException() {
+        BusinessException exception = new BusinessException();
+        exception.setCode("CE1001");
+        exception.setMsg("error code");
+        System.out.println(exception);
+    }
 }

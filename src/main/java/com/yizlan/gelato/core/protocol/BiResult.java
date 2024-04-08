@@ -1,5 +1,5 @@
 /*
- * Copyright 2024-2024 the original author or authors.
+ * Copyright 2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +16,21 @@
 
 package com.yizlan.gelato.core.protocol;
 
-import com.yizlan.gelato.core.bundle.BusinessCode;
+import com.yizlan.gelato.core.universal.ICode;
 
 import java.io.Serializable;
 
 /**
  * Provide fields which named code and message with the different type for result.
- * This is the two-arity specialization of {@link BusinessCode}.
+ * This is the two-arity specialization of {@link ICode}.
  *
  * @param <T> the type of the filed which named code
  * @param <U> the type of the filed which named message
  * @author Zen Gershon
- * @see BusinessCode
+ * @see ICode
  * @since 1.0
  */
-public interface BiResult<T extends Serializable, U extends Serializable> extends BusinessCode<T> {
+public interface BiResult<T extends Serializable, U extends Serializable> extends ICode<T> {
 
     /**
      * Get message

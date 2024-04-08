@@ -16,18 +16,31 @@
 
 package com.yizlan.gelato.core.enums;
 
-import java.io.Serializable;
+import com.yizlan.gelato.core.util.EnumUtils;
 
-/**
- * Provide fields which named value、text and desc with the same type for enum.
- * This is a specialization of {@link TerEnum} for the case.
- *
- * @param <T> the type of fields which named value、text and desc
- * @author Zen Gershon
- * @see TerEnum
- * @see BinaryEnum
- * @since 1.0
- */
-public interface TernaryEnum<T extends Serializable> extends TerEnum<T, T, T> {
+public enum GenderEnum implements BiEnum<Integer, String> {
+    MAN(1, "男"), WOMAN(2, "女");
 
+    private final Integer value;
+
+    private final String text;
+
+    GenderEnum(Integer value, String text) {
+        this.value = value;
+        this.text = text;
+    }
+
+    @Override
+    public Integer getValue() {
+        return value;
+    }
+
+    @Override
+    public String getText() {
+        return text;
+    }
+
+    public static GenderEnum getEnumByValue(Integer value) {
+        return EnumUtils.getEnumByValue(GenderEnum.class, value);
+    }
 }
