@@ -48,10 +48,8 @@ public class EnumUtils {
         }
         EnumSet<E> es = EnumSet.allOf(enumClass);
         for (E item : es) {
-            if (item instanceof BiEnum) {
-                if (((M) item).valueEquals(value)) {
-                    return (M) item;
-                }
+            if (item instanceof BiEnum && (((M) item).valueEquals(value))) {
+                return (M) item;
             }
         }
         return null;
