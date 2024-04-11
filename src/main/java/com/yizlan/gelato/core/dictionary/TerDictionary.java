@@ -16,7 +16,8 @@
 
 package com.yizlan.gelato.core.dictionary;
 
-import com.yizlan.gelato.core.universal.IDescription;
+import com.yizlan.gelato.core.copier.CodeProvider;
+import com.yizlan.gelato.core.copier.DescriptionProvider;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -25,18 +26,19 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Provide fields which named code、text and desc with the different type for dictionary.
+ * Provide fields which named code、name and desc with the different type for dictionary.
+ * This is the three-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the filed which named code
- * @param <U> the type of the filed which named text
- * @param <S> the type of the filed which named desc
+ * @param <T> the type of the code field
+ * @param <U> the type of the name field
+ * @param <S> the type of the desc filed
  * @author Zen Gershon
  * @see BiDictionary
- * @see IDescription
+ * @see DescriptionProvider
  * @since 1.0
  */
 public interface TerDictionary<T extends Serializable, U extends Serializable, S extends Serializable>
-        extends BiDictionary<T, U>, IDescription<S> {
+        extends BiDictionary<T, U>, DescriptionProvider<S> {
 
     void setDesc(S desc);
 
@@ -44,11 +46,11 @@ public interface TerDictionary<T extends Serializable, U extends Serializable, S
      * convert dictionary to map
      *
      * @param terDictionaries dictionary
-     * @param <T>             the type of the filed which named code
-     * @param <U>             the type of the filed which named text
-     * @param <S>             the type of the filed which named desc
-     * @return a Collector which collects elements into a Map whose keys are the filed which named code, and whose
-     * values are the filed which named desc.
+     * @param <T>             the type of the code field
+     * @param <U>             the type of the name field
+     * @param <S>             the type of the desc filed
+     * @return a Collector which collects elements into a Map whose keys are the code field, and whose
+     * values are the desc field.
      */
     static <T extends Serializable, U extends Serializable, S extends Serializable> Map<T, S> toDescMap(
             List<? extends TerDictionary<T, U, S>> terDictionaries) {

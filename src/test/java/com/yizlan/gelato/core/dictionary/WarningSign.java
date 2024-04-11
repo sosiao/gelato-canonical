@@ -20,7 +20,7 @@ public class WarningSign implements TernaryDictionary<String> {
 
     private String code;
 
-    private String text;
+    private String name;
 
     private String desc;
 
@@ -35,13 +35,13 @@ public class WarningSign implements TernaryDictionary<String> {
     }
 
     @Override
-    public String getText() {
-        return text;
+    public String getName() {
+        return name;
     }
 
     @Override
-    public void setText(String text) {
-        this.text = text;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

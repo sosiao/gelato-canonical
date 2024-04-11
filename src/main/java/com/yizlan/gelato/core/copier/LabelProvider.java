@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.universal;
+package com.yizlan.gelato.core.copier;
 
 import java.io.Serializable;
 
 /**
- * Provide description.
+ * Provide label.
  *
- * @param <T> the type of the description
+ * @param <T> the type of the label
  * @author Zen Gershon
  * @since 1.0
  */
-public interface IDescription<T extends Serializable> {
+public interface LabelProvider<T extends Serializable> {
 
     /**
-     * Get description
+     * Get label
      *
-     * @return description
+     * @return label
      */
-    T getDesc();
+    T getLabel();
 }

@@ -22,8 +22,8 @@ import java.io.Serializable;
  * Provide fields which named code、message with the same type and data with the different type for result.
  * This is a specialization of {@link TerResult} for the case.
  *
- * @param <T> the type of the filed which named code、message
- * @param <U> the type of the filed which named data
+ * @param <T> the type of fields that contains code and message
+ * @param <U> the type of the data filed
  * @author Zen Gershon
  * @see TerResult
  * @see BinaryResult

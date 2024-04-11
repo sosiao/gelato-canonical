@@ -19,10 +19,10 @@ package com.yizlan.gelato.core.dictionary;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code and text with the same type for dictionary.
+ * Provide fields which named code and name with the same type for dictionary.
  * This is a specialization of {@link BiDictionary} for the case.
  *
- * @param <T> the type of fields which named code and text
+ * @param <T> the type of fields that contains code and name
  * @author Zen Gershon
  * @see BiDictionary
  * @since 1.0

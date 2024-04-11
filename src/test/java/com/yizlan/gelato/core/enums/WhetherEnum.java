@@ -23,11 +23,11 @@ public enum WhetherEnum implements BinaryEnum<String> {
 
     private final String value;
 
-    private final String text;
+    private final String label;
 
-    WhetherEnum(String value, String text) {
+    WhetherEnum(String value, String label) {
         this.value = value;
-        this.text = text;
+        this.label = label;
     }
 
     @Override
@@ -36,8 +36,8 @@ public enum WhetherEnum implements BinaryEnum<String> {
     }
 
     @Override
-    public String getText() {
-        return text;
+    public String getLabel() {
+        return label;
     }
 
     public static WhetherEnum getEnumByValue(String code){

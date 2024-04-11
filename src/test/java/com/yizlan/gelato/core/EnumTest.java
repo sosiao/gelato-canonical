@@ -44,19 +44,19 @@ public class EnumTest {
     void testToList() {
         BiEnum.toList(GenderEnum.values())
                 .forEach(item -> System.out.println("convert BiEnum to BiDictionary, class name:" +
-                        item.getClass().getTypeName() + ", \n value：" + item.getCode() + "|____|" + item.getText())
+                        item.getClass().getTypeName() + ", \n value：" + item.getCode() + "|____|" + item.getName())
                 );
 
         List<? extends BiDictionary<Integer, String>> biDictionaries = BiEnum.toList(GenderEnum.values(), Gender::new);
         biDictionaries.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary, " +
                 "class name:" + item.getClass().getTypeName() +
-                ", \n value：" + item.getCode() + "|++++|" + item.getText())
+                ", \n value：" + item.getCode() + "|++++|" + item.getName())
         );
 
         List<TerDictionary<String, String, String>> terDictionaries = TerEnum.toList(WarningSignEnum.values());
         terDictionaries.forEach(item -> System.out.println("convert TernaryEnum to TerDictionary, class name:" +
                 item.getClass().getTypeName() + ", \n value：" +
-                item.getCode() + "|----|" + item.getText() + "|----|" + item.getDesc())
+                item.getCode() + "|----|" + item.getName() + "|----|" + item.getDesc())
         );
 
         List<WarningSign> warningSignList = (List<WarningSign>) TerEnum.toList(WarningSignEnum.values(),
@@ -64,7 +64,7 @@ public class EnumTest {
         warningSignList.stream()
                 .map(warningSign -> "convert TernaryEnum to WarningSign through TerDictionary, class name:" +
                         warningSign.getClass().getTypeName() + ", \n value："
-                        + warningSign.getCode() + "|____|" + warningSign.getText() + "|____|" + warningSign.getDesc())
+                        + warningSign.getCode() + "|____|" + warningSign.getName() + "|____|" + warningSign.getDesc())
                 .forEach(System.out::println);
     }
 

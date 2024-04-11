@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.enums;
+package com.yizlan.gelato.core.copier;
 
 import java.io.Serializable;
 
 /**
- * Provide fields which named value、label and desc with the same type for enum.
- * This is a specialization of {@link TerEnum} for the case.
+ * Provide description.
  *
- * @param <T> the type of fields that contains value、label and desc
+ * @param <T> the type of the description
  * @author Zen Gershon
- * @see TerEnum
- * @see BinaryEnum
  * @since 1.0
  */
-public interface TernaryEnum<T extends Serializable> extends TerEnum<T, T, T> {
+public interface DescriptionProvider<T extends Serializable> {
 
+    /**
+     * Get description
+     *
+     * @return description
+     */
+    T getDesc();
 }

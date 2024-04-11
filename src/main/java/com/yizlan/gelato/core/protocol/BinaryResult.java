@@ -22,7 +22,7 @@ import java.io.Serializable;
  * Provide fields which named code and message with the same type for result.
  * This is a specialization of {@link BiResult} for the case.
  *
- * @param <T> the type of fields which named code and message
+ * @param <T> the type of fields that contains code and message
  * @author Zen Gershon
  * @see BiResult
  * @since 1.0

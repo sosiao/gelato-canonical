@@ -16,8 +16,8 @@
 
 package com.yizlan.gelato.core.panic;
 
+import com.yizlan.gelato.core.copier.CodeProvider;
 import com.yizlan.gelato.core.exception.BinaryException;
-import com.yizlan.gelato.core.universal.ICode;
 import com.yizlan.gelato.core.util.CSharpStrUtils;
 
 import java.text.MessageFormat;
@@ -28,7 +28,7 @@ import java.text.MessageFormat;
  * @author Zen Gershon
  * @since 1.0
  */
-public class ServiceException extends RuntimeException implements ICode<String> {
+public class ServiceException extends RuntimeException implements CodeProvider<String> {
     private static final long serialVersionUID = 1L;
 
     /**

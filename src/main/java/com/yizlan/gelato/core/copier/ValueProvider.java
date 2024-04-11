@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.universal;
+package com.yizlan.gelato.core.copier;
 
 import java.io.Serializable;
 
 /**
- * Provide code.
+ * Provide value.
  *
- * @param <T> the type of the code
+ * @param <T> the type of the value
  * @author Zen Gershon
  * @since 1.0
  */
-public interface ICode<T extends Serializable> {
+public interface ValueProvider<T extends Serializable> {
 
     /**
-     * Get code
+     * Get value
      *
-     * @return code
+     * @return value
      */
-    T getCode();
+    T getValue();
 }

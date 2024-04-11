@@ -16,8 +16,9 @@
 
 package com.yizlan.gelato.core.enums;
 
+import com.yizlan.gelato.core.copier.LabelProvider;
+import com.yizlan.gelato.core.copier.ValueProvider;
 import com.yizlan.gelato.core.dictionary.BiDictionary;
-import com.yizlan.gelato.core.universal.IText;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,23 +31,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 /**
- * Provide fields which named value and text with the different type for enum.
- * This is the two-arity specialization of {@link IText}.
+ * Provide fields which named value and label with the different type for enum.
+ * This is the two-arity specialization of {@link ValueProvider}.
  *
- * @param <T> the type of the filed which named value
- * @param <U> the type of the filed which named text
+ * @param <T> the type of the value field
+ * @param <U> the type of the label field
  * @author Zen Gershon
- * @see IText
+ * @see ValueProvider
  * @since 1.0
  */
-public interface BiEnum<T extends Serializable, U extends Serializable> extends IText<U> {
-
-    /**
-     * Get value
-     *
-     * @return value
-     */
-    T getValue();
+public interface BiEnum<T extends Serializable, U extends Serializable> extends ValueProvider<T>, LabelProvider<U> {
 
     /**
      * Compares enum according to their source value.
@@ -80,8 +74,8 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
      * convert enums to dictionary list
      *
      * @param enumValues the values of enum
-     * @param <T>        the type of the filed which named code
-     * @param <U>        the type of the filed which named value
+     * @param <T>        the type of the value field
+     * @param <U>        the type of the label field
      * @return dictionary list
      */
     static <T extends Serializable, U extends Serializable> List<BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues) {
@@ -90,23 +84,23 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
         for (BiEnum<T, U> item : enumValues) {
             BiDictionary<T, U> biDictionary = new BiDictionary<T, U>() {
                 @Override
-                public U getText() {
-                    return item.getText();
-                }
-
-                @Override
                 public T getCode() {
                     return item.getValue();
                 }
 
                 @Override
                 public void setCode(T code) {
-
+                    // to do nothing
                 }
 
                 @Override
-                public void setText(U text) {
+                public U getName() {
+                    return item.getLabel();
+                }
 
+                @Override
+                public void setName(U name) {
+                    // to do nothing
                 }
             };
             biDictionaries.add(biDictionary);
@@ -115,12 +109,12 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
     }
 
     /**
-     * convert enums to dictionary list
+     * convert enums to dictionary list with special data type
      *
      * @param enumValues the values of enum
      * @param supplier   the supplier (typically bound to a lambda expression)
-     * @param <T>        the type of the filed which named code
-     * @param <U>        the type of the filed which named value
+     * @param <T>        the type of the value field
+     * @param <U>        the type of the label field
      * @return dictionary list
      */
     static <T extends Serializable, U extends Serializable> List<? extends BiDictionary<T, U>> toList(
@@ -130,7 +124,7 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
         for (BiEnum<T, U> item : enumValues) {
             BiDictionary<T, U> biDictionary = supplier.get();
             biDictionary.setCode(item.getValue());
-            biDictionary.setText(item.getText());
+            biDictionary.setName(item.getLabel());
 
             biDictionaries.add(biDictionary);
         }
@@ -141,16 +135,16 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
      * convert enums to map
      *
      * @param enumValues the values of enum
-     * @param <T>        the type of the filed which named code
-     * @param <U>        the type of the filed which named value
-     * @return an Enum which collects elements into a Map whose keys are the filed which named code, and whose
-     * values are the filed which named value.
+     * @param <T>        the type of the value field
+     * @param <U>        the type of the label field
+     * @return an Enum which collects elements into a Map whose keys are the code field, and whose
+     * values are the label field.
      */
     static <T extends Serializable, U extends Serializable> Map<T, U> toMap(BiEnum<T, U>[] enumValues) {
         Map<T, U> map = new HashMap<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {
-            map.put(item.getValue(), item.getText());
+            map.put(item.getValue(), item.getLabel());
         }
 
         return map;

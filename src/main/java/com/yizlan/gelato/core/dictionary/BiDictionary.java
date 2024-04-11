@@ -16,8 +16,9 @@
 
 package com.yizlan.gelato.core.dictionary;
 
-import com.yizlan.gelato.core.universal.ICode;
-import com.yizlan.gelato.core.universal.IText;
+import com.yizlan.gelato.core.copier.CodeProvider;
+import com.yizlan.gelato.core.copier.LabelProvider;
+import com.yizlan.gelato.core.copier.NamedProvider;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -26,29 +27,30 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Provide fields which named code and text with the different type for dictionary.
+ * Provide fields which named code and name with the different type for dictionary.
+ * This is the two-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the filed which named code
- * @param <U> the type of the filed which named text
+ * @param <T> the type of the code field
+ * @param <U> the type of the name field
  * @author Zen Gershon
- * @see ICode
- * @see IText
+ * @see CodeProvider
+ * @see LabelProvider
  * @since 1.0
  */
-public interface BiDictionary<T extends Serializable, U extends Serializable> extends ICode<T>, IText<U> {
+public interface BiDictionary<T extends Serializable, U extends Serializable> extends CodeProvider<T>, NamedProvider<U> {
 
     void setCode(T code);
 
-    void setText(U text);
+    void setName(U name);
 
     /**
      * convert dictionary to map
      *
-     * @param biDictionaries dictionary list
-     * @param <T>            the type of the filed which named code
-     * @param <U>            the type of the filed which named text
-     * @return a Collector which collects elements into a Map whose keys are the filed which named code, and whose
-     * values are the filed which named text.
+     * @param biDictionaries A collection of classes or subclasses that implements {@link BiDictionary}
+     * @param <T>            the type of the code field
+     * @param <U>            the type of the name field
+     * @return a Collector which collects elements into a Map whose keys are the code field, and whose
+     * values are the name field.
      */
     static <T extends Serializable, U extends Serializable> Map<T, U> toMap(
             List<? extends BiDictionary<T, U>> biDictionaries) {
@@ -57,7 +59,7 @@ public interface BiDictionary<T extends Serializable, U extends Serializable> ex
         }
 
         return biDictionaries.stream().collect(
-                Collectors.toMap(BiDictionary::getCode, BiDictionary::getText, (k1, k2) -> k1)
+                Collectors.toMap(BiDictionary::getCode, BiDictionary::getName, (k1, k2) -> k1)
         );
     }
 }
