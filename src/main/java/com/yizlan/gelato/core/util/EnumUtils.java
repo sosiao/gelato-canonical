@@ -35,17 +35,14 @@ public class EnumUtils {
      * @param enumClass class of enum
      * @param value     value of enum
      * @param <E>       enum
-     * @param <T>       the type of the filed which named value
-     * @param <U>       the type of the filed which named text
+     * @param <T>       the type of the value field
+     * @param <U>       the type of the label field
      * @param <M>       subclass of BiEnum
      * @return an element from Enum.
      */
     @SuppressWarnings("unchecked")
     public static <E extends Enum<E>, T extends Serializable, U extends Serializable, M extends BiEnum<T, U>> M getEnumByValue(
             Class<E> enumClass, T value) {
-        if (null == value) {
-            return null;
-        }
         EnumSet<E> es = EnumSet.allOf(enumClass);
         for (E item : es) {
             if (item instanceof BiEnum && (((M) item).valueEquals(value))) {
