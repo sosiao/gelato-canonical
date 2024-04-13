@@ -17,6 +17,7 @@
 package com.yizlan.gelato.core.protocol;
 
 import com.yizlan.gelato.core.copier.CodeProvider;
+import com.yizlan.gelato.core.copier.MessageProvider;
 
 import java.io.Serializable;
 
@@ -30,12 +31,6 @@ import java.io.Serializable;
  * @see CodeProvider
  * @since 1.0
  */
-public interface BiResult<T extends Serializable, U extends Serializable> extends CodeProvider<T> {
+public interface BiResult<T extends Serializable, U extends Serializable> extends CodeProvider<T>, MessageProvider<U> {
 
-    /**
-     * Get message
-     *
-     * @return message
-     */
-    U getMessage();
 }

@@ -29,4 +29,5 @@ import java.io.Serializable;
  * @since 1.0
  */
 public interface TernaryException<T extends Serializable> extends TerException<T, T, T> {
+
 }

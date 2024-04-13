@@ -28,4 +28,5 @@ import java.io.Serializable;
  * @since 1.0
  */
 public interface BinaryResult<T extends Serializable> extends BiResult<T, T> {
+
 }

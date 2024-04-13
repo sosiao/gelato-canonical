@@ -28,4 +28,5 @@ import java.io.Serializable;
  * @since 1.0
  */
 public interface BinaryException<T extends Serializable> extends BiException<T, T> {
+
 }
