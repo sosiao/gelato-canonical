@@ -6,7 +6,7 @@
 
     <groupId>com.yizlan</groupId>
     <artifactId>gelato-core</artifactId>
-    <version>1.0.0-alpha</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
