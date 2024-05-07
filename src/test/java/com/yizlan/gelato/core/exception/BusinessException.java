@@ -34,13 +34,18 @@ public class BusinessException implements BinaryException<String>, Serializable 
         this.code = code;
     }
 
-    @Override
+    @Deprecated
     public String getMsg() {
         return msg;
     }
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    @Override
+    public String getMessage() {
+        return msg;
     }
 
     @Override

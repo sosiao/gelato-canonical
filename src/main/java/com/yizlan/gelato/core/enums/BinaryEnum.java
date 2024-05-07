@@ -19,10 +19,10 @@ package com.yizlan.gelato.core.enums;
 import java.io.Serializable;
 
 /**
- * Provide fields which named value and text with the same type for enum.
+ * Provide fields which named value and label with the same type for enum.
  * This is a specialization of {@link BiEnum} for the case.
  *
- * @param <T> the type of fields which named value and text
+ * @param <T> the type of fields that contains value and label
  * @author Zen Gershon
  * @see BiEnum
  * @since 1.0

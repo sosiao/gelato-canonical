@@ -23,11 +23,11 @@ public enum GenderEnum implements BiEnum<Integer, String> {
 
     private final Integer value;
 
-    private final String text;
+    private final String label;
 
-    GenderEnum(Integer value, String text) {
+    GenderEnum(Integer value, String label) {
         this.value = value;
-        this.text = text;
+        this.label = label;
     }
 
     @Override
@@ -36,8 +36,8 @@ public enum GenderEnum implements BiEnum<Integer, String> {
     }
 
     @Override
-    public String getText() {
-        return text;
+    public String getLabel() {
+        return label;
     }
 
     public static GenderEnum getEnumByValue(Integer value) {

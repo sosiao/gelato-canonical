@@ -4,21 +4,21 @@ import com.yizlan.gelato.core.util.EnumUtils;
 
 public enum WarningSignEnum implements TernaryEnum<String> {
     // 红色
-    RED("RED", "红色", "#f5222d"),
+    RED("RED", "#f5222d", "红色"),
     // 黄色
-    YELLOW("YELLOW", "黄色", "#fadb14"),
+    YELLOW("YELLOW", "#fadb14", "黄色"),
     // 绿色
-    GREEN("GREEN", "绿色", "#52c41a");
+    GREEN("GREEN", "#52c41a", "绿色");
 
     private final String value;
 
-    private final String text;
+    private final String label;
 
     private final String desc;
 
-    WarningSignEnum(String value, String text, String desc) {
+    WarningSignEnum(String value, String label, String desc) {
         this.value = value;
-        this.text = text;
+        this.label = label;
         this.desc = desc;
     }
 
@@ -28,8 +28,8 @@ public enum WarningSignEnum implements TernaryEnum<String> {
     }
 
     @Override
-    public String getText() {
-        return text;
+    public String getLabel() {
+        return label;
     }
 
     @Override

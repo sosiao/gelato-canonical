@@ -11,7 +11,7 @@
 
     <name>${project.artifactId}</name>
     <description>a toolkit for regulating data exchange. </description>
-    <url>https://github.com/sosiao</url>
+    <url>https://github.com/sosiao/gelato-core</url>
 
     <licenses>
         <license>
@@ -28,9 +28,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:sosiao.git</connection>
-        <developerConnection>scm:git:git@github.com:sosiao.git</developerConnection>
-        <url>https://github.com/sosiao.git</url>
+        <connection>scm:git:git@github.com:sosiao/gelato-core.git</connection>
+        <developerConnection>scm:git:git@github.com:sosiao/gelato-core.git</developerConnection>
+        <url>https://github.com/sosiao/gelato-core.git</url>
     </scm>
 
     <properties>

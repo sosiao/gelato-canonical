@@ -16,26 +16,22 @@
 
 package com.yizlan.gelato.core.protocol;
 
-import com.yizlan.gelato.core.universal.ICode;
+import com.yizlan.gelato.core.copier.CodeProvider;
+import com.yizlan.gelato.core.copier.MessageProvider;
 
 import java.io.Serializable;
 
 /**
  * Provide fields which named code and message with the different type for result.
- * This is the two-arity specialization of {@link ICode}.
+ * This is the two-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the filed which named code
- * @param <U> the type of the filed which named message
+ * @param <T> the type of the code field
+ * @param <U> the type of the message field
  * @author Zen Gershon
- * @see ICode
+ * @see CodeProvider
+ * @see MessageProvider
  * @since 1.0
  */
-public interface BiResult<T extends Serializable, U extends Serializable> extends ICode<T> {
+public interface BiResult<T extends Serializable, U extends Serializable> extends CodeProvider<T>, MessageProvider<U> {
 
-    /**
-     * Get message
-     *
-     * @return message
-     */
-    U getMessage();
 }
