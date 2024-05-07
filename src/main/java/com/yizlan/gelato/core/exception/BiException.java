@@ -17,6 +17,7 @@
 package com.yizlan.gelato.core.exception;
 
 import com.yizlan.gelato.core.copier.CodeProvider;
+import com.yizlan.gelato.core.copier.MessageProvider;
 
 import java.io.Serializable;
 
@@ -28,14 +29,10 @@ import java.io.Serializable;
  * @param <U> the type of the msg field
  * @author Zen Gershon
  * @see CodeProvider
+ * @see MessageProvider
  * @since 1.0
  */
-public interface BiException<T extends Serializable, U extends Serializable> extends CodeProvider<T> {
+public interface BiException<T extends Serializable, U extends Serializable> extends CodeProvider<T>,
+        MessageProvider<U> {
 
-    /**
-     * Get exception message
-     *
-     * @return exception message
-     */
-    U getMsg();
 }

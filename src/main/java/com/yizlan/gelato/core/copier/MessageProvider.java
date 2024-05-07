@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 the original author or authors.
+ * Copyright (C) 2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.protocol;
-
-import com.yizlan.gelato.core.copier.CodeProvider;
-import com.yizlan.gelato.core.copier.MessageProvider;
+package com.yizlan.gelato.core.copier;
 
 import java.io.Serializable;
 
 /**
- * Provide fields which named code and message with the different type for result.
- * This is the two-arity specialization of {@link CodeProvider}.
+ * Provide message.
  *
- * @param <T> the type of the code field
- * @param <U> the type of the message field
  * @author Zen Gershon
- * @see CodeProvider
- * @see MessageProvider
  * @since 1.0
  */
-public interface BiResult<T extends Serializable, U extends Serializable> extends CodeProvider<T>, MessageProvider<U> {
+public interface MessageProvider<T extends Serializable> {
 
+    /**
+     * Get message
+     *
+     * @return message
+     */
+    T getMessage();
 }
