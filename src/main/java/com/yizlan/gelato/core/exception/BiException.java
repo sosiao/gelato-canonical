@@ -16,21 +16,21 @@
 
 package com.yizlan.gelato.core.exception;
 
-import com.yizlan.gelato.core.universal.ICode;
+import com.yizlan.gelato.core.copier.CodeProvider;
 
 import java.io.Serializable;
 
 /**
  * Provide fields which named code and msg with the different type for exception.
- * This is the two-arity specialization of {@link ICode}.
+ * This is the two-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the filed which named code
- * @param <U> the type of the filed which named msg
+ * @param <T> the type of the code field
+ * @param <U> the type of the msg field
  * @author Zen Gershon
- * @see ICode
+ * @see CodeProvider
  * @since 1.0
  */
-public interface BiException<T extends Serializable, U extends Serializable> extends ICode<T> {
+public interface BiException<T extends Serializable, U extends Serializable> extends CodeProvider<T> {
 
     /**
      * Get exception message

@@ -22,10 +22,11 @@ import java.io.Serializable;
  * Provide fields which named code and msg with the same type for exception.
  * This is a specialization of {@link BiException} for the case.
  *
- * @param <T> the type of fields which named code and msg
+ * @param <T> the type of fields that contains code and msg
  * @author Zen Gershon
  * @see BiException
  * @since 1.0
  */
 public interface BinaryException<T extends Serializable> extends BiException<T, T> {
+
 }

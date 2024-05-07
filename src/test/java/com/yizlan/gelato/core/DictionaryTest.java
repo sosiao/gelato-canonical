@@ -33,11 +33,11 @@ public class DictionaryTest {
     void init() {
         WarningSign red = new WarningSign();
         red.setCode("Red");
-        red.setText("红色");
+        red.setName("红色");
         red.setDesc("#667788");
         WarningSign green = new WarningSign();
         green.setCode("Green");
-        green.setText("绿色 ");
+        green.setName("绿色 ");
         green.setDesc("#997766");
 
         warningSigns.add(red);

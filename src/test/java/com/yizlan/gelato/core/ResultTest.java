@@ -30,7 +30,7 @@ public class ResultTest {
 
         Gender gender = new Gender();
         gender.setCode(1);
-        gender.setText("男");
+        gender.setName("男");
         apiResult.setData(gender);
 
         System.out.println(apiResult);

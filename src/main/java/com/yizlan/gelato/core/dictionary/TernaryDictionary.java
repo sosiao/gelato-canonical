@@ -19,10 +19,10 @@ package com.yizlan.gelato.core.dictionary;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code、text and desc with the same type for dictionary.
+ * Provide fields which named code、name and desc with the same type for dictionary.
  * This is a specialization of {@link TerDictionary} for the case.
  *
- * @param <T> the type of fields which named code、text and desc
+ * @param <T> the type of fields that contains code、name and desc
  * @author Zen Gershon
  * @see TerDictionary
  * @see BinaryDictionary

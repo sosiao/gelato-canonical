@@ -22,11 +22,12 @@ import java.io.Serializable;
  * Provide fields which named code、msg and business with the same type for exception.
  * This is a specialization of {@link TerException} for the case.
  *
- * @param <T> the type of fields which named code、msg and business
+ * @param <T> the type of fields that contains code、msg and business
  * @author Zen Gershon
  * @see TerException
  * @see BinaryException
  * @since 1.0
  */
 public interface TernaryException<T extends Serializable> extends TerException<T, T, T> {
+
 }
