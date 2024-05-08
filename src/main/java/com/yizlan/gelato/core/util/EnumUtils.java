@@ -20,6 +20,7 @@ import com.yizlan.gelato.core.enums.BiEnum;
 
 import java.io.Serializable;
 import java.util.EnumSet;
+import java.util.Objects;
 
 /**
  * enum utils for enums package
@@ -32,8 +33,8 @@ public class EnumUtils {
     /**
      * Get an element from Enum according to their source value.
      *
-     * @param enumClass class of enum
-     * @param value     value of enum
+     * @param enumClazz the class of enum
+     * @param value     the value of enum
      * @param <E>       enum
      * @param <T>       the type of the value field
      * @param <U>       the type of the label field
@@ -42,8 +43,11 @@ public class EnumUtils {
      */
     @SuppressWarnings("unchecked")
     public static <E extends Enum<E>, T extends Serializable, U extends Serializable, M extends BiEnum<T, U>> M getEnumByValue(
-            Class<E> enumClass, T value) {
-        EnumSet<E> es = EnumSet.allOf(enumClass);
+            Class<E> enumClazz, T value) {
+        if (Objects.isNull(enumClazz)) {
+            return null;
+        }
+        EnumSet<E> es = EnumSet.allOf(enumClazz);
         for (E item : es) {
             if (item instanceof BiEnum && (((M) item).valueEquals(value))) {
                 return (M) item;
