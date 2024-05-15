@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 the original author or authors.
+ * Copyright (C) 2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,22 +17,17 @@
 package com.yizlan.gelato.core.exception;
 
 import com.yizlan.gelato.core.copier.CodeProvider;
-import com.yizlan.gelato.core.copier.MessageProvider;
 
 import java.io.Serializable;
 
 /**
- * Provide fields which named code and msg with the different type for exception.
- * This is the two-arity specialization of {@link CodeProvider}.
+ * Provide fields which named code for exception.
  *
  * @param <T> the type of the code field
- * @param <U> the type of the msg field
  * @author Zen Gershon
- * @see UnaryException
- * @see MessageProvider
+ * @see CodeProvider
  * @since 1.0
  */
-public interface BiException<T extends Serializable, U extends Serializable> extends UnaryException<T>,
-        MessageProvider<U> {
+public interface UnaryException<T extends Serializable> extends CodeProvider<T> {
 
 }

@@ -25,9 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 /**
@@ -37,29 +34,11 @@ import java.util.function.Supplier;
  * @param <T> the type of the value field
  * @param <U> the type of the label field
  * @author Zen Gershon
- * @see ValueProvider
+ * @see UnaryEnum
  * @see LabelProvider
  * @since 1.0
  */
-public interface BiEnum<T extends Serializable, U extends Serializable> extends ValueProvider<T>, LabelProvider<U> {
-
-    /**
-     * Compares enum according to their source value.
-     *
-     * @param enumValue the type of the filed which named value
-     * @return equals result from the value field of enum.
-     */
-    default boolean valueEquals(T enumValue) {
-        AtomicBoolean flag = new AtomicBoolean(false);
-        Optional.ofNullable(enumValue).ifPresent(val -> {
-            if (val instanceof String) {
-                flag.set(((String) val).equalsIgnoreCase((String) this.getValue()));
-            } else {
-                flag.set(Objects.equals(this.getValue(), val));
-            }
-        });
-        return flag.get();
-    }
+public interface BiEnum<T extends Serializable, U extends Serializable> extends UnaryEnum<T>, LabelProvider<U> {
 
     /**
      * Compares enum

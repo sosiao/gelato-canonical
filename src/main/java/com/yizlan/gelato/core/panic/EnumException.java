@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 the original author or authors.
+ * Copyright (C) 2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.exception;
+package com.yizlan.gelato.core.panic;
 
 import com.yizlan.gelato.core.copier.CodeProvider;
-import com.yizlan.gelato.core.copier.MessageProvider;
-
-import java.io.Serializable;
 
 /**
- * Provide fields which named code and msg with the different type for exception.
- * This is the two-arity specialization of {@link CodeProvider}.
+ * enum exception
  *
- * @param <T> the type of the code field
- * @param <U> the type of the msg field
  * @author Zen Gershon
- * @see UnaryException
- * @see MessageProvider
  * @since 1.0
  */
-public interface BiException<T extends Serializable, U extends Serializable> extends UnaryException<T>,
-        MessageProvider<U> {
+public class EnumException extends I18nException {
+    private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructs a new enum exception with unary generic enum interface as parameter and placeholder.
+     *
+     * @param exception unary generic enum interface
+     * @param args      placeholder parameters
+     */
+    public EnumException(final CodeProvider<String> exception, final Object... args) {
+        super(exception.getCode(), args);
+    }
 }
