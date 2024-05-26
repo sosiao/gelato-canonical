@@ -20,13 +20,18 @@
 
 # 依赖 | Dependency
 
-- Latest Version：<img alt="maven" src="https://img.shields.io/maven-central/v/com.yizlan/gelato-core.svg?style=flat-square">
+- Latest Version: [![Maven Central](https://img.shields.io/maven-central/v/com.yizlan/gelato-core.svg)](https://central.sonatype.com/search?namespace=com.yizlan&name=gelato-core)
+  - Maven 
     ```xml
     <dependency>
         <groupId>com.yizlan</groupId>
         <artifactId>gelato-core</artifactId>
         <version>Latest Version</version>
     </dependency>
+    ```
+  - Gradle
+    ```groovy
+    implementation group: 'com.yizlan', name: 'gelato-core', version: 'Latest Version'
     ```
 
 # 优点 | Advantages
