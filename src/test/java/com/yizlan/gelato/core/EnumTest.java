@@ -29,12 +29,15 @@ import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class EnumTest {
 
     @Test
     void testEnum() {
         BiEnum<Serializable, Serializable> biEnum = EnumUtils.getEnumByValue(null, null);
+        assert Objects.isNull(biEnum);
+
         GenderEnum genderEnum = GenderEnum.getEnumByValue(1);
         assert genderEnum == GenderEnum.MAN;
 
@@ -42,7 +45,7 @@ public class EnumTest {
         assert green == WarningSignEnum.GREEN;
 
         GenderEnum empty = GenderEnum.getEnumByValue(null);
-        assert null ==empty;
+        assert null == empty;
     }
 
     @Test
