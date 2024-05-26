@@ -14,24 +14,25 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.panic;
+package com.yizlan.gelato.core.fluent;
+
+import java.io.Serializable;
 
 /**
- * service exception
+ * numeric assert
  *
  * @author Zen Gershon
  * @since 1.0
  */
-public class ServiceException extends I18nException {
-    private static final long serialVersionUID = 1L;
+@FunctionalInterface
+public interface NumericAssert {
 
     /**
-     * Constructs a new service exception with the specified code and placeholder.
+     * throw exception
      *
      * @param code error code
      * @param args placeholder parameters
+     * @param <T>  the type which extends {@link Number}
      */
-    public ServiceException(final String code, final Object... args) {
-        super(code, args);
-    }
+    <T extends Number & Serializable> void throwException(final T code, final Object... args);
 }

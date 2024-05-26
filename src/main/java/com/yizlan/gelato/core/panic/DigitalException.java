@@ -16,34 +16,38 @@
 
 package com.yizlan.gelato.core.panic;
 
-import com.yizlan.gelato.core.exception.UnaryException;
+import com.yizlan.gelato.core.copier.CodeProvider;
+
+import java.io.Serializable;
 
 /**
- * i18n exception
+ * digital exception
  *
  * @author Zen Gershon
  * @since 1.0
  */
-public class I18nException extends MetaException {
+public class DigitalException extends MetaException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new i18n exception with the specified code and placeholder.
+     * Constructs a new digital exception with the specified code and placeholder.
      *
      * @param code error code
      * @param args placeholder parameters
+     * @param <T>  the type which extends {@link Number}
      */
-    public I18nException(final String code, final Object... args) {
+    public <T extends Number & Serializable> DigitalException(final T code, final Object... args) {
         super(code, args);
     }
 
     /**
-     * Constructs a new i18n exception with binary generic enum interface as parameter and detail message.
+     * Constructs a new digital exception with unary generic enum interface as parameter and placeholder.
      *
      * @param exception unary generic enum interface
-     * @param args      reserved parameters
+     * @param args      placeholder parameters
+     * @param <T>  the type which extends {@link Number}
      */
-    public I18nException(final UnaryException<String> exception, final Object... args) {
+    public <T extends Number & Serializable> DigitalException(final CodeProvider<T> exception, final Object... args) {
         super(exception, args);
     }
 }

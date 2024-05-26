@@ -19,53 +19,23 @@ package com.yizlan.gelato.core.support;
 import com.yizlan.gelato.core.exception.UnaryException;
 import com.yizlan.gelato.core.fluent.CodeAssert;
 import com.yizlan.gelato.core.fluent.EnumAssert;
-import com.yizlan.gelato.core.panic.EnumException;
 import com.yizlan.gelato.core.panic.I18nException;
-import com.yizlan.gelato.core.panic.ServiceException;
 
 /**
- * abstract service assert
+ * i18n assert
  *
  * @author Zen Gershon
  * @since 1.0
  */
-public abstract class AbstractServiceAssert {
+public abstract class I18nAssert {
 
     /**
      * code assert
      *
      * @param condition boolean
-     * @return CodeAssert
+     * @return {@link CodeAssert}
      */
     protected static CodeAssert codeAssert(final boolean condition) {
-        return (code, args) -> {
-            if (condition) {
-                throwServiceException(code, args);
-            }
-        };
-    }
-
-    /**
-     * enum assert
-     *
-     * @param condition boolean
-     * @return EnumAssert
-     */
-    protected static EnumAssert enumAssert(final boolean condition) {
-        return (exception, args) -> {
-            if (condition) {
-                throwEnumException(exception, args);
-            }
-        };
-    }
-
-    /**
-     * assert func with code
-     *
-     * @param condition boolean
-     * @return CodeAssert
-     */
-    protected static CodeAssert codeFuncAssert(final boolean condition) {
         return (code, args) -> {
             if (condition) {
                 throwException(code, args);
@@ -74,37 +44,17 @@ public abstract class AbstractServiceAssert {
     }
 
     /**
-     * assert func with enum
+     * enum assert
      *
      * @param condition boolean
-     * @return EnumAssert
+     * @return {@link EnumAssert}
      */
-    protected static EnumAssert enumFuncAssert(final boolean condition) {
+    protected static EnumAssert enumAssert(final boolean condition) {
         return (exception, args) -> {
             if (condition) {
                 throwException(exception, args);
             }
         };
-    }
-
-    /**
-     * throw service exception
-     *
-     * @param code error code
-     * @param args placeholder parameters
-     */
-    public static void throwServiceException(final String code, Object... args) {
-        throw new ServiceException(code, args);
-    }
-
-    /**
-     * throw enum exception that supports i18n
-     *
-     * @param exception error enum
-     * @param args      placeholder parameters
-     */
-    public static void throwEnumException(final UnaryException<String> exception, Object... args) {
-        throw new EnumException(exception, args);
     }
 
     /**
@@ -118,12 +68,12 @@ public abstract class AbstractServiceAssert {
     }
 
     /**
-     * throw i18n exception
+     * throw i18n exception that supports i18n
      *
      * @param exception error enum
      * @param args      placeholder parameters
      */
-    public static void throwException(final UnaryException<String> exception, Object... args) {
+    public static void throwException(final UnaryException<String> exception, final Object... args) {
         throw new I18nException(exception, args);
     }
 }

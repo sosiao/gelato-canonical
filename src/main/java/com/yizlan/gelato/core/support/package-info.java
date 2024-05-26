@@ -14,26 +14,11 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.panic;
-
-import com.yizlan.gelato.core.copier.CodeProvider;
 
 /**
- * enum exception
+ * Package containing assert using string or numeric type
  *
  * @author Zen Gershon
  * @since 1.0
  */
-public class EnumException extends I18nException {
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * Constructs a new enum exception with unary generic enum interface as parameter and placeholder.
-     *
-     * @param exception unary generic enum interface
-     * @param args      placeholder parameters
-     */
-    public EnumException(final CodeProvider<String> exception, final Object... args) {
-        super(exception.getCode(), args);
-    }
-}
+package com.yizlan.gelato.core.support;
