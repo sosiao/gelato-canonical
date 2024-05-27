@@ -16,8 +16,6 @@
 
 package com.yizlan.gelato.core.fluent;
 
-import java.io.Serializable;
-
 /**
  * numeric assert
  *
@@ -34,5 +32,5 @@ public interface NumericAssert {
      * @param args placeholder parameters
      * @param <T>  the type which extends {@link Number}
      */
-    <T extends Number & Serializable> void throwException(final T code, final Object... args);
+    <T extends Number> void throwException(final T code, final Object... args);
 }

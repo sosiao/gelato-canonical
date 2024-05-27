@@ -18,8 +18,6 @@ package com.yizlan.gelato.core.fluent;
 
 import com.yizlan.gelato.core.exception.UnaryException;
 
-import java.io.Serializable;
-
 /**
  * function assert
  *
@@ -36,5 +34,5 @@ public interface FuncAssert {
      * @param args      placeholder parameters
      * @param <T>  the type which extends {@link Number}
      */
-    <T extends Number & Serializable> void throwException(final UnaryException<T> exception, final Object... args);
+    <T extends Number> void throwException(final UnaryException<T> exception, final Object... args);
 }

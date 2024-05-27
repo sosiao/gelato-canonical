@@ -18,8 +18,6 @@ package com.yizlan.gelato.core.panic;
 
 import com.yizlan.gelato.core.copier.CodeProvider;
 
-import java.io.Serializable;
-
 /**
  * digital exception
  *
@@ -36,7 +34,7 @@ public class DigitalException extends MetaException {
      * @param args placeholder parameters
      * @param <T>  the type which extends {@link Number}
      */
-    public <T extends Number & Serializable> DigitalException(final T code, final Object... args) {
+    public <T extends Number> DigitalException(final T code, final Object... args) {
         super(code, args);
     }
 
@@ -47,7 +45,7 @@ public class DigitalException extends MetaException {
      * @param args      placeholder parameters
      * @param <T>  the type which extends {@link Number}
      */
-    public <T extends Number & Serializable> DigitalException(final CodeProvider<T> exception, final Object... args) {
+    public <T extends Number> DigitalException(final CodeProvider<T> exception, final Object... args) {
         super(exception, args);
     }
 }
