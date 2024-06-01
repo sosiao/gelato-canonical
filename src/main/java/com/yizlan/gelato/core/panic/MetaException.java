@@ -19,6 +19,7 @@ package com.yizlan.gelato.core.panic;
 import com.yizlan.gelato.core.copier.CodeProvider;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * meta exception
@@ -70,5 +71,13 @@ class MetaException extends RuntimeException implements CodeProvider<Serializabl
         super();
         this.code = exception.getCode();
         this.args = args;
+    }
+
+    @Override
+    public String toString() {
+        return "MetaException{" +
+                "code=" + code +
+                ", args=" + Arrays.toString(args) +
+                '}';
     }
 }
