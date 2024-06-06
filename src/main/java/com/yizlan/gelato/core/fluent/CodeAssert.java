@@ -14,11 +14,22 @@
  * limitations under the License.
  */
 
+package com.yizlan.gelato.core.fluent;
 
 /**
- * Package containing enum
+ * code assert
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+@FunctionalInterface
+public interface CodeAssert {
+
+    /**
+     * throw exception
+     *
+     * @param code error code
+     * @param args placeholder parameters
+     */
+    void throwException(final String code, final Object... args);
+}

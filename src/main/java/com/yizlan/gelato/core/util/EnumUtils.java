@@ -16,7 +16,7 @@
 
 package com.yizlan.gelato.core.util;
 
-import com.yizlan.gelato.core.enums.BiEnum;
+import com.yizlan.gelato.core.enums.UnaryEnum;
 
 import java.io.Serializable;
 import java.util.EnumSet;
@@ -37,20 +37,18 @@ public class EnumUtils {
      * @param value     the value of enum
      * @param <E>       enum
      * @param <T>       the type of the value field
-     * @param <U>       the type of the label field
      * @param <M>       subclass of BiEnum
      * @return an element from Enum.
      */
     @SuppressWarnings("unchecked")
-    public static <E extends Enum<E>, T extends Serializable, U extends Serializable, M extends BiEnum<T, U>> M getEnumByValue(
+    public static <E extends Enum<E>, T extends Serializable, M extends UnaryEnum<T>> M getEnumByValue(
             Class<E> enumClazz, T value) {
-        if (Objects.isNull(enumClazz)) {
-            return null;
-        }
-        EnumSet<E> es = EnumSet.allOf(enumClazz);
-        for (E item : es) {
-            if (item instanceof BiEnum && (((M) item).valueEquals(value))) {
-                return (M) item;
+        if (Objects.nonNull(enumClazz)) {
+            EnumSet<E> es = EnumSet.allOf(enumClazz);
+            for (E item : es) {
+                if (item instanceof UnaryEnum && (((M) item).valueEquals(value))) {
+                    return (M) item;
+                }
             }
         }
         return null;

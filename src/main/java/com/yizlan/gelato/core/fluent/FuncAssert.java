@@ -14,11 +14,25 @@
  * limitations under the License.
  */
 
+package com.yizlan.gelato.core.fluent;
+
+import com.yizlan.gelato.core.exception.UnaryException;
 
 /**
- * Package containing enum
+ * function assert
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+@FunctionalInterface
+public interface FuncAssert {
+
+    /**
+     * throw exception
+     *
+     * @param exception error interface
+     * @param args      placeholder parameters
+     * @param <T>  the type which extends {@link Number}
+     */
+    <T extends Number> void throwException(final UnaryException<T> exception, final Object... args);
+}

@@ -14,11 +14,20 @@
  * limitations under the License.
  */
 
+package com.yizlan.gelato.core.exception;
+
+import com.yizlan.gelato.core.copier.CodeProvider;
+
+import java.io.Serializable;
 
 /**
- * Package containing enum
+ * Provide fields which named code for exception.
  *
+ * @param <T> the type of the code field
  * @author Zen Gershon
+ * @see CodeProvider
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+public interface UnaryException<T extends Serializable> extends CodeProvider<T> {
+
+}

@@ -14,11 +14,23 @@
  * limitations under the License.
  */
 
+package com.yizlan.gelato.core.fluent;
 
 /**
- * Package containing enum
+ * numeric assert
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+@FunctionalInterface
+public interface NumericAssert {
+
+    /**
+     * throw exception
+     *
+     * @param code error code
+     * @param args placeholder parameters
+     * @param <T>  the type which extends {@link Number}
+     */
+    <T extends Number> void throwException(final T code, final Object... args);
+}

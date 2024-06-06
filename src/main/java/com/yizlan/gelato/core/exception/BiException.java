@@ -28,11 +28,11 @@ import java.io.Serializable;
  * @param <T> the type of the code field
  * @param <U> the type of the msg field
  * @author Zen Gershon
- * @see CodeProvider
+ * @see UnaryException
  * @see MessageProvider
  * @since 1.0
  */
-public interface BiException<T extends Serializable, U extends Serializable> extends CodeProvider<T>,
+public interface BiException<T extends Serializable, U extends Serializable> extends UnaryException<T>,
         MessageProvider<U> {
 
 }

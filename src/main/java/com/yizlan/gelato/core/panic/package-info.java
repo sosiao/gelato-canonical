@@ -16,9 +16,9 @@
 
 
 /**
- * Package containing enum
+ * Package containing exception that supports i18n
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+package com.yizlan.gelato.core.panic;

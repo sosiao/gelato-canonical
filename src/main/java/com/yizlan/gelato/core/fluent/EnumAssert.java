@@ -14,11 +14,24 @@
  * limitations under the License.
  */
 
+package com.yizlan.gelato.core.fluent;
+
+import com.yizlan.gelato.core.exception.UnaryException;
 
 /**
- * Package containing enum
+ * enum assert
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+@FunctionalInterface
+public interface EnumAssert {
+
+    /**
+     * throw exception
+     *
+     * @param exception error interface
+     * @param args      placeholder parameters
+     */
+    void throwException(final UnaryException<String> exception, final Object... args);
+}
