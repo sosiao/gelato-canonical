@@ -14,11 +14,21 @@
  * limitations under the License.
  */
 
+package com.yizlan.gelato.core.registry;
 
-/**
- * Package containing enum
+/**·
+ * service instance
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+@FunctionalInterface
+public interface ServiceInstance {
+
+    /**
+     * Get service name
+     *
+     * @return The service name as registered.
+     */
+    String getName();
+}

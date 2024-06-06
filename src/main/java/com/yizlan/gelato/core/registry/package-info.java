@@ -16,9 +16,9 @@
 
 
 /**
- * Package containing enum
+ * Provides name of service
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+package com.yizlan.gelato.core.registry;

@@ -16,9 +16,9 @@
 
 
 /**
- * Package containing enum
+ * Package containing assert using string or numeric type
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.core.enums;
+package com.yizlan.gelato.core.support;
