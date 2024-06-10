@@ -36,13 +36,9 @@ public abstract class DigitalAssert {
      * @return {@link NumericAssert}
      */
     protected static NumericAssert numericAssert(final boolean condition) {
-        return new NumericAssert() {
-
-            @Override
-            public <T extends Number> void throwException(final T code, final Object... args) {
-                if (condition) {
-                    DigitalAssert.throwException(code, args);
-                }
+        return (code, args) -> {
+            if (condition) {
+                throwException(code, args);
             }
         };
     }
@@ -54,14 +50,9 @@ public abstract class DigitalAssert {
      * @return {@link FuncAssert}
      */
     protected static FuncAssert funcAssert(final boolean condition) {
-        return new FuncAssert() {
-
-            @Override
-            public <T extends Number> void throwException(final UnaryException<T> exception,
-                                                                         final Object... args) {
-                if (condition) {
-                    DigitalAssert.throwException(exception, args);
-                }
+        return (exception, args) -> {
+            if (condition) {
+                throwException(exception, args);
             }
         };
     }
@@ -71,9 +62,8 @@ public abstract class DigitalAssert {
      *
      * @param code error code
      * @param args placeholder parameters
-     * @param <T>  the type which extends {@link Number}
      */
-    public static <T extends Number> void throwException(final T code, final Object... args) {
+    public static void throwException(final Integer code, final Object... args) {
         throw new DigitalException(code, args);
     }
 
@@ -82,10 +72,8 @@ public abstract class DigitalAssert {
      *
      * @param exception error enum
      * @param args      placeholder parameters
-     * @param <T>       the type which extends {@link Number}
      */
-    public static <T extends Number> void throwException(final UnaryException<T> exception,
-                                                                        final Object... args) {
+    public static void throwException(final UnaryException<Integer> exception, final Object... args) {
         throw new DigitalException(exception, args);
     }
 }
