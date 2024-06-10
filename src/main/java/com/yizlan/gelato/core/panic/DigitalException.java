@@ -16,7 +16,7 @@
 
 package com.yizlan.gelato.core.panic;
 
-import com.yizlan.gelato.core.copier.CodeProvider;
+import com.yizlan.gelato.core.exception.UnaryException;
 
 /**
  * digital exception
@@ -27,14 +27,18 @@ import com.yizlan.gelato.core.copier.CodeProvider;
 public class DigitalException extends MetaException {
     private static final long serialVersionUID = 1L;
 
+    @Override
+    public Integer getCode() {
+        return (Integer) super.getCode();
+    }
+
     /**
      * Constructs a new digital exception with the specified code and placeholder.
      *
      * @param code error code
      * @param args placeholder parameters
-     * @param <T>  the type which extends {@link Number}
      */
-    public <T extends Number> DigitalException(final T code, final Object... args) {
+    public DigitalException(final Integer code, final Object... args) {
         super(code, args);
     }
 
@@ -43,9 +47,8 @@ public class DigitalException extends MetaException {
      *
      * @param exception unary generic enum interface
      * @param args      placeholder parameters
-     * @param <T>  the type which extends {@link Number}
      */
-    public <T extends Number> DigitalException(final CodeProvider<T> exception, final Object... args) {
+    public DigitalException(final UnaryException<Integer> exception, final Object... args) {
         super(exception, args);
     }
 }

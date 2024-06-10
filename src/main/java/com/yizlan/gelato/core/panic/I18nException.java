@@ -27,6 +27,11 @@ import com.yizlan.gelato.core.exception.UnaryException;
 public class I18nException extends MetaException {
     private static final long serialVersionUID = 1L;
 
+    @Override
+    public String getCode() {
+        return (String) super.getCode();
+    }
+
     /**
      * Constructs a new i18n exception with the specified code and placeholder.
      *
