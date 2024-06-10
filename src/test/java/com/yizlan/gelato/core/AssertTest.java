@@ -14,24 +14,23 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.fluent;
+package com.yizlan.gelato.core;
 
-import com.yizlan.gelato.core.exception.UnaryException;
+import com.yizlan.gelato.core.panic.DigitalException;
+import com.yizlan.gelato.core.support.ServiceAssert;
+import org.junit.jupiter.api.Test;
 
-/**
- * function assert
- *
- * @author Zen Gershon
- * @since 1.0
- */
-@FunctionalInterface
-public interface FuncAssert {
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-    /**
-     * throw exception
-     *
-     * @param exception error interface
-     * @param args      placeholder parameters
-     */
-    void throwException(final UnaryException<Integer> exception, final Object... args);
+class AssertTest {
+
+    @Test
+    void testDigital() {
+        try {
+            ServiceAssert.isTrue(false, null);
+        } catch (DigitalException e) {
+            Integer code = e.getCode();
+            assertNull(code);
+        }
+    }
 }

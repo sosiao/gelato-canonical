@@ -30,7 +30,6 @@ public interface NumericAssert {
      *
      * @param code error code
      * @param args placeholder parameters
-     * @param <T>  the type which extends {@link Number}
      */
-    <T extends Number> void throwException(final T code, final Object... args);
+    void throwException(final Integer code, final Object... args);
 }

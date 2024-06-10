@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.core.fluent;
-
-import com.yizlan.gelato.core.exception.UnaryException;
+package com.yizlan.gelato.core.support;
 
 /**
- * function assert
+ * service assert
  *
  * @author Zen Gershon
  * @since 1.0
  */
-@FunctionalInterface
-public interface FuncAssert {
+public class ServiceAssert extends DigitalAssert {
 
     /**
-     * throw exception
+     * Assert a boolean expression, throwing an {@exception DigitalException}
+     * if {@code expression} evaluates to {@code false}.
+     * <pre class="code">Assert.isTrue(i &gt; 0, 123, "placeholder parameters");</pre>
      *
-     * @param exception error interface
+     * @param condition a boolean expression
+     * @param code      error code
      * @param args      placeholder parameters
      */
-    void throwException(final UnaryException<Integer> exception, final Object... args);
+    public static void isTrue(boolean condition, Integer code, Object... args) {
+        numericAssert(!condition).throwException(code, args);
+    }
 }
