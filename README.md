@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="https://central.sonatype.com/search?namespace=com.yizlan&name=gelato-core">
-    <img alt="maven" src="https://img.shields.io/maven-central/v/com.yizlan/gelato-core.svg?style=flat-square">
+  <a href="https://central.sonatype.com/search?namespace=com.yizlan&name=gelato-canonical">
+    <img alt="maven" src="https://img.shields.io/maven-central/v/com.yizlan/gelato-canonical.svg?style=flat-square">
   </a>
 
   <a href="https://www.apache.org/licenses/LICENSE-2.0">
@@ -20,18 +20,18 @@
 
 # 依赖 | Dependency
 
-- Latest Version: [![Maven Central](https://img.shields.io/maven-central/v/com.yizlan/gelato-core.svg)](https://central.sonatype.com/search?namespace=com.yizlan&name=gelato-core)
+- Latest Version: [![Maven Central](https://img.shields.io/maven-central/v/com.yizlan/gelato-canonical.svg)](https://central.sonatype.com/search?namespace=com.yizlan&name=gelato-canonical)
   - Maven 
     ```xml
     <dependency>
         <groupId>com.yizlan</groupId>
-        <artifactId>gelato-core</artifactId>
+        <artifactId>gelato-canonical</artifactId>
         <version>Latest Version</version>
     </dependency>
     ```
   - Gradle
     ```groovy
-    implementation group: 'com.yizlan', name: 'gelato-core', version: 'Latest Version'
+    implementation group: 'com.yizlan', name: 'gelato-canonical', version: 'Latest Version'
     ```
 
 # 优点 | Advantages
@@ -42,7 +42,7 @@
 
 # 期望 | Futures
 
-> 欢迎提出更好的意见，帮助完善 gelato-core
+> 欢迎提出更好的意见，帮助完善 gelato-canonical
 
 # 版权 | License
 

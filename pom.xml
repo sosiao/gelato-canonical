@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.yizlan</groupId>
-    <artifactId>gelato-core</artifactId>
-    <version>2.1.0</version>
+    <artifactId>gelato-canonical</artifactId>
+    <version>2.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>a toolkit for regulating data exchange. </description>
-    <url>https://github.com/sosiao/gelato-core</url>
+    <url>https://github.com/sosiao/gelato-canonical</url>
 
     <licenses>
         <license>
@@ -28,9 +28,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:sosiao/gelato-core.git</connection>
-        <developerConnection>scm:git:git@github.com:sosiao/gelato-core.git</developerConnection>
-        <url>https://github.com/sosiao/gelato-core.git</url>
+        <connection>scm:git:git@github.com:sosiao/gelato-canonical.git</connection>
+        <developerConnection>scm:git:git@github.com:sosiao/gelato-canonical.git</developerConnection>
+        <url>https://github.com/sosiao/gelato-canonical.git</url>
     </scm>
 
     <properties>
