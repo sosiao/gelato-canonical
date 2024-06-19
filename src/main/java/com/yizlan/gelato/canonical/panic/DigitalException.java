@@ -22,7 +22,7 @@ import com.yizlan.gelato.canonical.exception.UnaryException;
  * digital exception
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 public class DigitalException extends MetaException {
     private static final long serialVersionUID = 1L;

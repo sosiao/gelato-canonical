@@ -20,7 +20,7 @@ package com.yizlan.gelato.canonical.fluent;
  * numeric assert
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 @FunctionalInterface
 public interface NumericAssert {

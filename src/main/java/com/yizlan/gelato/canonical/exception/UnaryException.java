@@ -26,7 +26,7 @@ import java.io.Serializable;
  * @param <T> the type of the code field
  * @author Zen Gershon
  * @see CodeProvider
- * @since 1.0
+ * @since 2.0
  */
 public interface UnaryException<T extends Serializable> extends CodeProvider<T> {
 

@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @param <T> the type of the value field
  * @author Zen Gershon
  * @see ValueProvider
- * @since 1.0
+ * @since 2.0
  */
 public interface UnaryEnum<T extends Serializable> extends ValueProvider<T> {
 

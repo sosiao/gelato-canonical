@@ -22,7 +22,7 @@ import com.yizlan.gelato.canonical.exception.UnaryException;
  * i18n exception
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 public class I18nException extends MetaException {
     private static final long serialVersionUID = 1L;

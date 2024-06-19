@@ -25,7 +25,7 @@ import com.yizlan.gelato.canonical.panic.I18nException;
  * i18n assert
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 public abstract class I18nAssert {
 

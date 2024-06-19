@@ -25,7 +25,7 @@ import com.yizlan.gelato.canonical.panic.DigitalException;
  * digital assert
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 public abstract class DigitalAssert {
 

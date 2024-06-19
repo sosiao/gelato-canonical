@@ -22,7 +22,7 @@ import com.yizlan.gelato.canonical.exception.UnaryException;
  * enum assert
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 @FunctionalInterface
 public interface EnumAssert {

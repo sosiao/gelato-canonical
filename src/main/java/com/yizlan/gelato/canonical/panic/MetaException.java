@@ -25,7 +25,7 @@ import java.util.Arrays;
  * meta exception
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 class MetaException extends RuntimeException implements CodeProvider<Serializable> {
     private static final long serialVersionUID = 1L;

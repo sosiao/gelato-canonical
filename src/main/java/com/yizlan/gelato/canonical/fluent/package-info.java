@@ -19,6 +19,6 @@
  * Package containing assert that using lambda
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 package com.yizlan.gelato.canonical.fluent;
