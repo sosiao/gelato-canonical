@@ -39,8 +39,8 @@ import java.util.function.Supplier;
  * @see DescriptionProvider
  * @since 1.0
  */
-public interface TerEnum<T extends Serializable, U extends Serializable, S extends Serializable>
-        extends BiEnum<T, U>, DescriptionProvider<S> {
+public interface TerEnum<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+        S extends Comparable<S> & Serializable> extends BiEnum<T, U>, DescriptionProvider<S> {
 
     /**
      * convert enums to dictionary list
@@ -51,7 +51,8 @@ public interface TerEnum<T extends Serializable, U extends Serializable, S exten
      * @param <S>        the type of the desc field
      * @return dictionary list
      */
-    static <T extends Serializable, U extends Serializable, S extends Serializable> List<TerDictionary<T, U, S>> toList(
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+            S extends Comparable<S> & Serializable> List<TerDictionary<T, U, S>> toList(
             TerEnum<T, U, S>[] enumValues) {
         List<TerDictionary<T, U, S>> terDictionaries = new ArrayList<>(enumValues.length);
 
@@ -103,8 +104,9 @@ public interface TerEnum<T extends Serializable, U extends Serializable, S exten
      * @param <S>        the type of the desc field
      * @return dictionary list
      */
-    static <T extends Serializable, U extends Serializable, S extends Serializable> List<? extends TerDictionary<T, U
-            , S>> toList(TerEnum<T, U, S>[] enumValues, Supplier<? extends TerDictionary<T, U, S>> supplier) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+            S extends Comparable<S> & Serializable> List<? extends TerDictionary<T, U, S>> toList(
+            TerEnum<T, U, S>[] enumValues, Supplier<? extends TerDictionary<T, U, S>> supplier) {
         List<TerDictionary<T, U, S>> terDictionaries = new ArrayList<>(enumValues.length);
 
         for (TerEnum<T, U, S> item : enumValues) {
@@ -129,8 +131,9 @@ public interface TerEnum<T extends Serializable, U extends Serializable, S exten
      * @return an Enum which collects elements into a Map whose keys are the code field, and whose
      * values are the desc field.
      */
-    static <T extends Serializable, U extends Serializable, S extends Serializable> Map<T, S> toDescMap(TerEnum<T, U,
-            S>[] enumValues) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+            S extends Comparable<S> & Serializable> Map<T, S> toDescMap(
+            TerEnum<T, U, S>[] enumValues) {
         Map<T, S> map = new HashMap<>(enumValues.length);
 
         for (TerEnum<T, U, S> item : enumValues) {

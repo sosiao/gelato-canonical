@@ -41,7 +41,7 @@ public class EnumUtils {
      * @return an element from Enum.
      */
     @SuppressWarnings("unchecked")
-    public static <E extends Enum<E>, T extends Serializable, M extends UnaryEnum<T>> M getEnumByValue(
+    public static <E extends Enum<E>, T extends Comparable<T> & Serializable, M extends UnaryEnum<T>> M getEnumByValue(
             Class<E> enumClazz, T value) {
         if (Objects.nonNull(enumClazz)) {
             EnumSet<E> es = EnumSet.allOf(enumClazz);

@@ -31,7 +31,7 @@ import java.io.Serializable;
  * @see BiResult
  * @since 1.0
  */
-public interface TerResult<T extends Serializable, U extends Serializable, S> extends BiResult<T, U> {
+public interface TerResult<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable, S> extends BiResult<T, U> {
 
     /**
      * Get data

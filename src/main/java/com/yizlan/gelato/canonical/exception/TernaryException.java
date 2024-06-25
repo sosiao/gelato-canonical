@@ -28,6 +28,6 @@ import java.io.Serializable;
  * @see BinaryException
  * @since 1.0
  */
-public interface TernaryException<T extends Serializable> extends TerException<T, T, T> {
+public interface TernaryException<T extends Comparable<T> & Serializable> extends TerException<T, T, T> {
 
 }

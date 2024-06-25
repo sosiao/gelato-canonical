@@ -31,8 +31,8 @@ import java.io.Serializable;
  * @see BiException
  * @since 1.0
  */
-public interface TerException<T extends Serializable, U extends Serializable, S extends Serializable>
-        extends BiException<T, U> {
+public interface TerException<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+        S extends Serializable> extends BiException<T, U> {
 
     /**
      * Get business

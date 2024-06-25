@@ -38,7 +38,8 @@ import java.util.function.Supplier;
  * @see LabelProvider
  * @since 1.0
  */
-public interface BiEnum<T extends Serializable, U extends Serializable> extends UnaryEnum<T>, LabelProvider<U> {
+public interface BiEnum<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+        extends UnaryEnum<T>, LabelProvider<U> {
 
     /**
      * Compares enum
@@ -58,7 +59,7 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
      * @param <U>        the type of the label field
      * @return dictionary list
      */
-    static <T extends Serializable, U extends Serializable> List<BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> List<BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues) {
         List<BiDictionary<T, U>> biDictionaries = new ArrayList<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {
@@ -97,7 +98,8 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
      * @param <U>        the type of the label field
      * @return dictionary list
      */
-    static <T extends Serializable, U extends Serializable> List<? extends BiDictionary<T, U>> toList(
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> List<?
+            extends BiDictionary<T, U>> toList(
             BiEnum<T, U>[] enumValues, Supplier<? extends BiDictionary<T, U>> supplier) {
         List<BiDictionary<T, U>> biDictionaries = new ArrayList<>(enumValues.length);
 
@@ -120,7 +122,8 @@ public interface BiEnum<T extends Serializable, U extends Serializable> extends 
      * @return an Enum which collects elements into a Map whose keys are the code field, and whose
      * values are the label field.
      */
-    static <T extends Serializable, U extends Serializable> Map<T, U> toMap(BiEnum<T, U>[] enumValues) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> Map<T, U> toMap(
+            BiEnum<T, U>[] enumValues) {
         Map<T, U> map = new HashMap<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {

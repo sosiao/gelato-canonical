@@ -17,9 +17,12 @@
 package com.yizlan.gelato.canonical;
 
 import com.yizlan.gelato.canonical.panic.DigitalException;
+import com.yizlan.gelato.canonical.panic.I18nException;
+import com.yizlan.gelato.canonical.support.CharArrAssert;
 import com.yizlan.gelato.canonical.support.ServiceAssert;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AssertTest {
@@ -31,6 +34,16 @@ class AssertTest {
         } catch (DigitalException e) {
             Integer code = e.getCode();
             assertNull(code);
+        }
+    }
+
+    @Test
+    void testI18n() {
+        try {
+            CharArrAssert.isTrue(false, "str");
+        } catch (I18nException e) {
+            String code = e.getCode();
+            assertEquals("str", code);
         }
     }
 }

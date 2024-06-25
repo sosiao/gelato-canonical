@@ -23,11 +23,11 @@ import com.yizlan.gelato.canonical.dictionary.WarningSign;
 import com.yizlan.gelato.canonical.enums.BiEnum;
 import com.yizlan.gelato.canonical.enums.GenderEnum;
 import com.yizlan.gelato.canonical.enums.TerEnum;
+import com.yizlan.gelato.canonical.enums.UnaryEnum;
 import com.yizlan.gelato.canonical.enums.WarningSignEnum;
 import com.yizlan.gelato.canonical.util.EnumUtils;
 import org.junit.jupiter.api.Test;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +35,7 @@ public class EnumTest {
 
     @Test
     void testEnum() {
-        BiEnum<Serializable, Serializable> biEnum = EnumUtils.getEnumByValue(null, null);
+        UnaryEnum<?> biEnum = EnumUtils.getEnumByValue(null, null);
         assert Objects.isNull(biEnum);
 
         GenderEnum genderEnum = GenderEnum.getEnumByValue(1);

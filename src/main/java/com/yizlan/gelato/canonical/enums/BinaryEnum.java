@@ -27,6 +27,6 @@ import java.io.Serializable;
  * @see BiEnum
  * @since 1.0
  */
-public interface BinaryEnum<T extends Serializable> extends BiEnum<T, T> {
+public interface BinaryEnum<T extends Comparable<T> & Serializable> extends BiEnum<T, T> {
 
 }

@@ -28,6 +28,6 @@ import java.io.Serializable;
  * @see BinaryDictionary
  * @since 1.0
  */
-public interface TernaryDictionary<T extends Serializable> extends TerDictionary<T, T, T> {
+public interface TernaryDictionary<T extends Comparable<T> & Serializable> extends TerDictionary<T, T, T> {
 
 }

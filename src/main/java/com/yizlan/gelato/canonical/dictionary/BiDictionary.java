@@ -36,7 +36,8 @@ import java.util.stream.Collectors;
  * @see NamedProvider
  * @since 1.0
  */
-public interface BiDictionary<T extends Serializable, U extends Serializable> extends CodeProvider<T>, NamedProvider<U> {
+public interface BiDictionary<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+        extends CodeProvider<T>, NamedProvider<U> {
 
     void setCode(T code);
 
@@ -51,7 +52,7 @@ public interface BiDictionary<T extends Serializable, U extends Serializable> ex
      * @return a Collector which collects elements into a Map whose keys are the code field, and whose
      * values are the name field.
      */
-    static <T extends Serializable, U extends Serializable> Map<T, U> toMap(
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> Map<T, U> toMap(
             List<? extends BiDictionary<T, U>> biDictionaries) {
         if (biDictionaries == null || biDictionaries.isEmpty()) {
             return Collections.emptyMap();

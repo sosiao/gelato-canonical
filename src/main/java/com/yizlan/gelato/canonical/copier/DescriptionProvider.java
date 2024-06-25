@@ -25,7 +25,7 @@ import java.io.Serializable;
  * @author Zen Gershon
  * @since 1.0
  */
-public interface DescriptionProvider<T extends Serializable> {
+public interface DescriptionProvider<T extends Comparable<T> & Serializable> {
 
     /**
      * Get description

@@ -27,6 +27,6 @@ import java.io.Serializable;
  * @see BiDictionary
  * @since 1.0
  */
-public interface BinaryDictionary<T extends Serializable> extends BiDictionary<T, T> {
+public interface BinaryDictionary<T extends Comparable<T> & Serializable> extends BiDictionary<T, T> {
 
 }

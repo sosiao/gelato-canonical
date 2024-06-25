@@ -25,7 +25,7 @@ import java.io.Serializable;
  * @author Zen Gershon
  * @since 1.0
  */
-public interface NamedProvider<T extends Serializable> {
+public interface NamedProvider<T extends Comparable<T> & Serializable> {
 
     /**
      * Get name

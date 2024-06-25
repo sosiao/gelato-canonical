@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @see ValueProvider
  * @since 2.0
  */
-public interface UnaryEnum<T extends Serializable> extends ValueProvider<T> {
+public interface UnaryEnum<T extends Comparable<T> & Serializable> extends ValueProvider<T> {
 
     /**
      * Compares enum according to their source value.

@@ -28,6 +28,6 @@ import java.io.Serializable;
  * @see BinaryEnum
  * @since 1.0
  */
-public interface TernaryEnum<T extends Serializable> extends TerEnum<T, T, T> {
+public interface TernaryEnum<T extends Comparable<T> & Serializable> extends TerEnum<T, T, T> {
 
 }

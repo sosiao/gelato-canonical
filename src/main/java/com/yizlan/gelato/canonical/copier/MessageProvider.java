@@ -24,7 +24,7 @@ import java.io.Serializable;
  * @author Zen Gershon
  * @since 1.0
  */
-public interface MessageProvider<T extends Serializable> {
+public interface MessageProvider<T extends Comparable<T> & Serializable> {
 
     /**
      * Get message

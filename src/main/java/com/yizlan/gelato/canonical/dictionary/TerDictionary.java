@@ -37,7 +37,8 @@ import java.util.stream.Collectors;
  * @see DescriptionProvider
  * @since 1.0
  */
-public interface TerDictionary<T extends Serializable, U extends Serializable, S extends Serializable>
+public interface TerDictionary<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+        S extends Comparable<S> & Serializable>
         extends BiDictionary<T, U>, DescriptionProvider<S> {
 
     void setDesc(S desc);
@@ -52,7 +53,8 @@ public interface TerDictionary<T extends Serializable, U extends Serializable, S
      * @return a Collector which collects elements into a Map whose keys are the code field, and whose
      * values are the desc field.
      */
-    static <T extends Serializable, U extends Serializable, S extends Serializable> Map<T, S> toDescMap(
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+            S extends Comparable<S> & Serializable> Map<T, S> toDescMap(
             List<? extends TerDictionary<T, U, S>> terDictionaries) {
         if (terDictionaries == null || terDictionaries.isEmpty()) {
             return Collections.emptyMap();

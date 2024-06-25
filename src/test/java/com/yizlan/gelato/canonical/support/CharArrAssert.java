@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.exception;
-
-import com.yizlan.gelato.canonical.copier.CodeProvider;
-
-import java.io.Serializable;
+package com.yizlan.gelato.canonical.support;
 
 /**
- * Provide fields which named code for exception.
+ * string assert
  *
- * @param <T> the type of the code field
  * @author Zen Gershon
- * @see CodeProvider
- * @since 2.0
+ * @since 1.0
  */
-public interface UnaryException<T extends Comparable<T> & Serializable> extends CodeProvider<T> {
+public class CharArrAssert extends I18nAssert {
 
+    /**
+     * Assert a boolean expression, throwing an {@exception DigitalException}
+     * if {@code expression} evaluates to {@code false}.
+     * <pre class="code">Assert.isTrue(i &gt; 0, 123, "placeholder parameters");</pre>
+     *
+     * @param condition a boolean expression
+     * @param code      error code
+     * @param args      placeholder parameters
+     */
+    public static void isTrue(boolean condition, String code, Object... args) {
+        codeAssert(!condition).throwException(code, args);
+    }
 }

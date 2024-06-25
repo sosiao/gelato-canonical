@@ -29,6 +29,6 @@ import java.io.Serializable;
  * @see BinaryResult
  * @since 1.0
  */
-public interface TernaryResult<T extends Serializable, U> extends TerResult<T, T, U> {
+public interface TernaryResult<T extends Comparable<T> & Serializable, U> extends TerResult<T, T, U> {
 
 }

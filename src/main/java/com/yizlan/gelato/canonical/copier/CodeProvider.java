@@ -25,7 +25,7 @@ import java.io.Serializable;
  * @author Zen Gershon
  * @since 1.0
  */
-public interface CodeProvider<T extends Serializable> {
+public interface CodeProvider<T extends Comparable<T> & Serializable> {
 
     /**
      * Get code

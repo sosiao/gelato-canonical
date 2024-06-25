@@ -27,6 +27,6 @@ import java.io.Serializable;
  * @see BiException
  * @since 1.0
  */
-public interface BinaryException<T extends Serializable> extends BiException<T, T> {
+public interface BinaryException<T extends Comparable<T> & Serializable> extends BiException<T, T> {
 
 }
