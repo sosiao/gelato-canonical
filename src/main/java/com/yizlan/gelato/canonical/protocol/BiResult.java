@@ -32,6 +32,7 @@ import java.io.Serializable;
  * @see MessageProvider
  * @since 1.0
  */
-public interface BiResult<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> extends CodeProvider<T>, MessageProvider<U> {
+public interface BiResult<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+        extends CodeProvider<T>, MessageProvider<U> {
 
 }

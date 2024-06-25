@@ -32,7 +32,7 @@ import java.io.Serializable;
  * @see MessageProvider
  * @since 1.0
  */
-public interface BiException<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> extends UnaryException<T>,
-        MessageProvider<U> {
+public interface BiException<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+        extends UnaryException<T>, MessageProvider<U> {
 
 }

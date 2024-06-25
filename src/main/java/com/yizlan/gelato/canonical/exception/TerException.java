@@ -32,7 +32,7 @@ import java.io.Serializable;
  * @since 1.0
  */
 public interface TerException<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
-        S extends Serializable> extends BiException<T, U> {
+        S extends Comparable<S> & Serializable> extends BiException<T, U> {
 
     /**
      * Get business

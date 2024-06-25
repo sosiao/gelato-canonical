@@ -27,7 +27,7 @@ public class ServiceAssert extends DigitalAssert {
     /**
      * Assert a boolean expression, throwing an {@exception DigitalException}
      * if {@code expression} evaluates to {@code false}.
-     * <pre class="code">Assert.isTrue(i &gt; 0, 123, "placeholder parameters");</pre>
+     * <pre class="code">ServiceAssert.isTrue(i &gt; 0, 123, "placeholder parameters");</pre>
      *
      * @param condition a boolean expression
      * @param code      error code

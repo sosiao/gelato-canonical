@@ -38,8 +38,7 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 public interface TerDictionary<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
-        S extends Comparable<S> & Serializable>
-        extends BiDictionary<T, U>, DescriptionProvider<S> {
+        S extends Comparable<S> & Serializable> extends BiDictionary<T, U>, DescriptionProvider<S> {
 
     void setDesc(S desc);
 
