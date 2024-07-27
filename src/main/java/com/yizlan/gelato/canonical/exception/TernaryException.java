@@ -19,10 +19,12 @@ package com.yizlan.gelato.canonical.exception;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code、msg and business with the same type for exception.
- * This is a specialization of {@link TerException} for the case.
+ * Provide fields which named code、message and business with the same type for exception.
+ * This is a specialization of {@link TerException} for the case where the type of fields that contains
+ * code、message and business is strictly defined to ensure consistency and comparability.
  *
- * @param <T> the type of fields that contains code、msg and business
+ * @param <T> the type of fields that contains code、message and business,
+ *            should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see TerException
  * @see BinaryException

@@ -16,7 +16,12 @@
 
 
 /**
- * Package containing exception
+ * Provides interfaces for exception constraints.
+ *
+ * <p>This package offers the following core functionalities:
+ * <ul>
+ *     <li>Provides Getter for exception</li>
+ * </ul>
  *
  * @author Zen Gershon
  * @since 1.0
