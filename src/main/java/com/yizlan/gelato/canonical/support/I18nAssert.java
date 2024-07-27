@@ -63,7 +63,7 @@ public abstract class I18nAssert {
      * @param code error code
      * @param args placeholder parameters
      */
-    public static void throwException(final String code, Object... args) {
+    public static void throwException(final String code, final Object... args) {
         throw new I18nException(code, args);
     }
 

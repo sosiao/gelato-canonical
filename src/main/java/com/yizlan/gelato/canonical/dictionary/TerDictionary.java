@@ -21,6 +21,7 @@ import com.yizlan.gelato.canonical.copier.DescriptionProvider;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -60,7 +61,9 @@ public interface TerDictionary<T extends Comparable<T> & Serializable, U extends
         }
 
         return terDictionaries.stream().collect(
-                Collectors.toMap(TerDictionary::getCode, TerDictionary::getDesc, (k1, k2) -> k1)
+                Collectors.toMap(TerDictionary::getCode, TerDictionary::getDesc,
+                        (k1, k2) -> k1, () -> new HashMap<>(terDictionaries.size())
+                )
         );
     }
 }

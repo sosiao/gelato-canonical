@@ -21,6 +21,7 @@ import com.yizlan.gelato.canonical.copier.NamedProvider;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,7 +45,7 @@ public interface BiDictionary<T extends Comparable<T> & Serializable, U extends 
     void setName(U name);
 
     /**
-     * convert dictionary to map
+     * Convert dictionary to map
      *
      * @param biDictionaries A collection of classes or subclasses that implements {@link BiDictionary}
      * @param <T>            the type of the code field
@@ -59,7 +60,9 @@ public interface BiDictionary<T extends Comparable<T> & Serializable, U extends 
         }
 
         return biDictionaries.stream().collect(
-                Collectors.toMap(BiDictionary::getCode, BiDictionary::getName, (k1, k2) -> k1)
+                Collectors.toMap(BiDictionary::getCode, BiDictionary::getName,
+                        (k1, k2) -> k1, () -> new HashMap<>(biDictionaries.size())
+                )
         );
     }
 }
