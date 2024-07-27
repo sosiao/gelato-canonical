@@ -20,9 +20,11 @@ import java.io.Serializable;
 
 /**
  * Provide fields which named code、name and desc with the same type for dictionary.
- * This is a specialization of {@link TerDictionary} for the case.
+ * This is a specialization of {@link TerDictionary} for the case where the type of fields that contains
+ * code、name and desc is strictly defined to ensure consistency and comparability.
  *
- * @param <T> the type of fields that contains code、name and desc
+ * @param <T> the type of fields that contains code、name and desc,
+ *            should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see TerDictionary
  * @see BinaryDictionary

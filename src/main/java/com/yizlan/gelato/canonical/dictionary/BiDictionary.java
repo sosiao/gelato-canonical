@@ -24,14 +24,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
  * Provide fields which named code and name with the different type for dictionary.
  * This is the two-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the code field
- * @param <U> the type of the name field
+ * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> the type of the name field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see CodeProvider
  * @see NamedProvider
@@ -47,11 +48,14 @@ public interface BiDictionary<T extends Comparable<T> & Serializable, U extends 
     /**
      * Convert dictionary to map
      *
-     * @param biDictionaries A collection of classes or subclasses that implements {@link BiDictionary}
-     * @param <T>            the type of the code field
-     * @param <U>            the type of the name field
-     * @return a Collector which collects elements into a Map whose keys are the code field, and whose
-     * values are the name field.
+     * @param biDictionaries A collection of classes or subclasses that implements {@link BiDictionary}.
+     *                       Note that null elements within the list are ignored.
+     * @param <T>            the type of the code field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>            the type of the name field, should implement {@link Comparable} and {@link Serializable}
+     * @return A Collector which collects elements into a Map whose keys are the code field, and whose
+     *         values are the name field. If {@param biDictionaries} is null or empty, returns an empty Map.
+     * @throws IllegalArgumentException if duplicate keys based on the result of {@link BiDictionary#getCode()}
+     *                                  are encountered.
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> Map<T, U> toMap(
             List<? extends BiDictionary<T, U>> biDictionaries) {
@@ -59,10 +63,17 @@ public interface BiDictionary<T extends Comparable<T> & Serializable, U extends 
             return Collections.emptyMap();
         }
 
-        return biDictionaries.stream().collect(
-                Collectors.toMap(BiDictionary::getCode, BiDictionary::getName,
-                        (k1, k2) -> k1, () -> new HashMap<>(biDictionaries.size())
-                )
-        );
+        return biDictionaries.stream()
+                .filter(Objects::nonNull)
+                .collect(
+                        Collectors.toMap(
+                                BiDictionary::getCode,
+                                BiDictionary::getName,
+                                (k1, k2) -> {
+                                    throw new IllegalArgumentException("Duplicate key found: " + k1);
+                                },
+                                () -> new HashMap<>(biDictionaries.size(), 0.5f)
+                        )
+                );
     }
 }

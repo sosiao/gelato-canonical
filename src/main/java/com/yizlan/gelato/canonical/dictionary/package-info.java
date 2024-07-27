@@ -16,7 +16,13 @@
 
 
 /**
- * Package containing dictionary
+ * Provides interfaces for dictionary operations.
+ *
+ * <p>This package offers the following core functionalities:
+ * <ul>
+ *     <li>Provides Getter and Setter for dictionary</li>
+ *     <li>Provides dictionary to Map conversion</li>
+ * </ul>
  *
  * @author Zen Gershon
  * @since 1.0
