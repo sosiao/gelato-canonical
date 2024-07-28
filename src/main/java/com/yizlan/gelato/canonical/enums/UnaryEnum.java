@@ -51,5 +51,4 @@ public interface UnaryEnum<T extends Comparable<T> & Serializable> extends Value
         return flag.get();
     }
 
-
 }

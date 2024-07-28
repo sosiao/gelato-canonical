@@ -40,4 +40,5 @@ public interface TerException<T extends Comparable<T> & Serializable, U extends 
      * @return business
      */
     S getBusiness();
+
 }

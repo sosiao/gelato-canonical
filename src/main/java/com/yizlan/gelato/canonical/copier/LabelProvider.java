@@ -38,4 +38,5 @@ public interface LabelProvider<T extends Comparable<T> & Serializable> {
      * @return label
      */
     T getLabel();
+
 }

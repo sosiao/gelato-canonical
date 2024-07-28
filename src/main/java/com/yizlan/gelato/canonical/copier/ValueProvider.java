@@ -38,4 +38,5 @@ public interface ValueProvider<T extends Comparable<T> & Serializable> {
      * @return value
      */
     T getValue();
+
 }

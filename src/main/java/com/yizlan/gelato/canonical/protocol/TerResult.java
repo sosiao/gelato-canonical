@@ -40,4 +40,5 @@ public interface TerResult<T extends Comparable<T> & Serializable, U extends Com
      * @return data
      */
     S getData();
+
 }

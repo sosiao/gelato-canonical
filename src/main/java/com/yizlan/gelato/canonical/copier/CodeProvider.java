@@ -43,4 +43,5 @@ public interface CodeProvider<T extends Comparable<T> & Serializable> {
      * @return the code
      */
     T getCode();
+
 }

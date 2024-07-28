@@ -16,7 +16,8 @@
 
 package com.yizlan.gelato.canonical.registry;
 
-/**·
+/**
+ * ·
  * service instance
  *
  * @author Zen Gershon
@@ -26,9 +27,10 @@ package com.yizlan.gelato.canonical.registry;
 public interface ServiceInstance {
 
     /**
-     * Get service name
+     * Get service instance id
      *
-     * @return The service name as registered.
+     * @return The service instance id as registered.
      */
     String getName();
+
 }

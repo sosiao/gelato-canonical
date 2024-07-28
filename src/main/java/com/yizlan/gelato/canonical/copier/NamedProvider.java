@@ -38,4 +38,5 @@ public interface NamedProvider<T extends Comparable<T> & Serializable> {
      * @return name
      */
     T getName();
+
 }

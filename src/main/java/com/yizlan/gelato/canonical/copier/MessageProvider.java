@@ -38,4 +38,5 @@ public interface MessageProvider<T extends Comparable<T> & Serializable> {
      * @return A message of type T.
      */
     T getMessage();
+
 }

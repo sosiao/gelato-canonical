@@ -38,4 +38,5 @@ public interface DescriptionProvider<T extends Comparable<T> & Serializable> {
      * @return description
      */
     T getDesc();
+
 }
