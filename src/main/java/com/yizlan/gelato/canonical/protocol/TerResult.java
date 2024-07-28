@@ -21,11 +21,11 @@ import com.yizlan.gelato.canonical.copier.CodeProvider;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code、message and data with the different type for result.
+ * Provide fields which named code、message and data with different types for result.
  * This is the three-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the code field
- * @param <U> the type of the message field
+ * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> the type of the message field, should implement {@link Comparable} and {@link Serializable}
  * @param <S> the type of the data filed
  * @author Zen Gershon
  * @see BiResult

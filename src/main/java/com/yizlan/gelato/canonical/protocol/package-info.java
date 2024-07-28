@@ -16,7 +16,7 @@
 
 
 /**
- * Package containing protocol of data
+ * Provide interfaces for data exchange protocol.
  *
  * @author Zen Gershon
  * @since 1.0

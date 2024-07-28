@@ -19,10 +19,11 @@ package com.yizlan.gelato.canonical.protocol;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code、message with the same type and data with the different type for result.
+ * Provide fields which named code、message with the same type and data with special data type for result.
  * This is a specialization of {@link TerResult} for the case.
  *
- * @param <T> the type of fields that contains code and message
+ * @param <T> the type of fields that contains code and message,
+ *            should implement {@link Comparable} and {@link Serializable}
  * @param <U> the type of the data filed
  * @author Zen Gershon
  * @see TerResult
