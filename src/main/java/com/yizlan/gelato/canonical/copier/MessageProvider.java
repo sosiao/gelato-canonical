@@ -21,15 +21,21 @@ import java.io.Serializable;
 /**
  * Provide message.
  *
+ * <p>This interface defines a generic mechanism for retrieving a message of a specific type.
+ * The type of the message must implement both {@link Comparable} and {@link Serializable}.
+ * When implementing this interface, ensure that the returned message adheres to the contract
+ * of {@link Comparable}, and that it is properly serializable.
+ *
+ * @param <T> The type of the message, which must implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @since 1.0
  */
 public interface MessageProvider<T extends Comparable<T> & Serializable> {
 
     /**
-     * Get message
+     * Retrieves a message of the specified type.
      *
-     * @return message
+     * @return A message of type T.
      */
     T getMessage();
 }

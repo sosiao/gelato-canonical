@@ -16,7 +16,17 @@
 
 
 /**
- * Provides metadata for dictionary, enums, exception, protocol packages
+ * The package provides utilities for copying metadata between different data structures.
+ * This includes support for working with dictionaries, enums, exceptions,
+ * and protocols to facilitate data canonicalization processes within the application.
+ *
+ * <p>Package Structure:
+ * <ul>
+ *     <li>dictionary: Classes for managing and copying dictionary metadata.</li>
+ *     <li>enums: Utilities for handling enum types and their metadata.</li>
+ *     <li>exception: Custom exceptions specific to the copying process.</li>
+ *     <li>protocol: Classes for managing protocol metadata and its transformation.</li>
+ * </ul>
  *
  * @author Zen Gershon
  * @since 1.0

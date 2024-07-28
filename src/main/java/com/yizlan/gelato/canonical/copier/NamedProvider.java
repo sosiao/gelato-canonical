@@ -21,7 +21,12 @@ import java.io.Serializable;
 /**
  * Provide name.
  *
- * @param <T> the type of the name
+ * <p>This interface defines a generic mechanism for retrieving a name of a specific type.
+ * The type of the name must implement both {@link Comparable} and {@link Serializable}.
+ * When implementing this interface, ensure that the returned name adheres to the contract
+ * of {@link Comparable}, and that it is properly serializable.
+ *
+ * @param <T> the type of the name, which must implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @since 1.0
  */

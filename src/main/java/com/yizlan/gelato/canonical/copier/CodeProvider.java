@@ -21,16 +21,26 @@ import java.io.Serializable;
 /**
  * Provide code.
  *
- * @param <T> the type of the code
+ * <p>This interface defines a generic mechanism for retrieving a code of a specific type.
+ * The type of the code must implement both {@link Comparable} and {@link Serializable}.
+ * When implementing this interface, ensure that the returned code adheres to the contract
+ * of {@link Comparable}, and that it is properly serializable.
+ *
+ * @param <T> the type of the code, which must implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @since 1.0
  */
 public interface CodeProvider<T extends Comparable<T> & Serializable> {
 
     /**
-     * Get code
+     * Retrieves the code.
      *
-     * @return code
+     * <p>This method should return a code of the specified generic type {@code T}. It is
+     * important for implementations to ensure that the code returned is consistent and
+     * adheres to the constraints imposed by the type parameters, specifically being
+     * both comparable and serializable.
+     *
+     * @return the code
      */
     T getCode();
 }
