@@ -18,7 +18,7 @@ package com.yizlan.gelato.canonical.support;
 
 import com.yizlan.gelato.canonical.exception.I18nException;
 import com.yizlan.gelato.canonical.exception.UnaryException;
-import com.yizlan.gelato.canonical.functors.ExceptionFactory;
+import com.yizlan.gelato.canonical.functor.ExceptionFactory;
 
 /**
  * i18n assert

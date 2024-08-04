@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.registry;
+package com.yizlan.gelato.canonical.functor;
 
 /**
- * ·
- * service instance
+ * Provide a method for retrieving the name of the service instance.
  *
  * @author Zen Gershon
  * @since 1.0
@@ -27,9 +26,9 @@ package com.yizlan.gelato.canonical.registry;
 public interface ServiceInstance {
 
     /**
-     * Get service instance id
+     * Retrieves the name of the service instance.
      *
-     * @return The service instance id as registered.
+     * @return The name of the service instance.
      */
     String getName();
 

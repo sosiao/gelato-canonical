@@ -19,7 +19,7 @@ package com.yizlan.gelato.canonical.support;
 import com.yizlan.gelato.canonical.exception.UnaryException;
 import com.yizlan.gelato.canonical.fluent.CodeAssert;
 import com.yizlan.gelato.canonical.fluent.FuncAssert;
-import com.yizlan.gelato.canonical.functors.ExceptionFactory;
+import com.yizlan.gelato.canonical.functor.ExceptionFactory;
 import com.yizlan.gelato.canonical.panic.MetaException;
 
 import java.io.Serializable;

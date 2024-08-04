@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.functors;
+package com.yizlan.gelato.canonical.functor;
 
 import com.yizlan.gelato.canonical.panic.MetaException;
 

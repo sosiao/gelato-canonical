@@ -16,9 +16,10 @@
 
 
 /**
- * Provides name of service
+ * This package provides a series of functional interfaces
+ * for handling operations in various functional programming scenarios.
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.canonical.registry;
+package com.yizlan.gelato.canonical.functor;
