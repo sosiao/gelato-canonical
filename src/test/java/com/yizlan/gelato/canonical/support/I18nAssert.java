@@ -16,10 +16,9 @@
 
 package com.yizlan.gelato.canonical.support;
 
+import com.yizlan.gelato.canonical.exception.I18nException;
 import com.yizlan.gelato.canonical.exception.UnaryException;
-import com.yizlan.gelato.canonical.fluent.CodeAssert;
-import com.yizlan.gelato.canonical.fluent.EnumAssert;
-import com.yizlan.gelato.canonical.panic.I18nException;
+import com.yizlan.gelato.canonical.functors.ExceptionFactory;
 
 /**
  * i18n assert
@@ -27,34 +26,24 @@ import com.yizlan.gelato.canonical.panic.I18nException;
  * @author Zen Gershon
  * @since 2.0
  */
-public abstract class I18nAssert {
+public class I18nAssert extends MetaAssert {
 
-    /**
-     * code assert
-     *
-     * @param condition boolean
-     * @return {@link CodeAssert}
-     */
-    protected static CodeAssert codeAssert(final boolean condition) {
-        return (code, args) -> {
-            if (condition) {
-                throwException(code, args);
+    static {
+        registerFactory(I18nException.class, new ExceptionFactory<String, I18nException>() {
+
+            @Override
+            public I18nException create(String code, Object... args) {
+                return new I18nException(code, args);
             }
-        };
+        });
     }
 
-    /**
-     * enum assert
-     *
-     * @param condition boolean
-     * @return {@link EnumAssert}
-     */
-    protected static EnumAssert enumAssert(final boolean condition) {
-        return (exception, args) -> {
-            if (condition) {
-                throwException(exception, args);
-            }
-        };
+    public static void isTrue(boolean condition, String code, Object... args) {
+        codeAssert(!condition).throwException(I18nException.class, code, args);
+    }
+
+    public static void isTrue(boolean condition, UnaryException<String> exception, Object... args) {
+        funcAssert(!condition).throwException(I18nException.class, exception, args);
     }
 
     /**
@@ -64,7 +53,7 @@ public abstract class I18nAssert {
      * @param args placeholder parameters
      */
     public static void throwException(final String code, final Object... args) {
-        throw new I18nException(code, args);
+        throw createException(I18nException.class, code, args);
     }
 
     /**
@@ -74,6 +63,6 @@ public abstract class I18nAssert {
      * @param args      placeholder parameters
      */
     public static void throwException(final UnaryException<String> exception, final Object... args) {
-        throw new I18nException(exception, args);
+        throw createException(I18nException.class, exception, args);
     }
 }

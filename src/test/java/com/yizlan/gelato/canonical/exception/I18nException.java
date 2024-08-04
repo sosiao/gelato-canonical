@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.panic;
+package com.yizlan.gelato.canonical.exception;
 
-import com.yizlan.gelato.canonical.exception.UnaryException;
+import com.yizlan.gelato.canonical.panic.MetaException;
 
 /**
  * i18n exception

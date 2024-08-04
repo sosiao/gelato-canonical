@@ -27,7 +27,7 @@ import java.util.Arrays;
  * @author Zen Gershon
  * @since 2.0
  */
-class MetaException extends RuntimeException {
+public class MetaException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -54,7 +54,7 @@ class MetaException extends RuntimeException {
      * @param code error code
      * @param args placeholder parameters
      */
-    <T extends Comparable<T> & Serializable> MetaException(final T code, final Object... args) {
+    protected <T extends Comparable<T> & Serializable> MetaException(final T code, final Object... args) {
         super();
         this.code = code;
         this.args = args;
@@ -66,7 +66,8 @@ class MetaException extends RuntimeException {
      * @param exception unary generic enum interface
      * @param args      placeholder parameters
      */
-    <T extends Comparable<T> & Serializable> MetaException(final UnaryException<T> exception, final Object... args) {
+    protected <T extends Comparable<T> & Serializable> MetaException(final UnaryException<T> exception,
+                                                                     final Object... args) {
         super();
         this.code = exception.getCode();
         this.args = args;
@@ -74,9 +75,10 @@ class MetaException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "MetaException{" +
+        return this.getClass().getSimpleName() + "{" +
                 "code=" + code +
                 ", args=" + Arrays.toString(args) +
                 '}';
     }
+
 }
