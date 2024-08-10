@@ -32,8 +32,8 @@ import java.util.function.Supplier;
  * Provide fields which named value and label with the different type for enum.
  * This is the two-arity specialization of {@link ValueProvider}.
  *
- * @param <T> the type of the value field, should implement {@link Comparable} and {@link Serializable}
- * @param <U> the type of the label field, should implement {@link Comparable} and {@link Serializable}
+ * @param <T> The type of the value field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> The type of the label field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see UnaryEnum
  * @see LabelProvider
@@ -42,6 +42,14 @@ import java.util.function.Supplier;
 public interface BiEnum<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
         extends UnaryEnum<T>, LabelProvider<U> {
 
+    /**
+     * An immutable implementation of {@link BiDictionary}  used to store a pair of {@link T} and  {@link U} values.
+     *
+     * @param <T> The type of the primary key in the enum items,
+     *            which must implement {@link Comparable} and {@link Serializable}.
+     * @param <U> The type of the label in the enum items,
+     *            which must implement {@link Comparable} and {@link Serializable}.
+     */
     class ImmutableBiDictionary<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
             implements BiDictionary<T, U> {
 
@@ -78,73 +86,72 @@ public interface BiEnum<T extends Comparable<T> & Serializable, U extends Compar
     /**
      * convert values of enum to dictionary list
      *
-     * @param enumValues the values of enum
-     * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
-     * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
+     * @param enumValues The array of {@link BiEnum} instances.
+     * @param <T>        The type of the value field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>        The type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return dictionary list
      */
-    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
-    List<BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> List<BiDictionary<T, U>>
+    toList(BiEnum<T, U>[] enumValues) {
         if (enumValues == null) {
             throw new NullPointerException("The values of enum cannot be null");
         }
         if (enumValues.length == 0) {
             return Collections.emptyList();
         }
-        List<BiDictionary<T, U>> biDictionaries = new ArrayList<>(enumValues.length);
+        List<BiDictionary<T, U>> dictionaries = new ArrayList<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {
             if (item == null) {
                 throw new IllegalArgumentException("The values of enum cannot contain null elements.");
             }
-            BiDictionary<T, U> biDictionary = new ImmutableBiDictionary<>(item.getValue(), item.getLabel());
-            biDictionaries.add(biDictionary);
+            BiDictionary<T, U> dictionary = new ImmutableBiDictionary<>(item.getValue(), item.getLabel());
+            dictionaries.add(dictionary);
         }
-        return Collections.unmodifiableList(biDictionaries);
+        return dictionaries;
     }
 
     /**
      * convert values of enum to dictionary list with special data type
      *
-     * @param enumValues the values of enum
+     * @param enumValues The array of {@link BiEnum} instances.
      * @param supplier   the supplier (typically bound to a lambda expression)
-     * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
-     * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
+     * @param <T>        The type of the value field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>        The type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return dictionary list
      */
-    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
-    List<? extends BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues,
-                                              Supplier<? extends BiDictionary<T, U>> supplier) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+            R extends BiDictionary<T, U>> List<R> toList(BiEnum<T, U>[] enumValues, Supplier<R> supplier) {
         if (enumValues == null) {
             throw new NullPointerException("enumValues cannot be null");
         }
         if (enumValues.length == 0) {
             return Collections.emptyList();
         }
-        List<BiDictionary<T, U>> biDictionaries = new ArrayList<>(enumValues.length);
+        List<R> objects = new ArrayList<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {
             if (item == null) {
                 throw new IllegalArgumentException("Enum values cannot contain null elements");
             }
-            BiDictionary<T, U> biDictionary = supplier.get();
-            if (biDictionary == null) {
+            R object = supplier.get();
+            if (object == null) {
                 throw new IllegalArgumentException("The instance of BiDictionary cannot be null");
             }
-            biDictionary.setCode(item.getValue());
-            biDictionary.setName(item.getLabel());
+            object.setCode(item.getValue());
+            object.setName(item.getLabel());
 
-            biDictionaries.add(biDictionary);
+            objects.add(object);
         }
-        return Collections.unmodifiableList(biDictionaries);
+        return objects;
     }
 
     /**
      * convert values of enum to map
      *
-     * @param enumValues the values of enum
-     * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
-     * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
+     * @param enumValues The array of {@link BiEnum} instances.
+     * @param <T>        The type of the value field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>        The type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return an Enum which collects elements into a Map whose keys are the code field, and whose
      * values are the label field.
      */
@@ -162,7 +169,7 @@ public interface BiEnum<T extends Comparable<T> & Serializable, U extends Compar
             map.put(item.getValue(), item.getLabel());
         }
 
-        return Collections.unmodifiableMap(map);
+        return map;
     }
 
 }

@@ -102,14 +102,14 @@ public interface TerEnum<T extends Comparable<T> & Serializable, U extends Compa
         if (enumValues.length == 0) {
             return Collections.emptyList();
         }
-        List<TerDictionary<T, U, S>> terDictionaries = new ArrayList<>(enumValues.length);
+        List<TerDictionary<T, U, S>> dictionaries = new ArrayList<>(enumValues.length);
 
         for (TerEnum<T, U, S> item : enumValues) {
-            TerDictionary<T, U, S> terDictionary = new TerDictionaryAdapter<>(item);
-            terDictionaries.add(terDictionary);
+            TerDictionary<T, U, S> dictionary = new TerDictionaryAdapter<>(item);
+            dictionaries.add(dictionary);
         }
 
-        return Collections.unmodifiableList(terDictionaries);
+        return dictionaries;
     }
 
     /**
@@ -123,28 +123,28 @@ public interface TerEnum<T extends Comparable<T> & Serializable, U extends Compa
      * @return dictionary list
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
-            S extends Comparable<S> & Serializable> List<? extends TerDictionary<T, U, S>> toList(
-            TerEnum<T, U, S>[] enumValues, Supplier<? extends TerDictionary<T, U, S>> supplier) {
+            S extends Comparable<S> & Serializable, R extends TerDictionary<T, U, S>> List<R> toList(
+            TerEnum<T, U, S>[] enumValues, Supplier<R> supplier) {
         if (enumValues == null) {
             throw new NullPointerException("enumValues cannot be null");
         }
         if (enumValues.length == 0) {
             return Collections.emptyList();
         }
-        List<TerDictionary<T, U, S>> terDictionaries = new ArrayList<>(enumValues.length);
+        List<R> objects = new ArrayList<>(enumValues.length);
 
         for (TerEnum<T, U, S> item : enumValues) {
             if (item != null) {
-                TerDictionary<T, U, S> terDictionary = supplier.get();
-                terDictionary.setCode(item.getValue());
-                terDictionary.setName(item.getLabel());
-                terDictionary.setDesc(item.getDesc());
+                R object = supplier.get();
+                object.setCode(item.getValue());
+                object.setName(item.getLabel());
+                object.setDesc(item.getDesc());
 
-                terDictionaries.add(terDictionary);
+                objects.add(object);
             }
         }
 
-        return Collections.unmodifiableList(terDictionaries);
+        return objects;
     }
 
     /**
@@ -172,7 +172,7 @@ public interface TerEnum<T extends Comparable<T> & Serializable, U extends Compa
             map.put(item.getValue(), item.getDesc());
         }
 
-        return Collections.unmodifiableMap(map);
+        return map;
     }
 
 }

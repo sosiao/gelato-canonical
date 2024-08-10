@@ -30,6 +30,6 @@
  * </ul>
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.3
  */
 package com.yizlan.gelato.canonical.fluent.asserts;

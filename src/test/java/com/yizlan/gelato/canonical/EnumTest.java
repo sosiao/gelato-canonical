@@ -16,7 +16,6 @@
 
 package com.yizlan.gelato.canonical;
 
-import com.yizlan.gelato.canonical.dictionary.BiDictionary;
 import com.yizlan.gelato.canonical.dictionary.Gender;
 import com.yizlan.gelato.canonical.dictionary.TerDictionary;
 import com.yizlan.gelato.canonical.dictionary.WarningSign;
@@ -49,15 +48,14 @@ public class EnumTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     void testToList() {
         BiEnum.toList(GenderEnum.values())
                 .forEach(item -> System.out.println("convert BiEnum to BiDictionary, class name:" +
                         item.getClass().getTypeName() + ", \n value：" + item.getCode() + "|____|" + item.getName())
                 );
 
-        List<? extends BiDictionary<Integer, String>> biDictionaries = BiEnum.toList(GenderEnum.values(), Gender::new);
-        biDictionaries.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary, " +
+        List<Gender> genders = BiEnum.toList(GenderEnum.values(), Gender::new);
+        genders.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary, " +
                 "class name:" + item.getClass().getTypeName() +
                 ", \n value：" + item.getCode() + "|++++|" + item.getName())
         );
@@ -68,8 +66,7 @@ public class EnumTest {
                 item.getCode() + "|----|" + item.getName() + "|----|" + item.getDesc())
         );
 
-        List<WarningSign> warningSignList = (List<WarningSign>) TerEnum.toList(WarningSignEnum.values(),
-                WarningSign::new);
+        List<WarningSign> warningSignList = TerEnum.toList(WarningSignEnum.values(), WarningSign::new);
         warningSignList.stream()
                 .map(warningSign -> "convert TernaryEnum to WarningSign through TerDictionary, class name:" +
                         warningSign.getClass().getTypeName() + ", \n value："
