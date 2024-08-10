@@ -14,22 +14,17 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.functor;
 
 /**
- * Provide a method for retrieving the name of the service instance.
+ * Provides service registration and discovery and also related metadata management.
+ * <p>
+ * This package provides the necessary components for registering services within
+ * an application ecosystem. It includes classes and interfaces for managing
+ * service names, endpoints, configurations, and other metadata required for
+ * service discovery and lookup.
+ * </p>
  *
  * @author Zen Gershon
  * @since 1.0
  */
-@FunctionalInterface
-public interface ServiceInstance {
-
-    /**
-     * Retrieves the name of the service instance.
-     *
-     * @return The name of the service instance.
-     */
-    String getName();
-
-}
+package com.yizlan.gelato.canonical.registry;

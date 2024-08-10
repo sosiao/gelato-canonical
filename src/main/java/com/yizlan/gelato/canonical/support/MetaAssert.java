@@ -19,7 +19,7 @@ package com.yizlan.gelato.canonical.support;
 import com.yizlan.gelato.canonical.exception.UnaryException;
 import com.yizlan.gelato.canonical.fluent.CodeAssert;
 import com.yizlan.gelato.canonical.fluent.FuncAssert;
-import com.yizlan.gelato.canonical.functor.ExceptionFactory;
+import com.yizlan.gelato.canonical.fluent.factory.ExceptionFactory;
 import com.yizlan.gelato.canonical.panic.MetaException;
 
 import java.io.Serializable;
@@ -30,12 +30,12 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * Abstract class for generating assertions and handling exceptions.
- * Provides  a set of assertion methods for throwing exceptions in a more flexible way.
+ * Provides a set of assertion methods for throwing exceptions in a more flexible way.
  * It allows custom exception handling by registering exception factories
  * and dynamically creating exceptions based on conditions.
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.3
  */
 public abstract class MetaAssert {
 

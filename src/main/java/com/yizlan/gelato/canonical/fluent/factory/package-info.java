@@ -16,16 +16,15 @@
 
 
 /**
- * Provides interfaces for enum operations.
- *
- * <p>This package offers the following core functionalities:
- * <ul>
- *     <li>Provides value comparison for enum</li>
- *     <li>Provides enum to dictionary conversion</li>
- *     <li>Provides enum to map conversion</li>
- * </ul>
+ * Provides factory classes for creating various types of objects.
+ * <p>
+ * This package contains factories that are designed to encapsulate the creation
+ * of objects in a consistent and canonical manner. Each factory is responsible
+ * for creating instances of one or more related types, ensuring proper initialization
+ * and configuration.
+ * </p>
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.3
  */
-package com.yizlan.gelato.canonical.enums;
+package com.yizlan.gelato.canonical.fluent.factory;

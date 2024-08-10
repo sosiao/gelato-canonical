@@ -16,7 +16,12 @@
 
 
 /**
- * Package containing assert using string or numeric type
+ * Provides utility classes and support for common tasks.
+ * <p>
+ * This package contains various utility classes and helper methods that provide
+ * support for common programming tasks. These utilities aim to simplify common
+ * operations, improve code readability, and reduce boilerplate code.
+ * </p>
  *
  * @author Zen Gershon
  * @since 2.0

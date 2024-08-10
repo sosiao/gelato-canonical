@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
+package com.yizlan.gelato.canonical.registry;
 
 /**
- * Provides interfaces for enum operations.
- *
- * <p>This package offers the following core functionalities:
- * <ul>
- *     <li>Provides value comparison for enum</li>
- *     <li>Provides enum to dictionary conversion</li>
- *     <li>Provides enum to map conversion</li>
- * </ul>
+ * Provide a method for retrieving the name of the service instance.
  *
  * @author Zen Gershon
  * @since 1.0
  */
-package com.yizlan.gelato.canonical.enums;
+@FunctionalInterface
+public interface ServiceInstance {
+
+    /**
+     * Retrieves the name of the service instance.
+     *
+     * @return The name of the service instance.
+     */
+    String getName();
+
+}

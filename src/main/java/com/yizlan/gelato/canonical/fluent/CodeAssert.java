@@ -23,6 +23,9 @@ import java.io.Serializable;
 /**
  * This functional interface {@code CodeAssert} defines an assertion operation
  * that can be used to throw a custom exception when a condition is not met.
+ * <p>
+ * Note: In version {@version 2.4}, this class will be moved to the package that named
+ * {@code com.yizlan.gelato.canonical.fluent.asserts}.
  *
  * @author Zen Gershon
  * @since 1.0

@@ -24,6 +24,9 @@ import java.io.Serializable;
 /**
  * The functional interface {@code FuncAssert} is used to define an assertion operation
  * that can throw a custom exception when a condition is not met.
+ * <p>
+ * Note: In version {@version 2.4}, this class will be moved to the package that named
+ * {@code com.yizlan.gelato.canonical.fluent.asserts}.
  *
  * @author Zen Gershon
  * @since 2.0

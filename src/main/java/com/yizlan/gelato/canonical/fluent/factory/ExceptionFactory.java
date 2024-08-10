@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.functor;
+package com.yizlan.gelato.canonical.fluent.factory;
 
 import com.yizlan.gelato.canonical.panic.MetaException;
 
@@ -27,7 +27,7 @@ import java.io.Serializable;
  * @param <R> Generic type parameter representing the type of the exception object to be returned,
  *            which must be a subclass of {@code MetaException}.
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.3
  */
 @FunctionalInterface
 public interface ExceptionFactory<T extends Comparable<T> & Serializable, R extends MetaException> {

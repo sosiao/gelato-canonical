@@ -22,6 +22,7 @@ import com.yizlan.gelato.canonical.dictionary.BiDictionary;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +32,8 @@ import java.util.function.Supplier;
  * Provide fields which named value and label with the different type for enum.
  * This is the two-arity specialization of {@link ValueProvider}.
  *
- * @param <T> the type of the value field
- * @param <U> the type of the label field
+ * @param <T> the type of the value field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> the type of the label field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see UnaryEnum
  * @see LabelProvider
@@ -41,95 +42,127 @@ import java.util.function.Supplier;
 public interface BiEnum<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
         extends UnaryEnum<T>, LabelProvider<U> {
 
-    /**
-     * Compares enum
-     *
-     * @param biEnum {@link BiEnum}
-     * @return equals result of enum.
-     */
-    default boolean equals(BiEnum<T, U> biEnum) {
-        return this == biEnum;
+    class ImmutableBiDictionary<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+            implements BiDictionary<T, U> {
+
+        private final T code;
+
+        private final U name;
+
+        private ImmutableBiDictionary(T code, U name) {
+            this.code = code;
+            this.name = name;
+        }
+
+        @Override
+        public T getCode() {
+            return code;
+        }
+
+        @Override
+        public void setCode(T code) {
+            throw new UnsupportedOperationException("This method is not supported.");
+        }
+
+        @Override
+        public U getName() {
+            return name;
+        }
+
+        @Override
+        public void setName(U name) {
+            throw new UnsupportedOperationException("This method is not supported.");
+        }
     }
 
     /**
-     * convert enums to dictionary list
+     * convert values of enum to dictionary list
      *
      * @param enumValues the values of enum
-     * @param <T>        the type of the value field
-     * @param <U>        the type of the label field
+     * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return dictionary list
      */
-    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> List<BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+    List<BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues) {
+        if (enumValues == null) {
+            throw new NullPointerException("The values of enum cannot be null");
+        }
+        if (enumValues.length == 0) {
+            return Collections.emptyList();
+        }
         List<BiDictionary<T, U>> biDictionaries = new ArrayList<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {
-            BiDictionary<T, U> biDictionary = new BiDictionary<T, U>() {
-                @Override
-                public T getCode() {
-                    return item.getValue();
-                }
-
-                @Override
-                public void setCode(T code) {
-                    // to do nothing
-                }
-
-                @Override
-                public U getName() {
-                    return item.getLabel();
-                }
-
-                @Override
-                public void setName(U name) {
-                    // to do nothing
-                }
-            };
+            if (item == null) {
+                throw new IllegalArgumentException("The values of enum cannot contain null elements.");
+            }
+            BiDictionary<T, U> biDictionary = new ImmutableBiDictionary<>(item.getValue(), item.getLabel());
             biDictionaries.add(biDictionary);
         }
-        return biDictionaries;
+        return Collections.unmodifiableList(biDictionaries);
     }
 
     /**
-     * convert enums to dictionary list with special data type
+     * convert values of enum to dictionary list with special data type
      *
      * @param enumValues the values of enum
      * @param supplier   the supplier (typically bound to a lambda expression)
-     * @param <T>        the type of the value field
-     * @param <U>        the type of the label field
+     * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return dictionary list
      */
-    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> List<?
-            extends BiDictionary<T, U>> toList(
-            BiEnum<T, U>[] enumValues, Supplier<? extends BiDictionary<T, U>> supplier) {
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+    List<? extends BiDictionary<T, U>> toList(BiEnum<T, U>[] enumValues,
+                                              Supplier<? extends BiDictionary<T, U>> supplier) {
+        if (enumValues == null) {
+            throw new NullPointerException("enumValues cannot be null");
+        }
+        if (enumValues.length == 0) {
+            return Collections.emptyList();
+        }
         List<BiDictionary<T, U>> biDictionaries = new ArrayList<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {
+            if (item == null) {
+                throw new IllegalArgumentException("Enum values cannot contain null elements");
+            }
             BiDictionary<T, U> biDictionary = supplier.get();
+            if (biDictionary == null) {
+                throw new IllegalArgumentException("The instance of BiDictionary cannot be null");
+            }
             biDictionary.setCode(item.getValue());
             biDictionary.setName(item.getLabel());
 
             biDictionaries.add(biDictionary);
         }
-        return biDictionaries;
+        return Collections.unmodifiableList(biDictionaries);
     }
 
     /**
-     * convert enums to map
+     * convert values of enum to map
      *
      * @param enumValues the values of enum
-     * @param <T>        the type of the value field
-     * @param <U>        the type of the label field
+     * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return an Enum which collects elements into a Map whose keys are the code field, and whose
      * values are the label field.
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> Map<T, U> toMap(
             BiEnum<T, U>[] enumValues) {
+        if (enumValues == null) {
+            throw new NullPointerException("enumValues cannot be null");
+        }
+        if (enumValues.length == 0) {
+            return Collections.emptyMap();
+        }
         Map<T, U> map = new HashMap<>(enumValues.length);
 
         for (BiEnum<T, U> item : enumValues) {
             map.put(item.getValue(), item.getLabel());
         }
 
-        return map;
+        return Collections.unmodifiableMap(map);
     }
+
 }
