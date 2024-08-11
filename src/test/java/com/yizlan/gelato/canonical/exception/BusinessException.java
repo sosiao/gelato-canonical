@@ -48,6 +48,14 @@ public class BusinessException implements BinaryException<String>, Serializable 
         return msg;
     }
 
+    public BusinessException() {
+    }
+
+    public BusinessException(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "BusinessException{" +

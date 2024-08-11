@@ -16,13 +16,12 @@
 
 package com.yizlan.gelato.canonical;
 
+import com.yizlan.gelato.canonical.exception.BusinessException;
 import com.yizlan.gelato.canonical.exception.I18nException;
-import com.yizlan.gelato.canonical.exception.UnaryException;
 import com.yizlan.gelato.canonical.support.I18nAssert;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AssertTest {
 
@@ -39,11 +38,11 @@ class AssertTest {
     @Test
     void testUnaryException() {
         try {
-            UnaryException<String> exception =null;
-//            I18nAssert.isTrue(false, exception, 1, 2, 2);
+            BusinessException exception =new BusinessException("123", "str");
+            I18nAssert.isTrue(false, exception, 1, 2, 2);
         } catch (I18nException e) {
             String code = e.getCode();
-            assertNull(code);
+            assertEquals("123", code);
         }
     }
 
