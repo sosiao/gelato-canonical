@@ -53,7 +53,7 @@ public interface TerDictionary<T extends Comparable<T> & Serializable, U extends
      * @param <U>             the type of the name field, should implement {@link Comparable} and {@link Serializable}
      * @param <S>             the type of the desc field, should implement {@link Comparable} and {@link Serializable}
      * @return A Collector which collects elements into a Map whose keys are the code field, and whose
-     *         values are the desc field. If {@param terDictionaries} is null or empty, returns an empty Map.
+     *         values are the desc field. If {@code terDictionaries} is null or empty, returns an empty Map.
      * @throws IllegalArgumentException if duplicate keys are encountered.
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
