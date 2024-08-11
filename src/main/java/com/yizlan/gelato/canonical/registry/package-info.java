@@ -16,7 +16,13 @@
 
 
 /**
- * Provides name of service
+ * Provides service registration and discovery and also related metadata management.
+ * <p>
+ * This package provides the necessary components for registering services within
+ * an application ecosystem. It includes classes and interfaces for managing
+ * service names, endpoints, configurations, and other metadata required for
+ * service discovery and lookup.
+ * </p>
  *
  * @author Zen Gershon
  * @since 1.0

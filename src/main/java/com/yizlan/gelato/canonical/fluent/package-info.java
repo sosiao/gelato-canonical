@@ -16,9 +16,10 @@
 
 
 /**
- * Package containing assert that using lambda
+ * This package provides a series of functional interfaces
+ * for handling operations in various functional programming scenarios.
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 package com.yizlan.gelato.canonical.fluent;

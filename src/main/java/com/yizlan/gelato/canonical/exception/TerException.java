@@ -21,18 +21,18 @@ import com.yizlan.gelato.canonical.copier.CodeProvider;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code、msg and business with the different type for exception.
+ * Provide fields which named code、message and business with different types for exception.
  * This is the three-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the code field
- * @param <U> the type of the msg field
- * @param <S> the type of the business field
+ * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> the type of the message field, should implement {@link Comparable} and {@link Serializable}
+ * @param <S> the type of the business field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see BiException
  * @since 1.0
  */
-public interface TerException<T extends Serializable, U extends Serializable, S extends Serializable>
-        extends BiException<T, U> {
+public interface TerException<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+        S extends Comparable<S> & Serializable> extends BiException<T, U> {
 
     /**
      * Get business
@@ -40,4 +40,5 @@ public interface TerException<T extends Serializable, U extends Serializable, S 
      * @return business
      */
     S getBusiness();
+
 }

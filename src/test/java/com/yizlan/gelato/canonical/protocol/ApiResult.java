@@ -62,4 +62,5 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
                 ", data=" + data.toString() +
                 '}';
     }
+
 }

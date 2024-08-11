@@ -21,45 +21,60 @@ import com.yizlan.gelato.canonical.copier.DescriptionProvider;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
  * Provide fields which named code、name and desc with the different type for dictionary.
  * This is the three-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the code field
- * @param <U> the type of the name field
- * @param <S> the type of the desc filed
+ * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> the type of the name field, should implement {@link Comparable} and {@link Serializable}
+ * @param <S> the type of the desc filed, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see BiDictionary
  * @see DescriptionProvider
  * @since 1.0
  */
-public interface TerDictionary<T extends Serializable, U extends Serializable, S extends Serializable>
-        extends BiDictionary<T, U>, DescriptionProvider<S> {
+public interface TerDictionary<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+        S extends Comparable<S> & Serializable> extends BiDictionary<T, U>, DescriptionProvider<S> {
 
     void setDesc(S desc);
 
     /**
-     * convert dictionary to map
+     * Convert dictionary to map
      *
-     * @param terDictionaries dictionary
-     * @param <T>             the type of the code field
-     * @param <U>             the type of the name field
-     * @param <S>             the type of the desc filed
-     * @return a Collector which collects elements into a Map whose keys are the code field, and whose
-     * values are the desc field.
+     * @param terDictionaries A collection of classes or subclasses that implements {@link TerDictionary}.
+     *                        Note that null elements within the list are ignored.
+     * @param <T>             the type of the code field, should implement {@link Comparable} and {@link Serializable}
+     * @param <U>             the type of the name field, should implement {@link Comparable} and {@link Serializable}
+     * @param <S>             the type of the desc field, should implement {@link Comparable} and {@link Serializable}
+     * @return A Collector which collects elements into a Map whose keys are the code field, and whose
+     *         values are the desc field. If {@param terDictionaries} is null or empty, returns an empty Map.
+     * @throws IllegalArgumentException if duplicate keys are encountered.
      */
-    static <T extends Serializable, U extends Serializable, S extends Serializable> Map<T, S> toDescMap(
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+            S extends Comparable<S> & Serializable> Map<T, S> toDescMap(
             List<? extends TerDictionary<T, U, S>> terDictionaries) {
         if (terDictionaries == null || terDictionaries.isEmpty()) {
             return Collections.emptyMap();
         }
 
-        return terDictionaries.stream().collect(
-                Collectors.toMap(TerDictionary::getCode, TerDictionary::getDesc, (k1, k2) -> k1)
-        );
+        return terDictionaries.stream()
+                .filter(Objects::nonNull)
+                .collect(
+                        Collectors.toMap(
+                                TerDictionary::getCode,
+                                TerDictionary::getDesc,
+                                (k1, k2) -> {
+                                    throw new IllegalArgumentException("Duplicate key found: " + k1);
+                                },
+                                () -> new HashMap<>(Math.max(terDictionaries.size(), 16))
+                        )
+                );
     }
+
 }

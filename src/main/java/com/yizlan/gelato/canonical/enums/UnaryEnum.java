@@ -24,14 +24,14 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Provide fields which named value for enum.
+ * Provides fields which named value for enum.
  *
- * @param <T> the type of the value field
+ * @param <T> the type of the value field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see ValueProvider
- * @since 1.0
+ * @since 2.0
  */
-public interface UnaryEnum<T extends Serializable> extends ValueProvider<T> {
+public interface UnaryEnum<T extends Comparable<T> & Serializable> extends ValueProvider<T> {
 
     /**
      * Compares enum according to their source value.
@@ -41,15 +41,16 @@ public interface UnaryEnum<T extends Serializable> extends ValueProvider<T> {
      */
     default boolean valueEquals(T enumValue) {
         AtomicBoolean flag = new AtomicBoolean(false);
-        Optional.ofNullable(enumValue).ifPresent(val -> {
-            if (val instanceof String) {
-                flag.set(((String) val).equalsIgnoreCase((String) this.getValue()));
-            } else {
-                flag.set(Objects.equals(this.getValue(), val));
-            }
-        });
+        Optional.ofNullable(enumValue)
+                .ifPresent(enumVal -> {
+                    T value = this.getValue();
+                    if (enumVal instanceof String && value instanceof String) {
+                        flag.set(((String) enumVal).equalsIgnoreCase((String) value));
+                    } else {
+                        flag.set(Objects.equals(enumVal, value));
+                    }
+                });
         return flag.get();
     }
-
 
 }

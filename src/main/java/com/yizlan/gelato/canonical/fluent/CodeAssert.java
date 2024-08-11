@@ -16,8 +16,16 @@
 
 package com.yizlan.gelato.canonical.fluent;
 
+import com.yizlan.gelato.canonical.panic.MetaException;
+
+import java.io.Serializable;
+
 /**
- * code assert
+ * This functional interface {@code CodeAssert} defines an assertion operation
+ * that can be used to throw a custom exception when a condition is not met.
+ * <p>
+ * Note: In version {@version 2.4}, this class will be moved to the package that named
+ * {@code com.yizlan.gelato.canonical.fluent.asserts}.
  *
  * @author Zen Gershon
  * @since 1.0
@@ -26,10 +34,16 @@ package com.yizlan.gelato.canonical.fluent;
 public interface CodeAssert {
 
     /**
-     * throw exception
+     * Throws an exception with the specified type.
      *
-     * @param code error code
-     * @param args placeholder parameters
+     * @param exceptionClazz The exception class, specifying the type of exception that extends {@code MetaException}.
+     * @param code           The exception code, which must be a value of type T.
+     * @param args           Optional parameters provided to the exception constructor for customizing the exception
+     *                       message
+     * @param <T>            A comparable and serializable type used for the exception code.
      */
-    void throwException(final String code, final Object... args);
+    <T extends Comparable<T> & Serializable> void throwException(Class<? extends MetaException> exceptionClazz,
+                                                                 T code,
+                                                                 Object... args);
+
 }

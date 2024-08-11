@@ -14,41 +14,42 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.panic;
+package com.yizlan.gelato.canonical.exception;
 
-import com.yizlan.gelato.canonical.exception.UnaryException;
+import com.yizlan.gelato.canonical.panic.MetaException;
 
 /**
- * digital exception
+ * i18n exception
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
-public class DigitalException extends MetaException {
+public class I18nException extends MetaException {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public Integer getCode() {
-        return (Integer) super.getCode();
+    public String getCode() {
+        return (String) super.getCode();
     }
 
     /**
-     * Constructs a new digital exception with the specified code and placeholder.
+     * Constructs a new i18n exception with the specified code and placeholder.
      *
      * @param code error code
      * @param args placeholder parameters
      */
-    public DigitalException(final Integer code, final Object... args) {
+    public I18nException(final String code, final Object... args) {
         super(code, args);
     }
 
     /**
-     * Constructs a new digital exception with unary generic enum interface as parameter and placeholder.
+     * Constructs a new i18n exception with binary generic enum interface as parameter and detail message.
      *
      * @param exception unary generic enum interface
-     * @param args      placeholder parameters
+     * @param args      reserved parameters
      */
-    public DigitalException(final UnaryException<Integer> exception, final Object... args) {
+    public I18nException(final UnaryException<String> exception, final Object... args) {
         super(exception, args);
     }
+
 }

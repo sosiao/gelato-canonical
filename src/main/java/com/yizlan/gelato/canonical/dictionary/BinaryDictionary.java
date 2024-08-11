@@ -20,13 +20,15 @@ import java.io.Serializable;
 
 /**
  * Provide fields which named code and name with the same type for dictionary.
- * This is a specialization of {@link BiDictionary} for the case.
+ * This is a specialization of {@link BiDictionary} for the case where the type of fields that contains
+ * code and name is strictly defined to ensure consistency and comparability.
  *
- * @param <T> the type of fields that contains code and name
+ * @param <T> the type of fields that contains code and name,
+ *            should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see BiDictionary
  * @since 1.0
  */
-public interface BinaryDictionary<T extends Serializable> extends BiDictionary<T, T> {
+public interface BinaryDictionary<T extends Comparable<T> & Serializable> extends BiDictionary<T, T> {
 
 }

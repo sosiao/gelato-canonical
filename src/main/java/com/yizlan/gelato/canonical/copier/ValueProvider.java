@@ -21,11 +21,16 @@ import java.io.Serializable;
 /**
  * Provide value.
  *
- * @param <T> the type of the value
+ * <p>This interface defines a generic mechanism for retrieving a value of a specific type.
+ * The type of the value must implement both {@link Comparable} and {@link Serializable}.
+ * When implementing this interface, ensure that the returned value adheres to the contract
+ * of {@link Comparable}, and that it is properly serializable.
+ *
+ * @param <T> the type of the value, which must implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @since 1.0
  */
-public interface ValueProvider<T extends Serializable> {
+public interface ValueProvider<T extends Comparable<T> & Serializable> {
 
     /**
      * Get value
@@ -33,4 +38,5 @@ public interface ValueProvider<T extends Serializable> {
      * @return value
      */
     T getValue();
+
 }

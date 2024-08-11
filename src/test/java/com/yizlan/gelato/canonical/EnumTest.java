@@ -16,18 +16,17 @@
 
 package com.yizlan.gelato.canonical;
 
-import com.yizlan.gelato.canonical.dictionary.BiDictionary;
 import com.yizlan.gelato.canonical.dictionary.Gender;
 import com.yizlan.gelato.canonical.dictionary.TerDictionary;
 import com.yizlan.gelato.canonical.dictionary.WarningSign;
 import com.yizlan.gelato.canonical.enums.BiEnum;
 import com.yizlan.gelato.canonical.enums.GenderEnum;
 import com.yizlan.gelato.canonical.enums.TerEnum;
+import com.yizlan.gelato.canonical.enums.UnaryEnum;
 import com.yizlan.gelato.canonical.enums.WarningSignEnum;
 import com.yizlan.gelato.canonical.util.EnumUtils;
 import org.junit.jupiter.api.Test;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,9 +34,6 @@ public class EnumTest {
 
     @Test
     void testEnum() {
-        BiEnum<Serializable, Serializable> biEnum = EnumUtils.getEnumByValue(null, null);
-        assert Objects.isNull(biEnum);
-
         GenderEnum genderEnum = GenderEnum.getEnumByValue(1);
         assert genderEnum == GenderEnum.MAN;
 
@@ -49,15 +45,14 @@ public class EnumTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     void testToList() {
         BiEnum.toList(GenderEnum.values())
                 .forEach(item -> System.out.println("convert BiEnum to BiDictionary, class name:" +
                         item.getClass().getTypeName() + ", \n value：" + item.getCode() + "|____|" + item.getName())
                 );
 
-        List<? extends BiDictionary<Integer, String>> biDictionaries = BiEnum.toList(GenderEnum.values(), Gender::new);
-        biDictionaries.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary, " +
+        List<Gender> genders = BiEnum.toList(GenderEnum.values(), Gender::new);
+        genders.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary, " +
                 "class name:" + item.getClass().getTypeName() +
                 ", \n value：" + item.getCode() + "|++++|" + item.getName())
         );
@@ -68,8 +63,7 @@ public class EnumTest {
                 item.getCode() + "|----|" + item.getName() + "|----|" + item.getDesc())
         );
 
-        List<WarningSign> warningSignList = (List<WarningSign>) TerEnum.toList(WarningSignEnum.values(),
-                WarningSign::new);
+        List<WarningSign> warningSignList = TerEnum.toList(WarningSignEnum.values(), WarningSign::new);
         warningSignList.stream()
                 .map(warningSign -> "convert TernaryEnum to WarningSign through TerDictionary, class name:" +
                         warningSign.getClass().getTypeName() + ", \n value："
@@ -84,4 +78,5 @@ public class EnumTest {
         TerEnum.toDescMap(WarningSignEnum.values())
                 .forEach((val, desc) -> System.out.println("convert Desc of TernaryEnum to Map：" + val + "____" + desc));
     }
+
 }

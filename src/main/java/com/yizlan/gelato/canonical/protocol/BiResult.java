@@ -22,16 +22,17 @@ import com.yizlan.gelato.canonical.copier.MessageProvider;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code and message with the different type for result.
+ * Provide fields which named code and message with different types for result.
  * This is the two-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the code field
- * @param <U> the type of the message field
+ * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> the type of the message field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see CodeProvider
  * @see MessageProvider
  * @since 1.0
  */
-public interface BiResult<T extends Serializable, U extends Serializable> extends CodeProvider<T>, MessageProvider<U> {
+public interface BiResult<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+        extends CodeProvider<T>, MessageProvider<U> {
 
 }

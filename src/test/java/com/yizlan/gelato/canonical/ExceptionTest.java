@@ -28,4 +28,5 @@ public class ExceptionTest {
         exception.setMsg("error code");
         System.out.println(exception);
     }
+
 }
