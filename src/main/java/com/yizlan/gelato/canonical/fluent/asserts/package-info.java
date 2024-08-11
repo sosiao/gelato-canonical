@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.fluent;
-
-import com.yizlan.gelato.canonical.exception.UnaryException;
 
 /**
- * enum assert
+ * Provides fluent assertion utilities.
+ *
+ * <p>This package, {@code com.yizlan.gelato.canonical.fluent.asserts}, offers a fluent API for assertions. It
+ * includes classes and methods designed to facilitate writing clear and concise tests by allowing assertions
+ * to be chained together.
+ *
+ * <p>The key features include:
+ * <ul>
+ *     <li>Fluent interface for chaining assertions.</li>
+ *     <li>Customizable error messages for failed assertions.</li>
+ *     <li>Support for a wide range of data types including numbers, strings, collections, and more.</li>
+ * </ul>
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.3
  */
-@FunctionalInterface
-public interface EnumAssert {
-
-    /**
-     * throw exception
-     *
-     * @param exception error interface
-     * @param args      placeholder parameters
-     */
-    void throwException(final UnaryException<String> exception, final Object... args);
-}
+package com.yizlan.gelato.canonical.fluent.asserts;

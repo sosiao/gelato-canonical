@@ -16,7 +16,7 @@
 
 package com.yizlan.gelato.canonical.panic;
 
-import com.yizlan.gelato.canonical.copier.CodeProvider;
+import com.yizlan.gelato.canonical.exception.UnaryException;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -25,9 +25,9 @@ import java.util.Arrays;
  * meta exception
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
-class MetaException extends RuntimeException implements CodeProvider<Serializable> {
+public class MetaException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -40,7 +40,6 @@ class MetaException extends RuntimeException implements CodeProvider<Serializabl
      */
     private final Object[] args;
 
-    @Override
     public Serializable getCode() {
         return code;
     }
@@ -55,7 +54,7 @@ class MetaException extends RuntimeException implements CodeProvider<Serializabl
      * @param code error code
      * @param args placeholder parameters
      */
-    <T extends Serializable> MetaException(final T code, final Object... args) {
+    protected <T extends Comparable<T> & Serializable> MetaException(final T code, final Object... args) {
         super();
         this.code = code;
         this.args = args;
@@ -67,7 +66,8 @@ class MetaException extends RuntimeException implements CodeProvider<Serializabl
      * @param exception unary generic enum interface
      * @param args      placeholder parameters
      */
-    <T extends Serializable> MetaException(final CodeProvider<T> exception, final Object... args) {
+    protected <T extends Comparable<T> & Serializable> MetaException(final UnaryException<T> exception,
+                                                                     final Object... args) {
         super();
         this.code = exception.getCode();
         this.args = args;
@@ -75,9 +75,10 @@ class MetaException extends RuntimeException implements CodeProvider<Serializabl
 
     @Override
     public String toString() {
-        return "MetaException{" +
+        return this.getClass().getSimpleName() + "{" +
                 "code=" + code +
                 ", args=" + Arrays.toString(args) +
                 '}';
     }
+
 }

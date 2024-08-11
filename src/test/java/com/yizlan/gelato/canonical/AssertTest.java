@@ -16,21 +16,35 @@
 
 package com.yizlan.gelato.canonical;
 
-import com.yizlan.gelato.canonical.panic.DigitalException;
-import com.yizlan.gelato.canonical.support.ServiceAssert;
+import com.yizlan.gelato.canonical.exception.I18nException;
+import com.yizlan.gelato.canonical.exception.UnaryException;
+import com.yizlan.gelato.canonical.support.I18nAssert;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AssertTest {
 
     @Test
-    void testDigital() {
+    void testCode() {
         try {
-            ServiceAssert.isTrue(false, null);
-        } catch (DigitalException e) {
-            Integer code = e.getCode();
+            I18nAssert.isTrue(false, "str");
+        } catch (I18nException e) {
+            String code = e.getCode();
+            assertEquals("str", code);
+        }
+    }
+
+    @Test
+    void testUnaryException() {
+        try {
+            UnaryException<String> exception =null;
+            I18nAssert.isTrue(false, exception, 1, 2, 2);
+        } catch (I18nException e) {
+            String code = e.getCode();
             assertNull(code);
         }
     }
+
 }

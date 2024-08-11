@@ -40,4 +40,5 @@ public enum WarningSignEnum implements TernaryEnum<String> {
     public static WarningSignEnum getEnumByValue(String value) {
         return EnumUtils.getEnumByValue(WarningSignEnum.class, value);
     }
+
 }

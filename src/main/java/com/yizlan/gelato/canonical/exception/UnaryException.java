@@ -23,11 +23,11 @@ import java.io.Serializable;
 /**
  * Provide fields which named code for exception.
  *
- * @param <T> the type of the code field
+ * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see CodeProvider
- * @since 1.0
+ * @since 2.0
  */
-public interface UnaryException<T extends Serializable> extends CodeProvider<T> {
+public interface UnaryException<T extends Comparable<T> & Serializable> extends CodeProvider<T> {
 
 }

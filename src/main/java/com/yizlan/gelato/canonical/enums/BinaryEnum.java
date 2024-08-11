@@ -22,11 +22,12 @@ import java.io.Serializable;
  * Provide fields which named value and label with the same type for enum.
  * This is a specialization of {@link BiEnum} for the case.
  *
- * @param <T> the type of fields that contains value and label
+ * @param <T> the type of fields that contains value and label,
+ *            should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see BiEnum
  * @since 1.0
  */
-public interface BinaryEnum<T extends Serializable> extends BiEnum<T, T> {
+public interface BinaryEnum<T extends Comparable<T> & Serializable> extends BiEnum<T, T> {
 
 }

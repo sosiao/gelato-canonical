@@ -22,12 +22,13 @@ import java.io.Serializable;
  * Provide fields which named value、label and desc with the same type for enum.
  * This is a specialization of {@link TerEnum} for the case.
  *
- * @param <T> the type of fields that contains value、label and desc
+ * @param <T> the type of fields that contains value、label and desc,
+ *            should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see TerEnum
  * @see BinaryEnum
  * @since 1.0
  */
-public interface TernaryEnum<T extends Serializable> extends TerEnum<T, T, T> {
+public interface TernaryEnum<T extends Comparable<T> & Serializable> extends TerEnum<T, T, T> {
 
 }

@@ -43,4 +43,5 @@ public enum WhetherEnum implements BinaryEnum<String> {
     public static WhetherEnum getEnumByValue(String code){
         return EnumUtils.getEnumByValue(WhetherEnum.class, code);
     }
+
 }

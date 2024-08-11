@@ -16,7 +16,14 @@
 
 
 /**
- * Package containing enum
+ * Provides interfaces for enum operations.
+ *
+ * <p>This package offers the following core functionalities:
+ * <ul>
+ *     <li>Provides value comparison for enum</li>
+ *     <li>Provides enum to dictionary conversion</li>
+ *     <li>Provides enum to map conversion</li>
+ * </ul>
  *
  * @author Zen Gershon
  * @since 1.0

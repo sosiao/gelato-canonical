@@ -22,17 +22,17 @@ import com.yizlan.gelato.canonical.copier.MessageProvider;
 import java.io.Serializable;
 
 /**
- * Provide fields which named code and msg with the different type for exception.
+ * Provide fields which named code and message with different types for exception.
  * This is the two-arity specialization of {@link CodeProvider}.
  *
- * @param <T> the type of the code field
- * @param <U> the type of the msg field
+ * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
+ * @param <U> the type of the message field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see UnaryException
  * @see MessageProvider
  * @since 1.0
  */
-public interface BiException<T extends Serializable, U extends Serializable> extends UnaryException<T>,
-        MessageProvider<U> {
+public interface BiException<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
+        extends UnaryException<T>, MessageProvider<U> {
 
 }

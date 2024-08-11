@@ -21,11 +21,16 @@ import java.io.Serializable;
 /**
  * Provide label.
  *
- * @param <T> the type of the label
+ * <p>This interface defines a generic mechanism for retrieving a label of a specific type.
+ *  * The type of the label must implement both {@link Comparable} and {@link Serializable}.
+ *  * When implementing this interface, ensure that the returned label adheres to the contract
+ *  * of {@link Comparable}, and that it is properly serializable.
+ *
+ * @param <T> the type of the label, which must implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @since 1.0
  */
-public interface LabelProvider<T extends Serializable> {
+public interface LabelProvider<T extends Comparable<T> & Serializable> {
 
     /**
      * Get label
@@ -33,4 +38,5 @@ public interface LabelProvider<T extends Serializable> {
      * @return label
      */
     T getLabel();
+
 }

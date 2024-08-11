@@ -21,11 +21,16 @@ import java.io.Serializable;
 /**
  * Provide description.
  *
- * @param <T> the type of the description
+ * <p>This interface defines a generic mechanism for retrieving a description of a specific type.
+ * The type of the description must implement both {@link Comparable} and {@link Serializable}.
+ * When implementing this interface, ensure that the returned description adheres to the contract
+ * of {@link Comparable}, and that it is properly serializable.
+ *
+ * @param <T> the type of the description, which must implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @since 1.0
  */
-public interface DescriptionProvider<T extends Serializable> {
+public interface DescriptionProvider<T extends Comparable<T> & Serializable> {
 
     /**
      * Get description
@@ -33,4 +38,5 @@ public interface DescriptionProvider<T extends Serializable> {
      * @return description
      */
     T getDesc();
+
 }

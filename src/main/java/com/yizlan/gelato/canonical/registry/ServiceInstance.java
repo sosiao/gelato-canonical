@@ -16,8 +16,8 @@
 
 package com.yizlan.gelato.canonical.registry;
 
-/**·
- * service instance
+/**
+ * Provide a method for retrieving the name of the service instance.
  *
  * @author Zen Gershon
  * @since 1.0
@@ -26,9 +26,10 @@ package com.yizlan.gelato.canonical.registry;
 public interface ServiceInstance {
 
     /**
-     * Get service name
+     * Retrieves the name of the service instance.
      *
-     * @return The service name as registered.
+     * @return The name of the service instance.
      */
     String getName();
+
 }
