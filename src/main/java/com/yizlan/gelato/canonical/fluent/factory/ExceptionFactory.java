@@ -39,6 +39,6 @@ public interface ExceptionFactory<T extends Comparable<T> & Serializable, R exte
      * @param args Additional parameters for constructing the exception message, may be empty.
      * @return Returns a well-formed exception object, the specific type is determined by the caller.
      */
-    R create(final T code, final Object... args);
+    R create(T code, Object... args);
 
 }

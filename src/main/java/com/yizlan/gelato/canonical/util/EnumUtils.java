@@ -32,6 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 1.0
  */
 public class EnumUtils {
+
     // Cache to store Enum instances, to avoid repeated queries
     private static final Map<Class<? extends Enum<?>>, Map<Object, ? extends Enum<?>>> ENUM_VALUE_CACHE =
             new ConcurrentHashMap<>();

@@ -42,8 +42,8 @@ public interface CodeAssert {
      *                       message
      * @param <T>            A comparable and serializable type used for the exception code.
      */
-    <T extends Comparable<T> & Serializable> void throwException(final Class<? extends MetaException> exceptionClazz,
-                                                                 final T code,
-                                                                 final Object... args);
+    <T extends Comparable<T> & Serializable> void throwException(Class<? extends MetaException> exceptionClazz,
+                                                                 T code,
+                                                                 Object... args);
 
 }

@@ -45,8 +45,8 @@ public interface FuncAssert {
      * @param <T>            A comparable and serializable type used for the unary operation exception object to be
      *                       thrown.
      */
-    <T extends Comparable<T> & Serializable> void throwException(final Class<? extends MetaException> exceptionClazz,
-                                                                 final UnaryException<T> exception,
-                                                                 final Object... args);
+    <T extends Comparable<T> & Serializable> void throwException(Class<? extends MetaException> exceptionClazz,
+                                                                 UnaryException<T> exception,
+                                                                 Object... args);
 
 }
