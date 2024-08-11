@@ -35,7 +35,7 @@ import java.util.function.Supplier;
  *
  * @param <T> the type of the value field, should implement {@link Comparable} and {@link Serializable}
  * @param <U> the type of the label field, should implement {@link Comparable} and {@link Serializable}
- * @param <S> the type of the desc field, should implement {@link Comparable} and {@link Serializable}
+ * @param <S> the type of the description field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see BiEnum
  * @see DescriptionProvider
@@ -44,6 +44,11 @@ import java.util.function.Supplier;
 public interface TerEnum<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
         S extends Comparable<S> & Serializable> extends BiEnum<T, U>, DescriptionProvider<S> {
 
+    /**
+     * A class that implements the {@link TerDictionary} interface, providing a dictionary-like
+     * structure for enum values. It wraps around a value of the enum and provides access to its
+     * code, name, and description.
+     */
     class TerDictionaryAdapter<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
             S extends Comparable<S> & Serializable> implements TerDictionary<T, U, S> {
 
@@ -85,13 +90,13 @@ public interface TerEnum<T extends Comparable<T> & Serializable, U extends Compa
     }
 
     /**
-     * convert the values of enum to dictionary list
+     * Converts the values of this enum to a list of dictionary objects.
      *
-     * @param enumValues the values of enum
+     * @param enumValues all values of this enum
      * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
      * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @param <S>        the type of the desc field, should implement {@link Comparable} and {@link Serializable}
-     * @return dictionary list
+     * @return a list of dictionary objects
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
             S extends Comparable<S> & Serializable> List<TerDictionary<T, U, S>> toList(
@@ -113,14 +118,16 @@ public interface TerEnum<T extends Comparable<T> & Serializable, U extends Compa
     }
 
     /**
-     * convert enums to dictionary list with special data type
+     * Converts enums to a list of dictionary objects with a special data type.
+     * This method allows customization of the dictionary object type through a supplier.
      *
-     * @param enumValues the values of enum
-     * @param supplier   the supplier (typically bound to a lambda expression)
+     * @param enumValues all values of this enum
+     * @param supplier   the supplier for creating dictionary objects, typically a lambda
      * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
      * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @param <S>        the type of the desc field, should implement {@link Comparable} and {@link Serializable}
-     * @return dictionary list
+     * @param <R>        the type of the resulting dictionary objects
+     * @return a list of dictionary objects of type R
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
             S extends Comparable<S> & Serializable, R extends TerDictionary<T, U, S>> List<R> toList(
@@ -148,14 +155,14 @@ public interface TerEnum<T extends Comparable<T> & Serializable, U extends Compa
     }
 
     /**
-     * convert enums to map
+     * Converts enums to a map where the keys are the value fields of the enums,
+     * and the values are the description fields.
      *
-     * @param enumValues the values of enum
+     * @param enumValues all values of this enum
      * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
      * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @param <S>        the type of the desc field, should implement {@link Comparable} and {@link Serializable}
-     * @return an Enum which collects elements into a Map whose keys are the code field, and whose
-     * values are the desc field.
+     * @return a map collecting enum values to their descriptions
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
             S extends Comparable<S> & Serializable> Map<T, S> toDescMap(

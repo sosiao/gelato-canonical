@@ -51,4 +51,5 @@ public class I18nException extends MetaException {
     public I18nException(final UnaryException<String> exception, final Object... args) {
         super(exception, args);
     }
+
 }

@@ -44,10 +44,10 @@ public interface UnaryEnum<T extends Comparable<T> & Serializable> extends Value
         Optional.ofNullable(enumValue)
                 .ifPresent(enumVal -> {
                     T value = this.getValue();
-                    if (value instanceof String && enumVal instanceof String) {
-                        flag.set(((String) value).equalsIgnoreCase((String) enumVal));
+                    if (enumVal instanceof String && value instanceof String) {
+                        flag.set(((String) enumVal).equalsIgnoreCase((String) value));
                     } else {
-                        flag.set(Objects.equals(value, enumVal));
+                        flag.set(Objects.equals(enumVal, value));
                     }
                 });
         return flag.get();

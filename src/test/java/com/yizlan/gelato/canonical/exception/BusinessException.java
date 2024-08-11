@@ -55,4 +55,5 @@ public class BusinessException implements BinaryException<String>, Serializable 
                 ", msg='" + msg + '\'' +
                 '}';
     }
+
 }

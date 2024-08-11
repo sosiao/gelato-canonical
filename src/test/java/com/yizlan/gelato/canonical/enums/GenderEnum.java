@@ -19,7 +19,7 @@ package com.yizlan.gelato.canonical.enums;
 import com.yizlan.gelato.canonical.util.EnumUtils;
 
 public enum GenderEnum implements BiEnum<Integer, String> {
-    MAN(1, "男"), WOMAN(2, "女");
+    UNKNOWN(null, "未知"), MAN(1, "男"), WOMAN(2, "女");
 
     private final Integer value;
 
@@ -43,4 +43,5 @@ public enum GenderEnum implements BiEnum<Integer, String> {
     public static GenderEnum getEnumByValue(Integer value) {
         return EnumUtils.getEnumByValue(GenderEnum.class, value);
     }
+
 }

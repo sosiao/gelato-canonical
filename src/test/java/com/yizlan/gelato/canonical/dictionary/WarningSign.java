@@ -53,4 +53,5 @@ public class WarningSign implements TernaryDictionary<String> {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
 }

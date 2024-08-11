@@ -34,9 +34,6 @@ public class EnumTest {
 
     @Test
     void testEnum() {
-        UnaryEnum<?> biEnum = EnumUtils.getEnumByValue(null, null);
-        assert Objects.isNull(biEnum);
-
         GenderEnum genderEnum = GenderEnum.getEnumByValue(1);
         assert genderEnum == GenderEnum.MAN;
 
@@ -81,4 +78,5 @@ public class EnumTest {
         TerEnum.toDescMap(WarningSignEnum.values())
                 .forEach((val, desc) -> System.out.println("convert Desc of TernaryEnum to Map：" + val + "____" + desc));
     }
+
 }

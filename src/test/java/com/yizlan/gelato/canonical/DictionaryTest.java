@@ -53,4 +53,5 @@ public class DictionaryTest {
         TerDictionary.toDescMap(warningSigns)
                 .forEach((key, desc) -> System.out.println("TerDictionary-toDescMap：" + key + "____" + desc));
     }
+
 }

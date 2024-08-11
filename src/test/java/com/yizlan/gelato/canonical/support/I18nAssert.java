@@ -65,4 +65,5 @@ public class I18nAssert extends MetaAssert {
     public static void throwException(final UnaryException<String> exception, final Object... args) {
         throw createException(I18nException.class, exception, args);
     }
+
 }
