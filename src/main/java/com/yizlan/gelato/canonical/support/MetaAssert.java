@@ -17,8 +17,8 @@
 package com.yizlan.gelato.canonical.support;
 
 import com.yizlan.gelato.canonical.exception.UnaryException;
-import com.yizlan.gelato.canonical.fluent.CodeAssert;
-import com.yizlan.gelato.canonical.fluent.FuncAssert;
+import com.yizlan.gelato.canonical.fluent.asserts.CodeAssert;
+import com.yizlan.gelato.canonical.fluent.asserts.FuncAssert;
 import com.yizlan.gelato.canonical.fluent.factory.ExceptionFactory;
 import com.yizlan.gelato.canonical.panic.MetaException;
 
