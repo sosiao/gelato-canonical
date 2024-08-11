@@ -169,6 +169,8 @@ public abstract class MetaAssert {
      * Validates the provided error code before throwing an exception.
      *
      * @param code the error code
+     * @param <T>  the type of the parameter that named code,
+     *             should implement {@link Comparable} and {@link Serializable}
      * @throws IllegalArgumentException if the error code is null or empty.
      */
     protected static <T extends Comparable<T> & Serializable> void validateCode(final T code) {

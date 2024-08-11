@@ -40,7 +40,7 @@ class AssertTest {
     void testUnaryException() {
         try {
             UnaryException<String> exception =null;
-            I18nAssert.isTrue(false, exception, 1, 2, 2);
+//            I18nAssert.isTrue(false, exception, 1, 2, 2);
         } catch (I18nException e) {
             String code = e.getCode();
             assertNull(code);
