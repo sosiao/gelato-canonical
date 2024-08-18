@@ -37,7 +37,7 @@ public interface UnaryEnum<T extends Comparable<T> & Serializable> extends Value
      * Compares this enum's value with the given value.
      *
      * @param enumValue the value to compare with
-     * @return true if the values are considered equal; false otherwise
+     * @return {@code true} if the values are considered equal, otherwise {@code false}
      */
     default boolean valueEquals(T enumValue) {
         AtomicBoolean flag = new AtomicBoolean(false);
