@@ -42,7 +42,7 @@ public class EnumUtils {
      *
      * @param enumClazz the class of enum
      * @param value     the value of enum
-     * @param <E>       enum
+     * @param <E>       an enum that implements {@link UnaryEnum}
      * @param <T>       the type of the value field
      * @return Optional containing the Enum element if found; otherwise, an empty Optional
      */
@@ -73,7 +73,7 @@ public class EnumUtils {
      *
      * @param enumClazz the class of enum
      * @param value     the value of enum
-     * @param <E>       enum
+     * @param <E>       an enum that implements {@link UnaryEnum}
      * @param <T>       the type of the value field
      * @return an element from Enum, if not found, return null
      */

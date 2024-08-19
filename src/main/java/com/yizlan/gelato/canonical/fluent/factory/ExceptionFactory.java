@@ -25,7 +25,7 @@ import java.io.Serializable;
  *
  * @param <T> A comparable and serializable type used for the exception code.
  * @param <R> Generic type parameter representing the type of the exception object to be returned,
- *            which must be a subclass of {@code MetaException}.
+ *            which must be a subclass of {@link MetaException}.
  * @author Zen Gershon
  * @since 2.3
  */

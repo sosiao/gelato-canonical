@@ -34,9 +34,9 @@ import java.io.Serializable;
 public interface FuncAssert {
 
     /**
-     * Throw a custom exception that extends {@code MetaException} when a condition is not met.
+     * Throw a custom exception that extends {@link MetaException} when a condition is not met.
      *
-     * @param exceptionClazz The class of the custom exception that extends {@code MetaException} to be thrown
+     * @param exceptionClazz The class of the custom exception that extends {@link MetaException} to be thrown
      * @param exception      The unary operation exception object, used to define how to generate the exception
      *                       message based on parameters.
      * @param args           Optional parameters provided to the exception constructor for customizing the exception

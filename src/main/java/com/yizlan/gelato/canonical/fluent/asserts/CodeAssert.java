@@ -35,7 +35,7 @@ public interface CodeAssert {
     /**
      * Throws an exception with the specified type.
      *
-     * @param exceptionClazz The exception class, specifying the type of exception that extends {@code MetaException}.
+     * @param exceptionClazz The exception class, specifying the type of exception that extends {@link MetaException}.
      * @param code           The exception code, which must be a value of type T.
      * @param args           Optional parameters provided to the exception constructor for customizing the exception
      *                       message
