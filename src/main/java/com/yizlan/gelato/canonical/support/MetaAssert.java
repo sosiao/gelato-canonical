@@ -56,8 +56,8 @@ public abstract class MetaAssert {
      */
     protected static <T extends MetaException> void registerFactory(Class<T> exceptionClazz,
                                                                     ExceptionFactory<?, T> factory) {
-        Objects.requireNonNull(exceptionClazz);
-        Objects.requireNonNull(factory);
+        Objects.requireNonNull(exceptionClazz, "Exception class is not specified.");
+        Objects.requireNonNull(factory, "ExceptionFactory cannot be null.");
         DEFAULT_FACTORY.put(exceptionClazz, factory);
     }
 
