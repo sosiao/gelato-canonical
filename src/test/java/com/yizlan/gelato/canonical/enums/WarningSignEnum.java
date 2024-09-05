@@ -8,7 +8,13 @@ public enum WarningSignEnum implements TernaryEnum<String> {
     // 黄色
     YELLOW("YELLOW", "#fadb14", "黄色"),
     // 绿色
-    GREEN("GREEN", "#52c41a", "绿色");
+    GREEN("GREEN", "#52c41a", "绿色"),
+    // 绿色
+    GREEN1("GREEN", "#52c41a", "绿色"),
+    // 绿色
+    NULL(null, null, null),
+    // 绿色
+    NULL1(null, null, "null1");
 
     private final String value;
 

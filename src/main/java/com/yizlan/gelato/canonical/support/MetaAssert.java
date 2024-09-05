@@ -17,8 +17,8 @@
 package com.yizlan.gelato.canonical.support;
 
 import com.yizlan.gelato.canonical.exception.UnaryException;
-import com.yizlan.gelato.canonical.fluent.CodeAssert;
-import com.yizlan.gelato.canonical.fluent.FuncAssert;
+import com.yizlan.gelato.canonical.fluent.asserts.CodeAssert;
+import com.yizlan.gelato.canonical.fluent.asserts.FuncAssert;
 import com.yizlan.gelato.canonical.fluent.factory.ExceptionFactory;
 import com.yizlan.gelato.canonical.panic.MetaException;
 
@@ -51,17 +51,13 @@ public abstract class MetaAssert {
      *
      * @param exceptionClazz the class of the exception for which the factory is being registered.
      * @param factory        the ExceptionFactory instance used to create exceptions with the specified type.
-     * @param <T>            the type of the exception which must be a subclass of {@code MetaException}.
-     * @throws IllegalArgumentException if the exception class or factory is null.
+     * @param <T>            the type of the exception which must be a subclass of {@link MetaException}.
+     * @throws NullPointerException if {@code exceptionClazz} or {@code factory} is null.
      */
     protected static <T extends MetaException> void registerFactory(Class<T> exceptionClazz,
                                                                     ExceptionFactory<?, T> factory) {
-        if (exceptionClazz == null) {
-            throw new IllegalArgumentException("Exception class is not specified.");
-        }
-        if (factory == null) {
-            throw new IllegalArgumentException("ExceptionFactory cannot be null.");
-        }
+        Objects.requireNonNull(exceptionClazz, "Exception class is not specified.");
+        Objects.requireNonNull(factory, "ExceptionFactory cannot be null.");
         DEFAULT_FACTORY.put(exceptionClazz, factory);
     }
 
@@ -70,13 +66,15 @@ public abstract class MetaAssert {
      *
      * @param exceptionClazz the class of the exception for which to retrieve the factory.
      * @param <T>            a comparable and serializable type used for the exception code.
-     * @param <R>            the type of the exception which must be a subclass of {@code MetaException}.
+     * @param <R>            the type of the exception which must be a subclass of {@link MetaException}.
      * @return the ExceptionFactory instance for creating exceptions with the specified type.
+     * @throws NullPointerException  if {@code exceptionClazz} is null.
      * @throws IllegalStateException if no factory is registered for the exception class.
      */
     @SuppressWarnings("unchecked")
     private static <T extends Comparable<T> & Serializable, R extends MetaException> ExceptionFactory<T, R> getDefaultFactory(
             Class<R> exceptionClazz) {
+        Objects.requireNonNull(exceptionClazz);
         Object factory = DEFAULT_FACTORY.get(exceptionClazz);
         return Optional.ofNullable(factory)
                 .map(f -> (ExceptionFactory<T, R>) f)
@@ -87,31 +85,35 @@ public abstract class MetaAssert {
      * Creates an exception instance using the default factory, based on the provided class, code, and additional
      * arguments.
      *
-     * @param exceptionClazz the exception class, specifying the type of exception that extends {@code MetaException}.
+     * @param exceptionClazz the exception class, specifying the type of exception that extends {@link MetaException}.
      * @param code           the error code
      * @param args           optional parameters for formatting the exception message.
      * @param <T>            a comparable and serializable type used for the exception code.
-     * @param <R>            the type of the exception which must be a subclass of {@code MetaException}.
+     * @param <R>            the type of the exception which must be a subclass of {@link MetaException}.
      * @return An instance of the specified exception class.
+     * @throws NullPointerException if {@link ExceptionFactory} was not registered correctly.
      */
     protected static <T extends Comparable<T> & Serializable, R extends MetaException> R createException(final Class<R> exceptionClazz,
                                                                                                          final T code,
                                                                                                          final Object... args) {
         ExceptionFactory<T, R> exceptionFactory = getDefaultFactory(exceptionClazz);
         validateCode(code);
-        return exceptionFactory.create(code, args);
+        R customException = exceptionFactory.create(code, args);
+        return Objects.requireNonNull(customException, "Factory not set correctly.");
     }
 
     /**
      * Creates an exception instance using the default factory, based on a UnaryException instance and additional
      * arguments.
      *
-     * @param exceptionClazz the exception class, specifying the type of exception that extends {@code MetaException}.
+     * @param exceptionClazz the exception class, specifying the type of exception that extends {@link MetaException}.
      * @param exception      a UnaryException instance containing the error code.
      * @param args           optional arguments for formatting the exception message.
      * @param <T>            a comparable and serializable type used for the exception code.
-     * @param <R>            the type of the exception which must be a subclass of {@code MetaException}.
+     * @param <R>            the type of the exception which must be a subclass of {@link MetaException}.
      * @return An instance of the specified exception class.
+     * @throws NullPointerException if {@code exception} is null or {@link ExceptionFactory} wasn't registered
+     *                              correctly.
      */
     protected static <T extends Comparable<T> & Serializable, R extends MetaException> R createException(final Class<R> exceptionClazz,
                                                                                                          final UnaryException<T> exception,
@@ -119,7 +121,8 @@ public abstract class MetaAssert {
         ExceptionFactory<T, R> exceptionFactory = getDefaultFactory(exceptionClazz);
         Objects.requireNonNull(exception, "UnaryException cannot be null.");
         validateCode(exception.getCode());
-        return exceptionFactory.create(exception.getCode(), args);
+        R customException = exceptionFactory.create(exception.getCode(), args);
+        return Objects.requireNonNull(customException, "Factory not set correctly.");
     }
 
     /**
@@ -171,7 +174,7 @@ public abstract class MetaAssert {
      * @param code the error code
      * @param <T>  the type of the parameter that named code,
      *             should implement {@link Comparable} and {@link Serializable}
-     * @throws IllegalArgumentException if the error code is null or empty.
+     * @throws IllegalArgumentException if {@code code} is null or empty.
      */
     protected static <T extends Comparable<T> & Serializable> void validateCode(final T code) {
         if (code instanceof String) {

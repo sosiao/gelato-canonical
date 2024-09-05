@@ -21,12 +21,17 @@ import com.yizlan.gelato.canonical.copier.ValueProvider;
 import com.yizlan.gelato.canonical.dictionary.BiDictionary;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Provide fields which named value and label with the different type for enum.
@@ -50,15 +55,15 @@ public interface BiEnum<T extends Comparable<T> & Serializable, U extends Compar
      * @param <U> the type of the name, which must implement {@link Comparable} and {@link Serializable}
      */
     class ImmutableBiDictionary<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
-            implements BiDictionary<T, U> {
+            implements BiDictionary<T, U>, Serializable {
+        private static final long serialVersionUID = 1L;
 
-        private final T code;
+        private T code;
 
-        private final U name;
+        private U name;
 
-        private ImmutableBiDictionary(T code, U name) {
-            this.code = code;
-            this.name = name;
+        private ImmutableBiDictionary() {
+            // to do nothing
         }
 
         @Override
@@ -68,7 +73,7 @@ public interface BiEnum<T extends Comparable<T> & Serializable, U extends Compar
 
         @Override
         public void setCode(T code) {
-            throw new UnsupportedOperationException("This method is not supported.");
+            this.code = code;
         }
 
         @Override
@@ -78,79 +83,108 @@ public interface BiEnum<T extends Comparable<T> & Serializable, U extends Compar
 
         @Override
         public void setName(U name) {
-            throw new UnsupportedOperationException("This method is not supported.");
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "ImmutableBiDictionary{" +
+                    "code=" + code +
+                    ", name=" + name +
+                    '}';
         }
     }
 
     /**
      * Converts the values of this enum to a list of {@link BiDictionary} objects.
      * Each element in the list corresponds to a dictionary entry for an enumeration value and its label.
+     * Note that the null elements will be ignored.
      *
      * @param enumValues all values of this enum, not nullable
      * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
      * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return a list of {@link BiDictionary} objects, not nullable
-     * @throws NullPointerException     if the input array of enumeration values is null
-     * @throws IllegalArgumentException if any of the elements in the array is null
+     * @throws NullPointerException if {@code enumValues} is null
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> List<BiDictionary<T, U>>
     toList(BiEnum<T, U>[] enumValues) {
-        if (enumValues == null) {
-            throw new NullPointerException("The values of enum cannot be null");
-        }
-        if (enumValues.length == 0) {
-            return Collections.emptyList();
-        }
-        List<BiDictionary<T, U>> dictionaries = new ArrayList<>(enumValues.length);
-
-        for (BiEnum<T, U> item : enumValues) {
-            if (item == null) {
-                throw new IllegalArgumentException("The values of enum cannot contain null elements.");
-            }
-            BiDictionary<T, U> dictionary = new ImmutableBiDictionary<>(item.getValue(), item.getLabel());
-            dictionaries.add(dictionary);
-        }
-        return dictionaries;
+        return toList(enumValues, ImmutableBiDictionary::new);
     }
 
     /**
      * Converts the values of this enum to a list of specified {@link BiDictionary} implementations.
      * This method allows for the creation of a list of any {@link BiDictionary} implementation by providing a supplier.
+     * Note that the null elements will be ignored.
      *
      * @param enumValues all values of this enum, not nullable
-     * @param supplier   a supplier for creating instances of a specific {@link BiDictionary} implementation, not
-     *                   nullable
+     * @param supplier   a supplier for creating instances of a specific {@link BiDictionary} implementation,
+     *                   not nullable
      * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
      * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @param <R>        the type of the specific {@link BiDictionary} implementation
      * @return a list of specified {@link BiDictionary} implementations
-     * @throws NullPointerException     if the input array of enumeration values or supplier is null
-     * @throws IllegalArgumentException if any of the elements in the array is null
+     * @throws NullPointerException if {@code enumValues} or {@code supplier}
+     *                              or {@link Supplier#get()} is null
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
             R extends BiDictionary<T, U>> List<R> toList(BiEnum<T, U>[] enumValues, Supplier<R> supplier) {
-        if (enumValues == null) {
-            throw new NullPointerException("enumValues cannot be null");
-        }
+        return toList(enumValues, supplier, Object::toString);
+    }
+
+
+    /**
+     * Converts the values of this enum into a list of a specific type,
+     * and also using a mapping function to produce unique keys to deduplicate the list.
+     * Note that the null elements will be ignored.
+     *
+     * @param <T>          the generic type T, which must implement {@link Comparable} and {@link Serializable}
+     * @param <U>          the generic type U, which must implement {@link Comparable} and {@link Serializable}
+     * @param <R>          the generic type R, which must implement the {@link BiDictionary} interface
+     * @param enumValues   all values of this enum, not nullable
+     * @param supplier     a supplier for instances of type R
+     * @param keyExtractor a function to extract unique keys from instances of type R
+     * @return a list of the specified type R
+     * @throws NullPointerException if {@code enumValues} or {@code supplier}
+     *                              or {@link Supplier#get()} or {@link Function#apply(Object)} is null
+     */
+    static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable,
+            R extends BiDictionary<T, U>> List<R> toList(BiEnum<T, U>[] enumValues,
+                                                         Supplier<R> supplier,
+                                                         Function<? super R, Object> keyExtractor) {
+        Objects.requireNonNull(enumValues);
+        Objects.requireNonNull(supplier);
         if (enumValues.length == 0) {
             return Collections.emptyList();
         }
-        List<R> objects = new ArrayList<>(enumValues.length);
 
-        for (BiEnum<T, U> item : enumValues) {
-            if (item == null) {
-                throw new IllegalArgumentException("Enum values cannot contain null elements");
-            }
-            R object = supplier.get();
-            if (object == null) {
-                throw new NullPointerException("The instance of BiDictionary cannot be null");
-            }
-            object.setCode(item.getValue());
-            object.setName(item.getLabel());
+        R r = supplier.get();
+        Objects.requireNonNull(r);
+        return Stream.of(enumValues)
+                .filter(Objects::nonNull)
+                .map(item -> {
+                    R object = supplier.get();
+                    object.setCode(item.getValue());
+                    object.setName(item.getLabel());
+                    return object;
+                })
+                .filter(distinctByKey(keyExtractor))
+                .collect(Collectors.toList());
+    }
 
-            objects.add(object);
-        }
-        return objects;
+    /**
+     * If a key could not be put into ConcurrentHashMap, that means the key is duplicated
+     *
+     * @param keyExtractor a mapping function to produce keys
+     * @param <T>          the type of the input elements
+     * @return {@code true} if key is duplicated, otherwise {@code false}
+     * @throws NullPointerException If the unique key extracted from the generic type T is null
+     */
+    static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+        Map<Object, Boolean> map = new ConcurrentHashMap<>();
+        return t -> {
+            Object key = Objects.requireNonNull(keyExtractor.apply(t));
+            return map.putIfAbsent(key, Boolean.TRUE) == null;
+        };
     }
 
     /**
@@ -161,13 +195,11 @@ public interface BiEnum<T extends Comparable<T> & Serializable, U extends Compar
      * @param <T>        the type of the value field, should implement {@link Comparable} and {@link Serializable}
      * @param <U>        the type of the label field, should implement {@link Comparable} and {@link Serializable}
      * @return a map collecting enum values to their labels
-     * @throws NullPointerException if enumValues is null
+     * @throws NullPointerException if {@code enumValues} is null
      */
     static <T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable> Map<T, U> toMap(
             BiEnum<T, U>[] enumValues) {
-        if (enumValues == null) {
-            throw new NullPointerException("enumValues cannot be null");
-        }
+        Objects.requireNonNull(enumValues);
         if (enumValues.length == 0) {
             return Collections.emptyMap();
         }

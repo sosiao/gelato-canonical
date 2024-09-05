@@ -14,36 +14,38 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.fluent;
+package com.yizlan.gelato.canonical.fluent.asserts;
 
+import com.yizlan.gelato.canonical.exception.UnaryException;
 import com.yizlan.gelato.canonical.panic.MetaException;
 
 import java.io.Serializable;
 
 /**
- * This functional interface {@code CodeAssert} defines an assertion operation
- * that can be used to throw a custom exception when a condition is not met.
+ * The functional interface {@code FuncAssert} is used to define an assertion operation
+ * that can throw a custom exception when a condition is not met.
  * <p>
- * Note: In version {@code 2.4}, this class will be moved to the package that named
- * {@code com.yizlan.gelato.canonical.fluent.asserts}.
+ * Note: Since version {@code 2.4}, this class has been moved to this package.
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.0
  */
 @FunctionalInterface
-public interface CodeAssert {
+public interface FuncAssert {
 
     /**
-     * Throws an exception with the specified type.
+     * Throw a custom exception that extends {@link MetaException} when a condition is not met.
      *
-     * @param exceptionClazz The exception class, specifying the type of exception that extends {@code MetaException}.
-     * @param code           The exception code, which must be a value of type T.
+     * @param exceptionClazz The class of the custom exception that extends {@link MetaException} to be thrown
+     * @param exception      The unary operation exception object, used to define how to generate the exception
+     *                       message based on parameters.
      * @param args           Optional parameters provided to the exception constructor for customizing the exception
-     *                       message
-     * @param <T>            A comparable and serializable type used for the exception code.
+     *                       message.
+     * @param <T>            A comparable and serializable type used for the unary operation exception object to be
+     *                       thrown.
      */
     <T extends Comparable<T> & Serializable> void throwException(Class<? extends MetaException> exceptionClazz,
-                                                                 T code,
+                                                                 UnaryException<T> exception,
                                                                  Object... args);
 
 }

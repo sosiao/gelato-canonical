@@ -43,9 +43,9 @@ public class I18nException extends MetaException {
     }
 
     /**
-     * Constructs a new i18n exception with binary generic enum interface as parameter and detail message.
+     * Constructs a new i18n exception with unary generic interface as parameter and detail message.
      *
-     * @param exception unary generic enum interface
+     * @param exception unary generic interface
      * @param args      reserved parameters
      */
     public I18nException(final UnaryException<String> exception, final Object... args) {
