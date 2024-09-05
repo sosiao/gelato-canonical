@@ -16,6 +16,8 @@
 
 package com.yizlan.gelato.canonical.dictionary;
 
+import java.util.Objects;
+
 public class WarningSign implements TernaryDictionary<String> {
 
     private String code;
@@ -52,6 +54,23 @@ public class WarningSign implements TernaryDictionary<String> {
     @Override
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        WarningSign that = (WarningSign) obj;
+        return Objects.equals(code, that.code) && Objects.equals(name, that.name) && Objects.equals(desc, that.desc);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name, desc);
     }
 
 }

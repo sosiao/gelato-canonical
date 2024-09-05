@@ -52,7 +52,13 @@ public class EnumTest {
                 );
 
         List<Gender> genders = BiEnum.toList(GenderEnum.values(), Gender::new);
-        genders.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary, " +
+        genders.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary1, " +
+                "class name:" + item.getClass().getTypeName() +
+                ", \n value：" + item.getCode() + "|++++|" + item.getName())
+        );
+
+        List<Gender> genderList = BiEnum.toList(GenderEnum.values(), Gender::new, t -> "Gender" + t.getName());
+        genderList.forEach(item -> System.out.println("convert BiEnum to Gender through BiDictionary2, " +
                 "class name:" + item.getClass().getTypeName() +
                 ", \n value：" + item.getCode() + "|++++|" + item.getName())
         );
@@ -63,9 +69,17 @@ public class EnumTest {
                 item.getCode() + "|----|" + item.getName() + "|----|" + item.getDesc())
         );
 
-        List<WarningSign> warningSignList = TerEnum.toList(WarningSignEnum.values(), WarningSign::new);
+        List<WarningSign> warningSigns = TerEnum.toList(WarningSignEnum.values(), WarningSign::new);
+        warningSigns.stream()
+                .map(warningSign -> "convert TernaryEnum to WarningSign through TerDictionary1, class name:" +
+                        warningSign.getClass().getTypeName() + ", \n value："
+                        + warningSign.getCode() + "|____|" + warningSign.getName() + "|____|" + warningSign.getDesc())
+                .forEach(System.out::println);
+
+        List<WarningSign> warningSignList = TerEnum.toList(WarningSignEnum.values(), WarningSign::new,
+                t -> "WarningSign" + t.getName());
         warningSignList.stream()
-                .map(warningSign -> "convert TernaryEnum to WarningSign through TerDictionary, class name:" +
+                .map(warningSign -> "convert TernaryEnum to WarningSign through TerDictionary2, class name:" +
                         warningSign.getClass().getTypeName() + ", \n value："
                         + warningSign.getCode() + "|____|" + warningSign.getName() + "|____|" + warningSign.getDesc())
                 .forEach(System.out::println);

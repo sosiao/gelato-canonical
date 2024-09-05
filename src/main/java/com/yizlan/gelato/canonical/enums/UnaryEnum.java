@@ -34,10 +34,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public interface UnaryEnum<T extends Comparable<T> & Serializable> extends ValueProvider<T> {
 
     /**
-     * Compares enum according to their source value.
+     * Compares this enum's value with the given value.
      *
-     * @param enumValue the type of the filed which named value
-     * @return equals result from the value field of enum.
+     * @param enumValue the value to compare with
+     * @return {@code true} if the values are considered equal, otherwise {@code false}
      */
     default boolean valueEquals(T enumValue) {
         AtomicBoolean flag = new AtomicBoolean(false);

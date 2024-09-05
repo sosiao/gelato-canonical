@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.fluent;
+package com.yizlan.gelato.canonical.fluent.asserts;
 
 import com.yizlan.gelato.canonical.exception.UnaryException;
 import com.yizlan.gelato.canonical.panic.MetaException;
@@ -25,8 +25,7 @@ import java.io.Serializable;
  * The functional interface {@code FuncAssert} is used to define an assertion operation
  * that can throw a custom exception when a condition is not met.
  * <p>
- * Note: In version {@version 2.4}, this class will be moved to the package that named
- * {@code com.yizlan.gelato.canonical.fluent.asserts}.
+ * Note: Since version {@code 2.4}, this class has been moved to this package.
  *
  * @author Zen Gershon
  * @since 2.0
@@ -35,9 +34,9 @@ import java.io.Serializable;
 public interface FuncAssert {
 
     /**
-     * Throw a custom exception that extends {@code MetaException} when a condition is not met.
+     * Throw a custom exception that extends {@link MetaException} when a condition is not met.
      *
-     * @param exceptionClazz The class of the custom exception that extends {@code MetaException} to be thrown
+     * @param exceptionClazz The class of the custom exception that extends {@link MetaException} to be thrown
      * @param exception      The unary operation exception object, used to define how to generate the exception
      *                       message based on parameters.
      * @param args           Optional parameters provided to the exception constructor for customizing the exception

@@ -49,5 +49,4 @@ public class Gender implements BiDictionary<Integer, String> {
                 ", name='" + name + '\'' +
                 '}';
     }
-
 }

@@ -53,6 +53,8 @@ public class MetaException extends RuntimeException {
      *
      * @param code error code
      * @param args placeholder parameters
+     * @param <T>  the type of the parameter that named code,
+     *             should implement {@link Comparable} and {@link Serializable}
      */
     protected <T extends Comparable<T> & Serializable> MetaException(final T code, final Object... args) {
         super();
@@ -65,6 +67,7 @@ public class MetaException extends RuntimeException {
      *
      * @param exception unary generic enum interface
      * @param args      placeholder parameters
+     * @param <T>       generic type, should implement {@link Comparable} and {@link Serializable}
      */
     protected <T extends Comparable<T> & Serializable> MetaException(final UnaryException<T> exception,
                                                                      final Object... args) {
