@@ -35,4 +35,22 @@ import java.io.Serializable;
 public interface BiResult<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
         extends CodeProvider<T>, MessageProvider<U> {
 
+    void setCode(T code);
+
+    void setMessage(U message);
+
+    default BiResult<T, U> code(T data) {
+        this.setCode(data);
+        return this;
+    }
+
+    default BiResult<T, U> message(U data) {
+        this.setMessage(data);
+        return this;
+    }
+
+    BiResult<T, U> success(Object... args);
+
+    BiResult<T, U> failure(Object... args);
+
 }
