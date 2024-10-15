@@ -4,11 +4,18 @@
 
 <p align="center">
   <a href="https://central.sonatype.com/search?namespace=com.yizlan&name=gelato-canonical">
-    <img alt="maven" src="https://img.shields.io/maven-central/v/com.yizlan/gelato-canonical.svg?style=flat-square">
+    <img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.yizlan/gelato-canonical.svg?style=flat-square">
   </a>
 
   <a href="https://www.apache.org/licenses/LICENSE-2.0">
-    <img alt="code style" src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square">
+    <img alt="License" src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square">
+  </a>
+
+  <a href="https://github.com/sosiao/gelato-canonical">
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/sosiao/gelato-canonical">
+  </a>
+  <a href="https://gitee.com/sosiao/gelato-canonical">
+    <img alt="Gitee stars" src="https://gitee.com/sosiao/gelato-canonical/badge/star.svg?style=flat-square">
   </a>
 </p>
 
