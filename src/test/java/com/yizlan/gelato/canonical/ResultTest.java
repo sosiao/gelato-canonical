@@ -25,15 +25,15 @@ public class ResultTest {
     @Test
     public void testResult(){
         ApiResult<Gender> apiResult = new ApiResult<>();
-        apiResult.setCode(0);
-        apiResult.setMessage("success");
 
         Gender gender = new Gender();
         gender.setCode(1);
         gender.setName("男");
         apiResult.setData(gender);
 
-        System.out.println(apiResult);
+
+        System.out.println(apiResult.success().data(gender).code(200).message("success"));
+        System.out.println(apiResult.failure());
     }
 
 }

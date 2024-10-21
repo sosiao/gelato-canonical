@@ -17,6 +17,7 @@
 package com.yizlan.gelato.canonical.protocol;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable {
     private static final long serialVersionUID = 1L;
@@ -54,12 +55,36 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
         this.data = data;
     }
 
+
+    public ApiResult() {
+        // to do nothing
+    }
+
+    private ApiResult(Integer code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
+    private static <T> ApiResult<T> build(Integer code, String message, T data) {
+        return new ApiResult<>(code, message, data);
+    }
+
+    public ApiResult<T> failure(Integer code, String message, Object... args) {
+        return build(code, message, null);
+    }
+
+    @Override
+    public ApiResult<T> failure(Object... args) {
+        return build(500, "failure", null);
+    }
+
     @Override
     public String toString() {
         return "ApiResult{" +
                 "code=" + code +
                 ", message='" + message + '\'' +
-                ", data=" + data.toString() +
+                ", data=" + (Objects.nonNull(data) ? data.toString() : null) +
                 '}';
     }
 
