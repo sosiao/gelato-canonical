@@ -55,4 +55,11 @@ public interface TerResult<T extends Comparable<T> & Serializable, U extends Com
         return this;
     }
 
+    default TerResult<T, U, S> failure(Object... args) {
+        this.setCode(null);
+        this.setMessage(null);
+        this.setData(null);
+        return this;
+    }
+
 }
