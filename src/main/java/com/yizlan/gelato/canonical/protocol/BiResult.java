@@ -39,13 +39,13 @@ public interface BiResult<T extends Comparable<T> & Serializable, U extends Comp
 
     void setMessage(U message);
 
-    default BiResult<T, U> code(T data) {
-        this.setCode(data);
+    default BiResult<T, U> code(T code) {
+        this.setCode(code);
         return this;
     }
 
-    default BiResult<T, U> message(U data) {
-        this.setMessage(data);
+    default BiResult<T, U> message(U message) {
+        this.setMessage(message);
         return this;
     }
 
