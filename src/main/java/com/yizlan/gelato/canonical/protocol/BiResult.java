@@ -49,8 +49,43 @@ public interface BiResult<T extends Comparable<T> & Serializable, U extends Comp
         return this;
     }
 
+    default BiResult<T, U> varargs(Object... args) {
+        // If you need more arguments, you can rewrite this method.
+        return this;
+    }
+
+    /**
+     * Provide a success result.
+     *
+     * @return return a success result.
+     */
+    BiResult<T, U> success();
+
+    /**
+     * Provide a success result.
+     *
+     * @param args variable arguments.
+     * @return return a success result.
+     * @deprecated use {@link #success()} and {@link #varargs(Object...)} instead.
+     */
+    @Deprecated
     BiResult<T, U> success(Object... args);
 
+    /**
+     * Provide a failure result.
+     *
+     * @return return a failure result.
+     */
+    BiResult<T, U> failure();
+
+    /**
+     * Provide a failure result.
+     *
+     * @param args variable arguments.
+     * @return return a failure result.
+     * @deprecated use {@link #failure()} and {@link #varargs(Object...)} instead.
+     */
+    @Deprecated
     BiResult<T, U> failure(Object... args);
 
 }
