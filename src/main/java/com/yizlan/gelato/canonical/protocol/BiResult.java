@@ -54,6 +54,12 @@ public interface BiResult<T extends Comparable<T> & Serializable, U extends Comp
         return this;
     }
 
+    default BiResult<T, U> empty() {
+        this.setCode(null);
+        this.setMessage(null);
+        return this;
+    }
+
     /**
      * Provide a success result.
      *

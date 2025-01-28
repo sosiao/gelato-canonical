@@ -33,7 +33,7 @@ public class ResultTest {
 
 
         System.out.println(apiResult.success().data(gender).code(200).message("success"));
-        System.out.println(apiResult.failure());
+        System.out.println(apiResult.failure().varargs(1));
     }
 
 }

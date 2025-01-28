@@ -28,6 +28,8 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
 
     private T data;
 
+    private String requestId;
+
     @Override
     public Integer getCode() {
         return code;
@@ -55,6 +57,13 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
         this.data = data;
     }
 
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
 
     public ApiResult() {
         // to do nothing
@@ -80,11 +89,18 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
     }
 
     @Override
+    public ApiResult<T> varargs(Object... args) {
+        this.requestId = args[0].toString();
+        return this;
+    }
+
+    @Override
     public String toString() {
         return "ApiResult{" +
                 "code=" + code +
                 ", message='" + message + '\'' +
                 ", data=" + (Objects.nonNull(data) ? data.toString() : null) +
+                ", requestId=" + requestId +
                 '}';
     }
 
