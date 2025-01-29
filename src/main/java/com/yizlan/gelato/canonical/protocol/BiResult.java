@@ -25,6 +25,7 @@ import java.io.Serializable;
  * Provide fields which named code and message with different types for result.
  * This is the two-arity specialization of {@link CodeProvider}.
  *
+ * @param <P> the type of data protocol itself that implements {@link BiResult}
  * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
  * @param <U> the type of the message field, should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
@@ -32,32 +33,34 @@ import java.io.Serializable;
  * @see MessageProvider
  * @since 1.0
  */
-public interface BiResult<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable>
-        extends CodeProvider<T>, MessageProvider<U> {
+public interface BiResult<P extends BiResult<P, T, U>, T extends Comparable<T> & Serializable,
+        U extends Comparable<U> & Serializable> extends CodeProvider<T>, MessageProvider<U> {
 
     void setCode(T code);
 
     void setMessage(U message);
 
-    default BiResult<T, U> code(T code) {
+    P self();
+
+    default P code(T code) {
         this.setCode(code);
-        return this;
+        return this.self();
     }
 
-    default BiResult<T, U> message(U message) {
+    default P message(U message) {
         this.setMessage(message);
-        return this;
+        return this.self();
     }
 
-    default BiResult<T, U> varargs(Object... args) {
+    default P varargs(Object... args) {
         // If you need more arguments, you can rewrite this method.
-        return this;
+        return this.self();
     }
 
-    default BiResult<T, U> empty() {
+    default P empty() {
         this.setCode(null);
         this.setMessage(null);
-        return this;
+        return this.self();
     }
 
     /**
@@ -65,7 +68,7 @@ public interface BiResult<T extends Comparable<T> & Serializable, U extends Comp
      *
      * @return return a success result.
      */
-    BiResult<T, U> success();
+    P success();
 
     /**
      * Provide a success result.
@@ -75,14 +78,14 @@ public interface BiResult<T extends Comparable<T> & Serializable, U extends Comp
      * @deprecated use {@link #success()} and {@link #varargs(Object...)} instead.
      */
     @Deprecated
-    BiResult<T, U> success(Object... args);
+    P success(Object... args);
 
     /**
      * Provide a failure result.
      *
      * @return return a failure result.
      */
-    BiResult<T, U> failure();
+    P failure();
 
     /**
      * Provide a failure result.
@@ -92,6 +95,6 @@ public interface BiResult<T extends Comparable<T> & Serializable, U extends Comp
      * @deprecated use {@link #failure()} and {@link #varargs(Object...)} instead.
      */
     @Deprecated
-    BiResult<T, U> failure(Object... args);
+    P failure(Object... args);
 
 }

@@ -19,7 +19,7 @@ package com.yizlan.gelato.canonical.protocol;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable {
+public class ApiResult<T> implements TerResult<ApiResult<T>, Integer, String, T>, Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer code;
@@ -73,6 +73,11 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
         this.code = code;
         this.message = message;
         this.data = data;
+    }
+
+    @Override
+    public ApiResult<T> self() {
+        return this;
     }
 
     private static <T> ApiResult<T> build(Integer code, String message, T data) {
