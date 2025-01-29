@@ -22,6 +22,7 @@ import java.io.Serializable;
  * Provide fields which named code、message with the same type and data with special data type for result.
  * This is a specialization of {@link TerResult} for the case.
  *
+ * @param <P> the type of data protocol itself that implements {@link TernaryResult}
  * @param <T> the type of fields that contains code and message,
  *            should implement {@link Comparable} and {@link Serializable}
  * @param <U> the type of the data filed
@@ -30,6 +31,7 @@ import java.io.Serializable;
  * @see BinaryResult
  * @since 1.0
  */
-public interface TernaryResult<T extends Comparable<T> & Serializable, U> extends TerResult<T, T, U> {
+public interface TernaryResult<P extends TernaryResult<P, T, U>, T extends Comparable<T> & Serializable, U>
+        extends TerResult<P, T, T, U> {
 
 }

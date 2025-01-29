@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 public class ResultTest {
 
     @Test
-    public void testResult(){
+    public void testResult() {
         ApiResult<Gender> apiResult = new ApiResult<>();
 
         Gender gender = new Gender();
@@ -32,7 +32,7 @@ public class ResultTest {
         apiResult.setData(gender);
 
 
-        System.out.println(apiResult.success().data(gender).code(200).message("success"));
+        System.out.println(apiResult.success().code(200).message("success").data(gender));
         System.out.println(apiResult.failure().varargs(1));
     }
 
