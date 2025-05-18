@@ -71,30 +71,10 @@ public interface BiResult<P extends BiResult<P, T, U>, T extends Comparable<T> &
     P success();
 
     /**
-     * Provide a success result.
-     *
-     * @param args variable arguments.
-     * @return return a success result.
-     * @deprecated use {@link #success()} and {@link #varargs(Object...)} instead.
-     */
-    @Deprecated
-    P success(Object... args);
-
-    /**
      * Provide a failure result.
      *
      * @return return a failure result.
      */
     P failure();
-
-    /**
-     * Provide a failure result.
-     *
-     * @param args variable arguments.
-     * @return return a failure result.
-     * @deprecated use {@link #failure()} and {@link #varargs(Object...)} instead.
-     */
-    @Deprecated
-    P failure(Object... args);
 
 }
