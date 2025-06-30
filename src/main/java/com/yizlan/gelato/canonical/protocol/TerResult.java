@@ -65,4 +65,11 @@ public interface TerResult<P extends TerResult<P, T, U, S>, T extends Comparable
         return this.empty();
     }
 
+    default TerResult<T, U, S> failure(Object... args) {
+        this.setCode(null);
+        this.setMessage(null);
+        this.setData(null);
+        return this;
+    }
+
 }

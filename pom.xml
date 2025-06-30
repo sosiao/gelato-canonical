@@ -10,7 +10,10 @@
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
-    <description>a toolkit for regulating data exchange. </description>
+    <description>
+        Gelato-Canonical is a suite of standards that provide specifications for response results, business
+        dictionaries, business enumerations, exceptions, assertions, and much more.
+    </description>
     <url>https://github.com/sosiao/gelato-canonical</url>
 
     <licenses>
