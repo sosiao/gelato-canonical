@@ -22,12 +22,14 @@ import java.io.Serializable;
  * Provide fields which named code and message with the same type for result.
  * This is a specialization of {@link BiResult} for the case.
  *
+ * @param <P> the type of data protocol itself that implements {@link BinaryResult}
  * @param <T> the type of fields that contains code and message,
  *            should implement {@link Comparable} and {@link Serializable}
  * @author Zen Gershon
  * @see BiResult
  * @since 1.0
  */
-public interface BinaryResult<T extends Comparable<T> & Serializable> extends BiResult<T, T> {
+public interface BinaryResult<P extends BinaryResult<P, T>, T extends Comparable<T> & Serializable>
+        extends BiResult<P, T, T> {
 
 }

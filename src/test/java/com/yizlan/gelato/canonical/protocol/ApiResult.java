@@ -19,7 +19,7 @@ package com.yizlan.gelato.canonical.protocol;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable {
+public class ApiResult<T> implements TerResult<ApiResult<T>, Integer, String, T>, Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer code;
@@ -27,6 +27,8 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
     private String message;
 
     private T data;
+
+    private String requestId;
 
     @Override
     public Integer getCode() {
@@ -55,6 +57,13 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
         this.data = data;
     }
 
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
 
     public ApiResult() {
         // to do nothing
@@ -66,17 +75,28 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
         this.data = data;
     }
 
+    @Override
+    public ApiResult<T> self() {
+        return this;
+    }
+
     private static <T> ApiResult<T> build(Integer code, String message, T data) {
         return new ApiResult<>(code, message, data);
     }
 
-    public ApiResult<T> failure(Integer code, String message, Object... args) {
+    public ApiResult<T> failure(Integer code, String message) {
         return build(code, message, null);
     }
 
     @Override
-    public ApiResult<T> failure(Object... args) {
+    public ApiResult<T> failure() {
         return build(500, "failure", null);
+    }
+
+    @Override
+    public ApiResult<T> varargs(Object... args) {
+        this.requestId = args[0].toString();
+        return this;
     }
 
     @Override
@@ -85,6 +105,7 @@ public class ApiResult<T> implements TerResult<Integer, String, T>, Serializable
                 "code=" + code +
                 ", message='" + message + '\'' +
                 ", data=" + (Objects.nonNull(data) ? data.toString() : null) +
+                ", requestId=" + requestId +
                 '}';
     }
 

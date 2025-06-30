@@ -24,6 +24,7 @@ import com.yizlan.gelato.canonical.enums.GenderEnum;
 import com.yizlan.gelato.canonical.enums.TerEnum;
 import com.yizlan.gelato.canonical.enums.UnaryEnum;
 import com.yizlan.gelato.canonical.enums.WarningSignEnum;
+import com.yizlan.gelato.canonical.protocol.ApiResult;
 import com.yizlan.gelato.canonical.util.EnumUtils;
 import org.junit.jupiter.api.Test;
 
@@ -91,6 +92,13 @@ public class EnumTest {
                 .forEach((val, text) -> System.out.println("convert TernaryEnum to Map：" + val + "____" + text));
         TerEnum.toDescMap(WarningSignEnum.values())
                 .forEach((val, desc) -> System.out.println("convert Desc of TernaryEnum to Map：" + val + "____" + desc));
+    }
+
+    @Test
+    void testToProtocol() {
+        ApiResult<Object> result = GenderEnum.MAN.toProtocol(ApiResult::new);
+
+        System.out.println(result);
     }
 
 }

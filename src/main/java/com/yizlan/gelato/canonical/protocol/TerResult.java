@@ -24,6 +24,7 @@ import java.io.Serializable;
  * Provide fields which named code、message and data with different types for result.
  * This is the three-arity specialization of {@link CodeProvider}.
  *
+ * @param <P> the type of data protocol itself that implements {@link TerResult}
  * @param <T> the type of the code field, should implement {@link Comparable} and {@link Serializable}
  * @param <U> the type of the message field, should implement {@link Comparable} and {@link Serializable}
  * @param <S> the type of the data filed
@@ -31,8 +32,8 @@ import java.io.Serializable;
  * @see BiResult
  * @since 1.0
  */
-public interface TerResult<T extends Comparable<T> & Serializable, U extends Comparable<U> & Serializable, S>
-        extends BiResult<T, U> {
+public interface TerResult<P extends TerResult<P, T, U, S>, T extends Comparable<T> & Serializable,
+        U extends Comparable<U> & Serializable, S> extends BiResult<P, T, U> {
 
     /**
      * Get data
@@ -43,16 +44,25 @@ public interface TerResult<T extends Comparable<T> & Serializable, U extends Com
 
     void setData(S data);
 
-    default TerResult<T, U, S> data(S data) {
+    default P data(S data) {
         this.setData(data);
-        return this;
+        return this.self();
     }
 
-    default TerResult<T, U, S> success(Object... args) {
+    @Override
+    default P empty() {
         this.setCode(null);
         this.setMessage(null);
         this.setData(null);
-        return this;
+        return this.self();
+    }
+
+    default P success() {
+        return this.empty();
+    }
+
+    default P failure() {
+        return this.empty();
     }
 
     default TerResult<T, U, S> failure(Object... args) {
