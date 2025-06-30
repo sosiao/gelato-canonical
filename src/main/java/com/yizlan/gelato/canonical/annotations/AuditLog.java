@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yizlan.gelato.canonical.annotation;
+package com.yizlan.gelato.canonical.annotations;
 
 import com.yizlan.gelato.canonical.enums.UnaryEnum;
 
@@ -25,9 +25,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation used for audit logging, to be applied on methods to record module, action, and summary information.
- * The purpose of this annotation is to collect audit information during method execution for subsequent log analysis
- * and system monitoring.
+ * Method-level annotation used for audit logging.
  *
  * @author Zen Gershon
  * @since 2.6
@@ -38,24 +36,37 @@ import java.lang.annotation.Target;
 public @interface AuditLog {
 
     /**
-     * Specifies the module information using a subclass of UnaryEnum. It indicates the module to which the log belongs.
+     * It indicates the module to which the log belongs.
      *
-     * @return the module info
+     * @return the module identifier, defaults to empty string
      */
-    Class<? extends UnaryEnum<?>> module();
+    String module() default "";
 
     /**
-     * Specifies the action information using a subclass of UnaryEnum. It represents the specific action being
-     * performed.
+     * Defines the specific action being performed, represented by an enum that extends {@link UnaryEnum}.
      *
      * @return the action info
      */
     Class<? extends UnaryEnum<?>> action();
 
     /**
-     * An optional field providing a brief summary or description of the method execution. Defaults to an empty string.
+     * Provides a brief summary or description of the operation.
      *
-     * @return summary
+     * @return the operation summary, defaults to empty string
      */
     String summary() default "";
+
+    /**
+     * Controls whether method parameters should be included in the audit log.
+     *
+     * @return @{code true} if parameters should be logged, defaults to true
+     */
+    boolean logParams() default true;
+
+    /**
+     * Determines if the method return value should be recorded in the audit log.
+     *
+     * @return @{code true} if return value should be logged, defaults to false
+     */
+    boolean logResult() default false;
 }
