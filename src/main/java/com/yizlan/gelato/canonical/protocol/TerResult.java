@@ -61,17 +61,7 @@ public interface TerResult<P extends TerResult<P, T, U, S>, T extends Comparable
         return this.empty();
     }
 
-    @Deprecated
-    default P success(Object... args) {
-        return this.empty();
-    }
-
     default P failure() {
-        return this.empty();
-    }
-
-    @Deprecated
-    default P failure(Object... args) {
         return this.empty();
     }
 

@@ -19,6 +19,7 @@ package com.yizlan.gelato.canonical.enums;
 import com.yizlan.gelato.canonical.copier.LabelProvider;
 import com.yizlan.gelato.canonical.copier.ValueProvider;
 import com.yizlan.gelato.canonical.dictionary.BiDictionary;
+import com.yizlan.gelato.canonical.protocol.BiResult;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -210,6 +211,26 @@ public interface BiEnum<T extends Comparable<T> & Serializable, U extends Compar
         }
 
         return map;
+    }
+
+
+    /**
+     * Converts the current value of this enum to a specified protocol object.
+     * <p>
+     * This method creates a protocol object using the provided supplier function and ensures that the object is not
+     * null.
+     * It then sets the code and message of the protocol object using the current object's value and label, and
+     * returns the protocol object.
+     *
+     * @param <P>      The type of the protocol object, which must extend {@code BiResult<P, T, U>}.
+     * @param supplier The supplier function used to create the protocol object, which must not be null.
+     * @return The protocol object configured with the code and message.
+     * @throws NullPointerException If the protocol object returned by the supplier function is null.
+     */
+    default <P extends BiResult<P, T, U>> P toProtocol(Supplier<P> supplier) {
+        P protocol = Objects.requireNonNull(supplier).get();
+        Objects.requireNonNull(protocol);
+        return protocol.code(getValue()).message(getLabel());
     }
 
 }
