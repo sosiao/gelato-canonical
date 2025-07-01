@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * Method-level annotation used for the distributed lock.
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.7
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -40,14 +40,14 @@ public @interface DistributedLock {
      * Specifies the unique key for the distributed lock.
      * This key must be unique across the system to prevent lock conflicts.
      *
-     * @return the unique key string for the lock
+     * @return The unique key for the lock
      */
     String key();
 
     /**
      * Maximum time to wait for acquiring the lock before timing out.
      *
-     * @return wait timeout duration, defaults to 5
+     * @return Wait timeout duration, defaults to 5
      */
     int waitTime() default 5;
 
@@ -55,14 +55,14 @@ public @interface DistributedLock {
      * Maximum time the lock will be held before automatic expiration.
      * Must be longer than the method execution time to prevent premature release.
      *
-     * @return lock expiration duration, defaults to 30
+     * @return Lock expiration duration, defaults to 30
      */
     int expireTime() default 30;
 
     /**
      * Time unit for both waitTime and expireTime durations.
      *
-     * @return the time unit, defaults to {@code SECONDS}
+     * @return The time unit, defaults to {@code SECONDS}
      */
     TimeUnit timeUnit() default TimeUnit.SECONDS;
 
@@ -76,7 +76,7 @@ public @interface DistributedLock {
     /**
      * Custom error message to return when lock acquisition fails.
      *
-     * @return failure message, defaults to "系统繁忙，请稍后再试"
+     * @return Failure message, defaults to "系统繁忙，请稍后再试"
      */
     String msg() default "系统繁忙，请稍后再试";
 }

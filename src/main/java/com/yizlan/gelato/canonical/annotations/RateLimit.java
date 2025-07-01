@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
  * Method-level annotation used for rate limiting.
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.7
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

@@ -28,7 +28,7 @@ import java.lang.annotation.Target;
  * Annotation used for specifying data source types.
  *
  * @author Zen Gershon
- * @since 1.0
+ * @since 2.7
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
