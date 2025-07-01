@@ -59,14 +59,14 @@ public @interface AuditLog {
     /**
      * Controls whether method parameters should be included in the audit log.
      *
-     * @return @{code true} if parameters should be logged, defaults to true
+     * @return {@code true} if parameters should be logged, defaults to true
      */
     boolean logParams() default true;
 
     /**
      * Determines if the method return value should be recorded in the audit log.
      *
-     * @return @{code true} if return value should be logged, defaults to false
+     * @return {@code true} if return value should be logged, defaults to false
      */
     boolean logResult() default false;
 }
