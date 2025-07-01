@@ -21,6 +21,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Method-level annotation used for rate limiting.
@@ -50,8 +51,15 @@ public @interface RateLimit {
     /**
      * Timeout duration for rate-limited requests.
      *
-     * @return Timeout duration in seconds, default to 1
+     * @return Timeout duration, default to 1
      */
     int timeout() default 1;
+
+    /**
+     * Time unit for timeout duration.
+     *
+     * @return The time unit, defaults to {@code SECONDS}
+     */
+    TimeUnit timeUnit() default TimeUnit.SECONDS;
 }
 
